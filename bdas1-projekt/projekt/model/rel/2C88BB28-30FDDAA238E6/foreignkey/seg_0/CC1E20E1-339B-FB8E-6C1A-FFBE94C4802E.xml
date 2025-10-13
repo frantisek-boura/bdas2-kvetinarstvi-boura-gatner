@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="CC1E20E1-339B-FB8E-6C1A-FFBE94C4802E" containerWithKeyObject="83669C06-9F1B-D699-0F89-0868F99D6CD1" localFKIndex="F906EA38-D478-8D99-576A-6C4B3E756755" name="dodane_zbozi_dodavatele_fk">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>2E24CE5E-615F-6CBC-0034-D49D57CAF3BA</importedID>
+<referredTableLongName>dodavatele</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>44903D3E-48F1-4A69-91CE-379CAA0B878A</referredTableID>
+<keyObject>24156ECE-7C51-DD87-F9DE-C2AF423C7D9F</keyObject>
+<referredKeyID>24156ECE-7C51-DD87-F9DE-C2AF423C7D9F</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

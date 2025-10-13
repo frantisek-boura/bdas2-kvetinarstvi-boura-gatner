@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EF0F7709-3E64-5BF1-4AEB-C549554940B0" name="Opravneni">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>1B5110A7-81A7-79AB-1B83-7C0607287CDE</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_opravneni" id="9526AAF5-1C73-31FC-BEDC-223A139284F6">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>531992E0-4611-776C-AB8D-99AD46B499C8</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nazev" id="F54BD26C-3A3D-36FC-6A89-BA7875866C30">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>F6257DE3-9BD6-EFD5-8E90-89371B782C53</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>32 CHAR</dataTypeSize>
+<ownDataTypeParameters>32 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="uroven" id="3067D96F-8C12-D11B-4B2C-3AA751472AB1">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>CA1EA636-C6A7-822F-3841-573AF7470CE7</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<listOfValues>
+<valueDef value="0" description=""/>
+<valueDef value="1" description=""/>
+<valueDef value="2" description=""/>
+<valueDef value="3" description=""/>
+</listOfValues>
+<defaultValue>0</defaultValue>
+<ownDataTypeParameters>,1,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="952DCBAC-76E8-A4EE-D051-F30DAB4B69BC" name="Opravneni_PK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>A1126E7B-E660-15C9-75FB-297E01825B26</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9526AAF5-1C73-31FC-BEDC-223A139284F6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

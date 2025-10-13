@@ -1,0 +1,100 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="57CAC7D0-7B09-0036-B627-55FCC02755AE" name="ROSTLINA">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 13:54:14 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="B6A3911A-2542-CB14-A5CC-CCE07786463D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>B8F0C8FE-05C3-153C-C6EF-BFC5648FF489</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="8AA3F941-5404-9BF6-E6D0-BAB31C473433">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:18:42 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="B6A3911A-2542-CB14-A5CC-CCE07786463D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pocet_kvetu" id="57B6A53E-E70C-B4B0-1F7E-67D293041614">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:39:08 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="B6A3911A-2542-CB14-A5CC-CCE07786463D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="delka_stonku" id="A5E931B5-B9D5-21FA-4276-819562562781">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:39:13 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="B6A3911A-2542-CB14-A5CC-CCE07786463D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="91BBD67A-EEE0-EC93-D06C-5CF63489C667">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:20:32 UTC</createdTime>
+<generatorID>50CF94F2-6CC2-0B91-EB6E-D7D992629EDA</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="B6A3911A-2542-CB14-A5CC-CCE07786463D" value="true"/>
+</engineerTo>
+<referedAttribute>6C468B71-C123-AC5F-C8EA-3A9D5750EBC5</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="49AAF6BA-9639-F847-4D54-6C49E08C329D">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:28:53 UTC</createdTime>
+<generatorID>724BF778-45BE-111D-DB47-BB0924C36EB6</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="B6A3911A-2542-CB14-A5CC-CCE07786463D" value="true"/>
+</engineerTo>
+<referedAttribute>1CC22BC5-66AA-6349-8349-85284348672F</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="90C8627F-BFDA-3936-2887-24B0A35F1F53" name="ROSTLINA PK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:19:10 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="B6A3911A-2542-CB14-A5CC-CCE07786463D" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>8AA3F941-5404-9BF6-E6D0-BAB31C473433</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

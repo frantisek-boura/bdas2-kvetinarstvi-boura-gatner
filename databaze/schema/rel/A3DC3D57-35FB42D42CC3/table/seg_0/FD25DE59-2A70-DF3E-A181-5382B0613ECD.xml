@@ -1,0 +1,53 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FD25DE59-2A70-DF3E-A181-5382B0613ECD" name="Mesta">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>AED3BEDB-779D-262E-D4E7-567BFE442547</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<ordsAlias>mesto</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_mesto" id="79A999EC-8397-C48E-E9E0-13D20ED88C61">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>2BA5B630-7E3A-1C39-064D-02F974634E86</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nazev" id="EF3E0FD1-97A3-4664-4F28-4D3D02ECE821">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>B97E56ED-5835-BD09-7313-AB7DCB75C1F2</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>128 CHAR</dataTypeSize>
+<ownDataTypeParameters>128 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="30BB037E-6474-2D5C-6A33-81ABE6ACF594" name="Mesta_PK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>990A14E9-0183-8193-725B-5E1E5BEE0CCA</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="79A999EC-8397-C48E-E9E0-13D20ED88C61"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

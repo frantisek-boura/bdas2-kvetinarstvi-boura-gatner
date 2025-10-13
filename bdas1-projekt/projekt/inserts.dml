@@ -1,0 +1,232 @@
+INSERT INTO adresy (id, ulice, cp, psc, mesto, zeme) VALUES (1, 'Hlavní ulice', '123', '12345', 'Praha', 'Česká republika');
+INSERT INTO adresy (id, ulice, cp, psc, mesto, zeme) VALUES (2, 'Druhá ulice', '456', '23456', 'Brno', 'Česká republika');
+INSERT INTO adresy (id, ulice, cp, psc, mesto, zeme) VALUES (3, 'Třetí ulice', '789', '34567', 'Ostrava', 'Česká republika');
+INSERT INTO adresy (id, ulice, cp, psc, mesto, zeme) VALUES (4, 'Ulice č. 4', '1011', '45678', 'Plzeň', 'Česká republika');
+INSERT INTO adresy (id, ulice, cp, psc, mesto, zeme) VALUES (5, 'Ulice pátá', '1213', '56789', 'Liberec', 'Česká republika');
+INSERT INTO adresy (id, ulice, cp, psc, mesto, zeme) VALUES (6, 'Ulice šestá', '1415', '67890', 'Olomouc', 'Česká republika');
+INSERT INTO adresy (id, ulice, cp, psc, mesto, zeme) VALUES (7, 'Sedmnáctá ulice', '1617', '78901', 'Hradec Králové', 'Česká republika');
+INSERT INTO adresy (id, ulice, cp, psc, mesto, zeme) VALUES (8, 'Ulice osmá', '1819', '89012', 'České Budějovice', 'Česká republika');
+INSERT INTO adresy (id, ulice, cp, psc, mesto, zeme) VALUES (9, 'Devátá ulice', '2021', '90123', 'Pardubice', 'Česká republika');
+INSERT INTO adresy (id, ulice, cp, psc, mesto, zeme) VALUES (10, 'Ulice desátá', '2223', '01234', 'Zlín', 'Česká republika');
+INSERT INTO adresy (id, ulice, cp, psc, mesto, zeme) VALUES (11, 'Ulice jedenáctá', '2425', '12345', 'Jihlava', 'Česká republika');
+INSERT INTO adresy (id, ulice, cp, psc, mesto, zeme) VALUES (12, 'Dvanáctá ulice', '2627', '23456', 'Kladno', 'Česká republika');
+INSERT INTO adresy (id, ulice, cp, psc, mesto, zeme) VALUES (13, 'Ulice třináctá', '2829', '34567', 'Karlovy Vary', 'Česká republika');
+INSERT INTO adresy (id, ulice, cp, psc, mesto, zeme) VALUES (14, 'Čtrnáctá ulice', '3031', '45678', 'Opava', 'Česká republika');
+INSERT INTO adresy (id, ulice, cp, psc, mesto, zeme) VALUES (15, 'Ulice patnáctá', '3233', '56789', 'Teplice', 'Česká republika');
+INSERT INTO adresy (id, ulice, cp, psc, mesto, zeme) VALUES (16, 'Ulice šestnáctá', '3435', '67890', 'Český Těšín', 'Česká republika');
+INSERT INTO adresy (id, ulice, cp, psc, mesto, zeme) VALUES (17, 'Sedmnáctá ulice', '3637', '78901', 'Most', 'Česká republika');
+INSERT INTO adresy (id, ulice, cp, psc, mesto, zeme) VALUES (18, 'Osmnáctá ulice', '3839', '89012', 'Karlovy Vary', 'Česká republika');
+INSERT INTO adresy (id, ulice, cp, psc, mesto, zeme) VALUES (19, 'Devatenáctá ulice', '4041', '90123', 'Jablonec nad Nisou', 'Česká republika');
+INSERT INTO adresy (id, ulice, cp, psc, mesto, zeme) VALUES (20, 'Dvacátá ulice', '4243', '01234', 'Mladá Boleslav', 'Česká republika');
+
+INSERT INTO role (id, nazev, uroven_opravneni) VALUES (1, 'Zákazník', 2);
+INSERT INTO role (id, nazev, uroven_opravneni) VALUES (2, 'Zaměstnanec', 1);
+INSERT INTO role (id, nazev, uroven_opravneni) VALUES (3, 'Admin', 0);
+
+INSERT INTO barvy (id, nazev) VALUES (1, 'Červená');
+INSERT INTO barvy (id, nazev) VALUES (2, 'Modrá');
+INSERT INTO barvy (id, nazev) VALUES (3, 'Zelená');
+INSERT INTO barvy (id, nazev) VALUES (4, 'Žlutá');
+INSERT INTO barvy (id, nazev) VALUES (5, 'Fialová');
+INSERT INTO barvy (id, nazev) VALUES (6, 'Oranžová');
+INSERT INTO barvy (id, nazev) VALUES (7, 'Hnědá');
+INSERT INTO barvy (id, nazev) VALUES (8, 'Černá');
+INSERT INTO barvy (id, nazev) VALUES (9, 'Bílá');
+INSERT INTO barvy (id, nazev) VALUES (10, 'Šedá');
+
+INSERT INTO dodavatele (id, nazev, email, adresa_id) VALUES (1, 'Květiny Krásné', 'kvetiny.krasne@email.com', 1);
+INSERT INTO dodavatele (id, nazev, email, adresa_id) VALUES (2, 'Zahrada Express', 'zahrada.express@email.com', 2);
+INSERT INTO dodavatele (id, nazev, email, adresa_id) VALUES (3, 'Zelené Palmy', 'zelene.palmy@email.com', 3);
+INSERT INTO dodavatele (id, nazev, email, adresa_id) VALUES (4, 'Kvetoucí Kytice', 'kvetouci.kytice@email.com', 4);
+INSERT INTO dodavatele (id, nazev, email, adresa_id) VALUES (5, 'Rajská Zahrada', 'rajska.zahrada@email.com', 5);
+
+INSERT INTO druhy_rostliny (id, nazev) VALUES (1, 'Růže');
+INSERT INTO druhy_rostliny (id, nazev) VALUES (2, 'Tulipán');
+INSERT INTO druhy_rostliny (id, nazev) VALUES (3, 'Orchidej');
+INSERT INTO druhy_rostliny (id, nazev) VALUES (4, 'Slunečnice');
+INSERT INTO druhy_rostliny (id, nazev) VALUES (5, 'Jahoda');
+
+INSERT INTO kategorie (id, nazev) VALUES (1, 'Květiny');
+INSERT INTO kategorie (id, nazev) VALUES (2, 'Hnojiva a hnojení');
+INSERT INTO kategorie (id, nazev) VALUES (3, 'Nástroje a příslušenství');
+INSERT INTO kategorie (id, nazev) VALUES (4, 'Keramika a květináči');
+
+INSERT INTO stavy_objednavky (id, nazev) VALUES (1, 'Přijata');
+INSERT INTO stavy_objednavky (id, nazev) VALUES (2, 'Zpracována');
+INSERT INTO stavy_objednavky (id, nazev) VALUES (3, 'Expeditována');
+INSERT INTO stavy_objednavky (id, nazev) VALUES (4, 'Doručena');
+INSERT INTO stavy_objednavky (id, nazev) VALUES (5, 'Stornována');
+
+INSERT INTO zpusoby_doruceni (id, nazev) VALUES (3, 'Balík na poštu');
+INSERT INTO zpusoby_doruceni (id, nazev) VALUES (4, 'Kurýrem');
+
+INSERT INTO zpusoby_platby (id, nazev) VALUES (1, 'Kreditní karta');
+INSERT INTO zpusoby_platby (id, nazev) VALUES (2, 'Dobírkou');
+INSERT INTO zpusoby_platby (id, nazev) VALUES (3, 'Převodem');
+
+INSERT INTO uzivatele (id, username, email, password_hash, benefit_body, prijmeni, jmeno, adresa_id, role_id)
+VALUES (1, 'sparkleUnicorn42', 'unicorn42@example.com', RAWTOHEX('bcrypt_hash_1'), 100, 'Diamond', 'Twinkle', 5, 3);
+INSERT INTO uzivatele (id, username, email, password_hash, benefit_body, prijmeni, jmeno, adresa_id, role_id)
+VALUES (2, 'moonlightDreamer', 'dreamer@example.com', RAWTOHEX('bcrypt_hash_2'), 150, 'Stardust', 'Luna', 6, 2);
+INSERT INTO uzivatele (id, username, email, password_hash, benefit_body, prijmeni, jmeno, adresa_id, role_id)
+VALUES (3, 'sunshineRider', 'sunrider@example.com', RAWTOHEX('bcrypt_hash_3'), 200, 'Golden', 'Sunny', 7, 2);
+INSERT INTO uzivatele (id, username, email, password_hash, benefit_body, prijmeni, jmeno, adresa_id, role_id)
+VALUES (4, 'nightSkyWatcher', 'skywatcher@example.com', RAWTOHEX('bcrypt_hash_4'), 180, 'Nocturnal', 'Stargazer', 8, 2);
+INSERT INTO uzivatele (id, username, email, password_hash, benefit_body, prijmeni, jmeno, adresa_id, role_id)
+VALUES (5, 'butterflyWhisperer', 'whisperer@example.com', RAWTOHEX('bcrypt_hash_5'), 220, 'Flora', 'Aria', 9, 1);
+INSERT INTO uzivatele (id, username, email, password_hash, benefit_body, prijmeni, jmeno, adresa_id, role_id)
+VALUES (6, 'oceanWanderer', 'wanderer@example.com', RAWTOHEX('bcrypt_hash_6'), 120, 'Marine', 'Aqua', 10, 1);
+INSERT INTO uzivatele (id, username, email, password_hash, benefit_body, prijmeni, jmeno, adresa_id, role_id)
+VALUES (7, 'forestExplorer', 'explorer@example.com', RAWTOHEX('bcrypt_hash_7'), 160, 'Wildwood', 'Elara', 11, 1);
+INSERT INTO uzivatele (id, username, email, password_hash, benefit_body, prijmeni, jmeno, adresa_id, role_id)
+VALUES (8, 'mountainClimber', 'climber@example.com', RAWTOHEX('bcrypt_hash_8'), 190, 'Summit', 'Eagle', 12, 1);
+INSERT INTO uzivatele (id, username, email, password_hash, benefit_body, prijmeni, jmeno, adresa_id, role_id)
+VALUES (9, 'gardenEnthusiast', 'gardener@example.com', RAWTOHEX('bcrypt_hash_9'), 210, 'Bloom', 'Florian', 13, 1);
+INSERT INTO uzivatele (id, username, email, password_hash, benefit_body, prijmeni, jmeno, adresa_id, role_id)
+VALUES (10, 'cosmicTraveler', 'traveler@example.com', RAWTOHEX('bcrypt_hash_10'), 140, 'Nebula', 'Orion', 14, 1);
+INSERT INTO uzivatele (id, username, email, password_hash, benefit_body, prijmeni, jmeno, adresa_id, role_id)
+VALUES (11, 'mysticDreamweaver', 'dreamweaver@example.com', RAWTOHEX('bcrypt_hash_11'), 170, 'Enigma', 'Mystique', 15, 1);
+INSERT INTO uzivatele (id, username, email, password_hash, benefit_body, prijmeni, jmeno, adresa_id, role_id)
+VALUES (12, 'whaleSongChorister', 'chorister@example.com', RAWTOHEX('bcrypt_hash_12'), 230, 'Melody', 'Cetacea', 16, 1);
+INSERT INTO uzivatele (id, username, email, password_hash, benefit_body, prijmeni, jmeno, adresa_id, role_id)
+VALUES (13, 'starlightWeaver', 'weaver@example.com', RAWTOHEX('bcrypt_hash_13'), 200, 'Galaxy', 'Astrid', 17, 1);
+INSERT INTO uzivatele (id, username, email, password_hash, benefit_body, prijmeni, jmeno, adresa_id, role_id)
+VALUES (14, 'rainbowSeeker', 'seeker@example.com', RAWTOHEX('bcrypt_hash_14'), 250, 'Chroma', 'Iris', 18, 1);
+
+
+INSERT INTO zbozi (id, cena, pocet, kategorie_id, typ) VALUES (1, 50.00, 100, 4, 'P');
+INSERT INTO zbozi (id, cena, pocet, kategorie_id, typ) VALUES (2, 30.50, 150, 1, 'R');
+INSERT INTO zbozi (id, cena, pocet, kategorie_id, typ) VALUES (3, 25.00, 200, 2, 'P');
+INSERT INTO zbozi (id, cena, pocet, kategorie_id, typ) VALUES (4, 40.75, 120, 1, 'R');
+INSERT INTO zbozi (id, cena, pocet, kategorie_id, typ) VALUES (5, 60.25, 90, 3, 'P');
+INSERT INTO zbozi (id, cena, pocet, kategorie_id, typ) VALUES (6, 35.20, 180, 1, 'R');
+INSERT INTO zbozi (id, cena, pocet, kategorie_id, typ) VALUES (7, 45.75, 140, 3, 'P');
+INSERT INTO zbozi (id, cena, pocet, kategorie_id, typ) VALUES (8, 28.90, 160, 1, 'R');
+INSERT INTO zbozi (id, cena, pocet, kategorie_id, typ) VALUES (9, 55.50, 110, 3, 'P');
+INSERT INTO zbozi (id, cena, pocet, kategorie_id, typ) VALUES (10, 38.60, 130, 1, 'R');
+INSERT INTO zbozi (id, cena, pocet, kategorie_id, typ) VALUES (11, 33.75, 170, 3, 'P');
+INSERT INTO zbozi (id, cena, pocet, kategorie_id, typ) VALUES (12, 48.40, 110, 1, 'R');
+INSERT INTO zbozi (id, cena, pocet, kategorie_id, typ) VALUES (13, 26.80, 190, 4, 'P');
+INSERT INTO zbozi (id, cena, pocet, kategorie_id, typ) VALUES (14, 42.25, 130, 1, 'R');
+INSERT INTO zbozi (id, cena, pocet, kategorie_id, typ) VALUES (15, 58.90, 100, 3, 'P');
+INSERT INTO zbozi (id, cena, pocet, kategorie_id, typ) VALUES (16, 37.10, 160, 1, 'R');
+INSERT INTO zbozi (id, cena, pocet, kategorie_id, typ) VALUES (17, 46.80, 140, 2, 'P');
+INSERT INTO zbozi (id, cena, pocet, kategorie_id, typ) VALUES (18, 29.50, 180, 1, 'R');
+INSERT INTO zbozi (id, cena, pocet, kategorie_id, typ) VALUES (19, 52.75, 120, 2, 'P');
+INSERT INTO zbozi (id, cena, pocet, kategorie_id, typ) VALUES (20, 40.00, 150, 1, 'R');
+
+INSERT INTO rostliny (zbozi_id, rostlina_id, pocet_kvetu, delka_stonku, barva_id, druh_rostliny_id)
+VALUES (2, 1, 12, 30, 4, 2);
+INSERT INTO rostliny (zbozi_id, rostlina_id, pocet_kvetu, delka_stonku, barva_id, druh_rostliny_id)
+VALUES (4, 2, 15, 28, 8, 4);
+INSERT INTO rostliny (zbozi_id, rostlina_id, pocet_kvetu, delka_stonku, barva_id, druh_rostliny_id)
+VALUES (6, 3, 18, 32, 2, 1);
+INSERT INTO rostliny (zbozi_id, rostlina_id, pocet_kvetu, delka_stonku, barva_id, druh_rostliny_id)
+VALUES (8, 4, 10, 35, 6, 3);
+INSERT INTO rostliny (zbozi_id, rostlina_id, pocet_kvetu, delka_stonku, barva_id, druh_rostliny_id)
+VALUES (10, 5, 14, 29, 9, 5);
+INSERT INTO rostliny (zbozi_id, rostlina_id, pocet_kvetu, delka_stonku, barva_id, druh_rostliny_id)
+VALUES (12, 6, 17, 31, 3, 2);
+INSERT INTO rostliny (zbozi_id, rostlina_id, pocet_kvetu, delka_stonku, barva_id, druh_rostliny_id)
+VALUES (14, 7, 11, 36, 7, 4);
+INSERT INTO rostliny (zbozi_id, rostlina_id, pocet_kvetu, delka_stonku, barva_id, druh_rostliny_id)
+VALUES (16, 8, 13, 33, 10, 5);
+INSERT INTO rostliny (zbozi_id, rostlina_id, pocet_kvetu, delka_stonku, barva_id, druh_rostliny_id)
+VALUES (18, 9, 16, 34, 5, 1);
+INSERT INTO rostliny (zbozi_id, rostlina_id, pocet_kvetu, delka_stonku, barva_id, druh_rostliny_id)
+VALUES (20, 10, 20, 37, 1, 3);
+
+INSERT INTO potreby (zbozi_id, potreba_id, nazev, hmotnost)
+VALUES (1, 1, 'Květináč z keramiky', 200);
+INSERT INTO potreby (zbozi_id, potreba_id, nazev, hmotnost)
+VALUES (3, 2, 'Trávníkové hnojivo', 5000);
+INSERT INTO potreby (zbozi_id, potreba_id, nazev, hmotnost)
+VALUES (5, 3, 'Rýč', 3000);
+INSERT INTO potreby (zbozi_id, potreba_id, nazev, hmotnost)
+VALUES (7, 4, 'Lopatka', 4000);
+INSERT INTO potreby (zbozi_id, potreba_id, nazev, hmotnost)
+VALUES (9, 5, 'Nůžky', 800);
+INSERT INTO potreby (zbozi_id, potreba_id, nazev, hmotnost)
+VALUES (11, 6, 'Konev', 900);
+INSERT INTO potreby (zbozi_id, potreba_id, nazev, hmotnost)
+VALUES (13, 7, 'Květináč soudek', 4800);
+INSERT INTO potreby (zbozi_id, potreba_id, nazev, hmotnost)
+VALUES (15, 8, 'Rukavice', 2500);
+INSERT INTO potreby (zbozi_id, potreba_id, nazev, hmotnost)
+VALUES (17, 9, 'Motyka', 2700);
+INSERT INTO potreby (zbozi_id, potreba_id, nazev, hmotnost)
+VALUES (19, 10, 'Přírodní hnojivo', 3200);
+
+INSERT INTO dodane_zbozi (dodavatel_id, zbozi_id, mnozstvi, cena_za_kus, datum_dodani) 
+VALUES (1, 1, 100, 5.00, TO_TIMESTAMP('2023-10-15 09:30:00', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO dodane_zbozi (dodavatel_id, zbozi_id, mnozstvi, cena_za_kus, datum_dodani) 
+VALUES (2, 2, 50, 8.50, TO_TIMESTAMP('2023-10-14 14:15:00', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO dodane_zbozi (dodavatel_id, zbozi_id, mnozstvi, cena_za_kus, datum_dodani) 
+VALUES (3, 3, 70, 12.00, TO_TIMESTAMP('2023-10-13 11:45:00', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO dodane_zbozi (dodavatel_id, zbozi_id, mnozstvi, cena_za_kus, datum_dodani) 
+VALUES (4, 4, 120, 7.25, TO_TIMESTAMP('2023-10-12 16:20:00', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO dodane_zbozi (dodavatel_id, zbozi_id, mnozstvi, cena_za_kus, datum_dodani) 
+VALUES (5, 5, 90, 10.50, TO_TIMESTAMP('2023-10-11 10:10:00', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO dodane_zbozi (dodavatel_id, zbozi_id, mnozstvi, cena_za_kus, datum_dodani) 
+VALUES (1, 3, 80, 11.00, TO_TIMESTAMP('2023-10-10 13:25:00', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO dodane_zbozi (dodavatel_id, zbozi_id, mnozstvi, cena_za_kus, datum_dodani) 
+VALUES (2, 1, 60, 6.75, TO_TIMESTAMP('2023-10-09 17:40:00', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO dodane_zbozi (dodavatel_id, zbozi_id, mnozstvi, cena_za_kus, datum_dodani) 
+VALUES (3, 2, 110, 9.25, TO_TIMESTAMP('2023-10-08 12:50:00', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO dodane_zbozi (dodavatel_id, zbozi_id, mnozstvi, cena_za_kus, datum_dodani) 
+VALUES (4, 5, 30, 13.00, TO_TIMESTAMP('2023-10-07 15:55:00', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO dodane_zbozi (dodavatel_id, zbozi_id, mnozstvi, cena_za_kus, datum_dodani) 
+VALUES (5, 4, 40, 14.50, TO_TIMESTAMP('2023-10-06 19:05:00', 'YYYY-MM-DD HH24:MI:SS'));
+
+INSERT INTO objednavky (id, celkova_cena, datum_podani, dorucovaci_adresa_id, uzivatel_id, stav_objednavky_id, zpusob_doruceni_id, zpusob_platby_id) VALUES (1, 150.00, SYSTIMESTAMP, 1, 1, 1, 1, 1);
+INSERT INTO objednavky (id, celkova_cena, datum_podani, dorucovaci_adresa_id, uzivatel_id, stav_objednavky_id, zpusob_doruceni_id, zpusob_platby_id) VALUES (2, 220.50, SYSTIMESTAMP, 2, 3, 2, 2, 2);
+INSERT INTO objednavky (id, celkova_cena, datum_podani, dorucovaci_adresa_id, uzivatel_id, stav_objednavky_id, zpusob_doruceni_id, zpusob_platby_id) VALUES (3, 320.00, SYSTIMESTAMP, 3, 4, 3, 1, 3);
+INSERT INTO objednavky (id, celkova_cena, datum_podani, dorucovaci_adresa_id, uzivatel_id, stav_objednavky_id, zpusob_doruceni_id, zpusob_platby_id) VALUES (4, 430.75, SYSTIMESTAMP, 4, 5, 4, 2, 1);
+INSERT INTO objednavky (id, celkova_cena, datum_podani, dorucovaci_adresa_id, uzivatel_id, stav_objednavky_id, zpusob_doruceni_id, zpusob_platby_id) VALUES (5, 550.25, SYSTIMESTAMP, 5, 8, 5, 1, 2);
+INSERT INTO objednavky (id, celkova_cena, datum_podani, dorucovaci_adresa_id, uzivatel_id, stav_objednavky_id, zpusob_doruceni_id, zpusob_platby_id) VALUES (6, 180.00, SYSTIMESTAMP, 6, 1, 2, 2, 3);
+INSERT INTO objednavky (id, celkova_cena, datum_podani, dorucovaci_adresa_id, uzivatel_id, stav_objednavky_id, zpusob_doruceni_id, zpusob_platby_id) VALUES (7, 290.50, SYSTIMESTAMP, 7, 3, 3, 1, 1);
+INSERT INTO objednavky (id, celkova_cena, datum_podani, dorucovaci_adresa_id, uzivatel_id, stav_objednavky_id, zpusob_doruceni_id, zpusob_platby_id) VALUES (8, 410.25, SYSTIMESTAMP, 8, 4, 4, 2, 2);
+INSERT INTO objednavky (id, celkova_cena, datum_podani, dorucovaci_adresa_id, uzivatel_id, stav_objednavky_id, zpusob_doruceni_id, zpusob_platby_id) VALUES (9, 520.75, SYSTIMESTAMP, 9, 5, 5, 1, 3);
+INSERT INTO objednavky (id, celkova_cena, datum_podani, dorucovaci_adresa_id, uzivatel_id, stav_objednavky_id, zpusob_doruceni_id, zpusob_platby_id) VALUES (10, 640.50, SYSTIMESTAMP, 10, 8, 1, 2, 1);
+INSERT INTO objednavky (id, celkova_cena, datum_podani, dorucovaci_adresa_id, uzivatel_id, stav_objednavky_id, zpusob_doruceni_id, zpusob_platby_id) VALUES (11, 260.00, SYSTIMESTAMP, 11, 1, 2, 1, 2);
+INSERT INTO objednavky (id, celkova_cena, datum_podani, dorucovaci_adresa_id, uzivatel_id, stav_objednavky_id, zpusob_doruceni_id, zpusob_platby_id) VALUES (12, 375.75, SYSTIMESTAMP, 12, 3, 3, 2, 3);
+INSERT INTO objednavky (id, celkova_cena, datum_podani, dorucovaci_adresa_id, uzivatel_id, stav_objednavky_id, zpusob_doruceni_id, zpusob_platby_id) VALUES (13, 490.50, SYSTIMESTAMP, 13, 4, 4, 1, 1);
+INSERT INTO objednavky (id, celkova_cena, datum_podani, dorucovaci_adresa_id, uzivatel_id, stav_objednavky_id, zpusob_doruceni_id, zpusob_platby_id) VALUES (14, 600.25, SYSTIMESTAMP, 14, 5, 5, 2, 2);
+INSERT INTO objednavky (id, celkova_cena, datum_podani, dorucovaci_adresa_id, uzivatel_id, stav_objednavky_id, zpusob_doruceni_id, zpusob_platby_id) VALUES (15, 710.75, SYSTIMESTAMP, 15, 8, 1, 1, 3);
+INSERT INTO objednavky (id, celkova_cena, datum_podani, dorucovaci_adresa_id, uzivatel_id, stav_objednavky_id, zpusob_doruceni_id, zpusob_platby_id) VALUES (16, 820.50, SYSTIMESTAMP, 16, 1, 2, 2, 1);
+INSERT INTO objednavky (id, celkova_cena, datum_podani, dorucovaci_adresa_id, uzivatel_id, stav_objednavky_id, zpusob_doruceni_id, zpusob_platby_id) VALUES (17, 930.00, SYSTIMESTAMP, 17, 3, 3, 1, 2);
+INSERT INTO objednavky (id, celkova_cena, datum_podani, dorucovaci_adresa_id, uzivatel_id, stav_objednavky_id, zpusob_doruceni_id, zpusob_platby_id) VALUES (18, 1040.25, SYSTIMESTAMP, 18, 4, 4, 2, 3);
+INSERT INTO objednavky (id, celkova_cena, datum_podani, dorucovaci_adresa_id, uzivatel_id, stav_objednavky_id, zpusob_doruceni_id, zpusob_platby_id) VALUES (19, 1150.75, SYSTIMESTAMP, 19, 5, 5, 1, 1);
+INSERT INTO objednavky (id, celkova_cena, datum_podani, dorucovaci_adresa_id, uzivatel_id, stav_objednavky_id, zpusob_doruceni_id, zpusob_platby_id) VALUES (20, 1260.00, SYSTIMESTAMP, 20, 8, 1, 2, 2);
+
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (1, 1, 3, 12.50);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (2, 1, 5, 15.75);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (3, 1, 2, 10.00);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (4, 1, 4, 18.25);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (5, 1, 3, 22.50);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (6, 2, 6, 30.00);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (7, 2, 1, 8.50);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (8, 2, 4, 17.75);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (9, 2, 3, 20.00);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (10, 3, 5, 25.50);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (11, 4, 2, 11.25);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (12, 4, 3, 16.75);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (13, 4, 4, 21.50);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (14, 5, 1, 8.00);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (15, 5, 3, 14.25);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (16, 5, 5, 19.75);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (17, 6, 2, 9.50);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (18, 6, 4, 22.00);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (19, 6, 1, 6.50);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (20, 7, 2, 9.00);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (1, 7, 3, 12.50);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (2, 8, 5, 15.75);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (3, 8, 2, 10.00);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (4, 8, 4, 18.25);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (5, 9, 3, 22.50);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (6, 9, 6, 30.00);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (7, 9, 1, 8.50);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (8, 10, 4, 17.75);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (9, 10, 3, 20.00);
+INSERT INTO objednane_zbozi (zbozi_id, objednavka_id, mnozstvi, cena_za_kus) VALUES (10, 10, 5, 25.50);
+

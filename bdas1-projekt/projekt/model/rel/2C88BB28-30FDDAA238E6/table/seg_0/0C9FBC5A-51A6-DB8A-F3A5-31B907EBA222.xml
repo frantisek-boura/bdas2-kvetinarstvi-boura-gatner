@@ -1,0 +1,55 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0C9FBC5A-51A6-DB8A-F3A5-31B907EBA222" name="stavy_objednavky">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>153FD7B4-9144-CA96-B3A0-9403FD10B94E</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="7784E0D8-FB23-02C6-EED3-7EF331B0BEA3">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>E3D424E2-85AD-70F8-38E0-3CD981B39978</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementSequenceName>s_stavy_objednavky_id</autoIncrementSequenceName>
+<autoIncrementTriggerName>t_stavy_objednavky_id</autoIncrementTriggerName>
+</Column>
+<Column name="nazev" id="CC495F8B-7F66-725E-E412-82DE9418D3C0">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>01A4EE9F-AD56-0947-494E-89CBB640CDB3</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>02A18858-FFEB-2A19-9BCC-071463D0FFDB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="615C5151-05D9-5019-C912-15777DF5668F" name="stavy_objednavky_pk">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>B0B4FF12-1776-8509-70A9-0F7429E90CA7</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7784E0D8-FB23-02C6-EED3-7EF331B0BEA3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

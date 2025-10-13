@@ -1,0 +1,79 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="uzivatele" directorySegmentName="seg_0" id="48412C23-BE9D-0C5B-D92E-8DAC85FF316D">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="id" id="0B246E10-5B82-7DE3-8D34-95F646BD7696">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<autoIncrementDDL>TRIGGER</autoIncrementDDL>
+</ColumnProxy>
+<ColumnProxy name="email" id="19327D89-C364-F5E3-3F1D-F80DE8137D92">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="benefit_body" id="27983336-C410-91A4-E01C-9496A73BBFC1">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="adresa_id" id="44BFC513-E713-BE41-3FFB-A5AD166532B7">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="prijmeni" id="4AACD214-00D9-872F-D2D5-4D8013F7A5F8">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="username" id="5A60CE66-27C2-D198-B06A-82A53C4136FA">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="role_id" id="66FCFEB8-DC85-875B-DF00-0D9D7E8A0061">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="jmeno" id="7563C989-43EF-324E-0146-EE451A1FDB5F">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="password_hash" id="CC1A1E44-AFD4-31B8-061B-4AA60898AC3A">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="uzivatele_role_fk" id="628213D0-FAE0-82E6-7E91-950A09601D2D">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="uzivatele_adresy_fk" id="7BC6E1E6-E419-A581-6AB6-B6A6D445E2CD">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="uzivatele_pk" id="33A989AC-FD7A-D2CC-5DAE-2EDEC07D626C">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

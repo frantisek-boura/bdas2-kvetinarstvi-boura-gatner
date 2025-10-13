@@ -1,0 +1,37 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="dane" directorySegmentName="seg_0" id="D23E9A24-3862-5411-9C68-EF81115721D6">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="id" id="0E7AF0F6-D707-ECAE-ABF4-A81513EB052F">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<autoIncrementDDL>TRIGGER</autoIncrementDDL>
+</ColumnProxy>
+<ColumnProxy name="nazev" id="932CED6F-D019-C623-4408-9B8257700835">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="hodnota" id="E7A8C914-9EB0-723D-FA63-25700A242A9A">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="dan_pk" id="2F4CED98-0D7E-562B-E9B8-49006A1DF804">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

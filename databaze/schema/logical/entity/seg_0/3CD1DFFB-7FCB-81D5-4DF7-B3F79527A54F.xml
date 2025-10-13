@@ -1,0 +1,130 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3CD1DFFB-7FCB-81D5-4DF7-B3F79527A54F" name="Uzivatel">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 06:45:31 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_uzivatel" id="72C26E65-A962-2E5B-63AD-AC5EFD13B681">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 06:47:01 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="email" id="9111E88F-0125-96D7-D009-035460C08161">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 06:45:43 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 CHAR</dataTypeSize>
+<ownDataTypeParameters>256 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pw_hash" id="DD618E34-CF69-9745-D4A1-308C58817B45">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 06:47:42 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>64 CHAR</dataTypeSize>
+<ownDataTypeParameters>64 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="salt" id="B3488A5E-FD29-37A3-C83E-6CAEA2BAFB80">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 06:55:10 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>32 CHAR</dataTypeSize>
+<ownDataTypeParameters>32 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_opravneni" id="5FBB6823-D183-6D08-A19C-ABE2C876730F">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 07:41:33 UTC</createdTime>
+<generatorID>60AC67B2-BFD2-101D-680A-6B5DAADD8F55</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<referedAttribute>531992E0-4611-776C-AB8D-99AD46B499C8</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_obrazek" id="3C8B6043-15E4-1BB2-6E49-8A7A382DE718">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 07:41:38 UTC</createdTime>
+<generatorID>1B6D5653-92C4-6CA6-F7F5-1089949122BC</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<referedAttribute>08979BC8-ACEB-08D9-3275-60110C93273A</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_adresa" id="E6B8305C-89DC-9B36-983C-FECA859C44C7">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 07:41:42 UTC</createdTime>
+<generatorID>805F1418-F547-492F-D016-6ACB7842E901</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<referedAttribute>8DA1286E-692C-1990-F4C8-4F19E574C742</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="AB4F0BAC-FF7E-BCD4-B363-03646E3D5F99" name="Uzivatel PK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 06:47:16 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>72C26E65-A962-2E5B-63AD-AC5EFD13B681</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,53 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="objednane_zbozi" directorySegmentName="seg_0" id="B7F37C86-A6F9-175B-E955-98B3AD2B68C9">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="mnozstvi" id="2DFF5CF4-3837-50A2-AA4D-417F958286BB">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="cena_za_kus" id="80FFDBCC-2F30-50A3-F491-166BBCA188B2">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="objednavka_id" id="BE4C75ED-CEFB-83AE-F732-C7DC2CA3D8B8">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="zbozi_id" id="F78E4969-66C2-0E19-A360-D96E22AD033D">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="objednane_zbozi_zbozi_fk" id="4D2418DA-EE09-C223-D587-47F8A9BEFFDB">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="objednane_zbozi_objednavky_fk" id="D095FD2C-F88E-A7CF-EEA6-4630C4E3E1B9">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="objednane_zbozi_pk" id="DF40FA55-B4CA-483C-5FE7-ED07678BC39E">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

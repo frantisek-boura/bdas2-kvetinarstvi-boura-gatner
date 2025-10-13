@@ -1,0 +1,32 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="kategorie" directorySegmentName="seg_0" id="8AF18A1F-7394-470A-1D21-22E0C9256E7A">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="nazev" id="690C1AA1-3073-904D-F032-1990FBFD3C54">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="id" id="F44F9CF5-B511-FE39-8FF9-E2180319953F">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<autoIncrementDDL>TRIGGER</autoIncrementDDL>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="kategorie_pk" id="466F8F08-7541-2B11-9C7C-F476522ACD77">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

@@ -1,0 +1,58 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E01FB4D1-EC7E-7BBF-C4D2-9BE4C3788045" name="KATEGORIE">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 13:45:14 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="39A8A4DA-E910-A2BC-F778-26952D00B241">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 13:45:20 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nazev" id="3C3FCED7-62BD-CB33-E4FD-BBDBC9674B30">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 13:45:28 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="C4AB0C4E-0D3C-06FC-9B9B-C718A9279068" name="KATEGORIE PK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 13:45:27 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>39A8A4DA-E910-A2BC-F778-26952D00B241</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

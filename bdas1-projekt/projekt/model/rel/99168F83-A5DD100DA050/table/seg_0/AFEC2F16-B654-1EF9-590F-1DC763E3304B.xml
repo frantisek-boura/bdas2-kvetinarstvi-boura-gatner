@@ -1,0 +1,55 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AFEC2F16-B654-1EF9-590F-1DC763E3304B" name="zpusoby_platby">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>03682342-8D65-4511-8906-D20A3AEA1C84</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="889F2134-E2FA-034C-0B34-D11E3F3C9459">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>B5627B8A-D651-2D2B-97C1-655D0A91E98A</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementSequenceName>s_zpusoby_platby_id</autoIncrementSequenceName>
+<autoIncrementTriggerName>t_zpusoby_platby_id</autoIncrementTriggerName>
+</Column>
+<Column name="nazev" id="7746BA3A-C587-E6F7-BE8E-E5CD3EB5DB79">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>084368C7-882D-7EC2-216F-0FEE466F84B3</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FF1ACBD3-662F-631D-1064-1A6C54B73FA9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="22EA6224-34CC-C858-839B-CA2EEBF5B874" name="zpusob_platby_pk">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>48EEC7DD-6277-6649-C06C-3AEF302F36B7</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="889F2134-E2FA-034C-0B34-D11E3F3C9459"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

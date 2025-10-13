@@ -1,0 +1,167 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="48412C23-BE9D-0C5B-D92E-8DAC85FF316D" name="uzivatele">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>FD393001-2887-E142-229B-6AB9E8E1AF78</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="0B246E10-5B82-7DE3-8D34-95F646BD7696">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>8C23B60B-190C-1CEC-0198-80C2167B9DC6</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementSequenceName>s_uzivatele_id</autoIncrementSequenceName>
+<autoIncrementTriggerName>t_uzivatele_id</autoIncrementTriggerName>
+</Column>
+<Column name="username" id="5A60CE66-27C2-D198-B06A-82A53C4136FA">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>DC6A9624-A8AA-3093-926E-BD2BA06B9C91</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>59F08153-EEB0-5C7C-2B5C-07541610C1A0</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="email" id="19327D89-C364-F5E3-3F1D-F80DE8137D92">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>1DF3BE2F-A6D4-BAF0-4782-67E6BA504CD2</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D4E45EF2-B5AB-4AEA-5D06-C5D54D97E9C0</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="password_hash" id="CC1A1E44-AFD4-31B8-061B-4AA60898AC3A">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>C4CCF034-629B-6E1C-C119-4A0AE2966548</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT029</logicalDatatype>
+<domain>3ADB8E47-01B0-C1AE-54B7-6D87B587A99F</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="benefit_body" id="27983336-C410-91A4-E01C-9496A73BBFC1">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>49EFA883-0BFB-4C7D-736A-38C946B56A08</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="prijmeni" id="4AACD214-00D9-872F-D2D5-4D8013F7A5F8">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>F65BB169-9DE6-9093-1523-CF52ECCD0B45</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FF1ACBD3-662F-631D-1064-1A6C54B73FA9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="jmeno" id="7563C989-43EF-324E-0146-EE451A1FDB5F">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>1646CE1C-EDBB-3889-AA73-0FAD1C18CF13</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FF1ACBD3-662F-631D-1064-1A6C54B73FA9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="adresa_id" id="44BFC513-E713-BE41-3FFB-A5AD166532B7">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>3020F2A7-3315-CB63-0461-DAE85E6F8322</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0442F955-DDE7-CED1-51C0-D21F522FA956" referredColumn="71E2DCDD-5B81-F41F-D3E4-C71D2F135874"/>
+</associations>
+</Column>
+<Column name="role_id" id="66FCFEB8-DC85-875B-DF00-0D9D7E8A0061">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>FC9784DA-A730-6DE1-5A21-F8CEAD32DEE7</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3E6F4BA8-0F7B-F1F9-415A-93B23DD39DE7" referredColumn="23F48D14-FA13-D981-7284-1421E94465FC"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="33A989AC-FD7A-D2CC-5DAE-2EDEC07D626C" name="uzivatele_pk">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>C2561079-F1E5-5C2A-F501-6F192DB6D64A</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0B246E10-5B82-7DE3-8D34-95F646BD7696"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7BC6E1E6-E419-A581-6AB6-B6A6D445E2CD" name="uzivatele_adresy_fk">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="44BFC513-E713-BE41-3FFB-A5AD166532B7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="628213D0-FAE0-82E6-7E91-950A09601D2D" name="uzivatele_role_fk">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="66FCFEB8-DC85-875B-DF00-0D9D7E8A0061"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

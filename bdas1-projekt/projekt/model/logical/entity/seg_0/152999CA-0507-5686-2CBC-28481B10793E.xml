@@ -1,0 +1,85 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="152999CA-0507-5686-2CBC-28481B10793E" name="DODAVATEL">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 13:54:34 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="A7629D46-8EFC-DE60-0558-F1D9CB06E760">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:06:59 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nazev" id="2341D344-0D0B-4C76-B365-8BEBC25B9A65">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:07:12 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="email" id="5FDCE771-80AD-AEEA-E7E2-8B868D0A0E16">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:07:29 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="D47E2A42-4301-BAD2-D328-AFCE542252A1">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:13:37 UTC</createdTime>
+<generatorID>0BFA05B2-DA4C-0CBB-6170-F0A31AFD7B29</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<referedAttribute>CF1B3E46-8A89-399B-475B-071CF87E8802</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="9DAA812B-FD82-1FDE-E263-AE7763B556E0" name="DODAVATEL PK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:07:12 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>A7629D46-8EFC-DE60-0558-F1D9CB06E760</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

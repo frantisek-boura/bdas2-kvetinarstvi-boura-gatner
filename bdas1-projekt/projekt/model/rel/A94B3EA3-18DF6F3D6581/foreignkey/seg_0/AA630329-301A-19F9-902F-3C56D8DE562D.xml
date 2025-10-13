@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="AA630329-301A-19F9-902F-3C56D8DE562D" containerWithKeyObject="7A2B4585-85CE-3A33-0E9F-90239A65EC87" localFKIndex="CE2507DF-4FB5-C149-B6E6-B8491889DFA6" name="OBJEDNANE_ZBOZI_OBJEDNAVKY_FK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>0223C059-B9DD-8596-5447-334512A8367D</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<referredTableLongName>OBJEDNAVKY</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>165F53A2-F084-E88F-1B72-9E0E693EB898</referredTableID>
+<keyObject>77CD1717-59AC-95D9-0BBD-E242BAFEC533</keyObject>
+<referredKeyID>77CD1717-59AC-95D9-0BBD-E242BAFEC533</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

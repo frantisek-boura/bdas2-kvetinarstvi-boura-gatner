@@ -1,0 +1,91 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B8F0C8FE-05C3-153C-C6EF-BFC5648FF489" name="ZBOZI">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 13:54:07 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="2C88BB28-950D-BE1B-9C9B-30FDDAA238E6" value="true"/>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="679C208B-4977-3C7D-C712-F58D9635F0A3">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:03:11 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="2C88BB28-950D-BE1B-9C9B-30FDDAA238E6" value="true"/>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cena" id="2A6FA83A-8402-97F5-8B57-F07B16890333">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:03:19 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="2C88BB28-950D-BE1B-9C9B-30FDDAA238E6" value="true"/>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pocet" id="279F8DA6-A7A1-0B1B-704B-4E4B3A97EC41">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:03:34 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="2C88BB28-950D-BE1B-9C9B-30FDDAA238E6" value="true"/>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="12EC44C3-EC45-92D4-0F89-03BF3DD9EA4B">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 13:45:54 UTC</createdTime>
+<generatorID>49B08A1D-AEDB-9738-3C3E-B493DA56D2C2</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="2C88BB28-950D-BE1B-9C9B-30FDDAA238E6" value="true"/>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<referedAttribute>39A8A4DA-E910-A2BC-F778-26952D00B241</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="01C53EE5-2442-4EEB-3BF4-62C056592E3D" name="ZBOZI PK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:03:18 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="2C88BB28-950D-BE1B-9C9B-30FDDAA238E6" value="true"/>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>679C208B-4977-3C7D-C712-F58D9635F0A3</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

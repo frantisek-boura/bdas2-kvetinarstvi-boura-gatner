@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="D351E6C2-966A-17A6-7EA0-CDF1B7E25091" containerWithKeyObject="BCF6256E-1355-B63B-EED2-34EE3AFAF6BB" localFKIndex="E649B7BE-73A9-BD67-D6CC-F31BCBF8B9D2" name="ROSTLINY_BARVY_FK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>50CF94F2-6CC2-0B91-EB6E-D7D992629EDA</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<referredTableLongName>BARVY</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>59E6E507-28CD-F140-DF15-63F09518D6E8</referredTableID>
+<keyObject>A563846A-0B6B-A706-D9B2-8CB0036A891D</keyObject>
+<referredKeyID>A563846A-0B6B-A706-D9B2-8CB0036A891D</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

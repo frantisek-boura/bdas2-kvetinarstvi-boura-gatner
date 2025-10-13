@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="94566108-AF22-9EF6-210C-11A3E14FA8B7" name="PSC">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 07:24:12 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_psc" id="E0E6B545-5AF3-96A4-2824-53C4F0FEB5CE">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 07:24:43 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="psc" id="775A9ABC-8101-938B-AEF8-509FC5946AD9">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 07:25:11 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>5 CHAR</dataTypeSize>
+<ownDataTypeParameters>5 CHAR,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="9114BA34-1CA2-6C2A-243D-2C893FA65888" name="PSC PK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 07:25:22 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>E0E6B545-5AF3-96A4-2824-53C4F0FEB5CE</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

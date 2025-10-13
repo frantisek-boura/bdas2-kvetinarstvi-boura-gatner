@@ -1,0 +1,91 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B8698E77-73DB-A351-B3B5-2432B7799D7B" name="DODAVATELE">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>152999CA-0507-5686-2CBC-28481B10793E</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<ordsAlias>dodavatel</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="D97832C8-17E3-C71E-A571-430EF9DF884A">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>A7629D46-8EFC-DE60-0558-F1D9CB06E760</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementSequenceName>s_dodavatele_id</autoIncrementSequenceName>
+<autoIncrementTriggerName>t_dodavatele_id</autoIncrementTriggerName>
+</Column>
+<Column name="nazev" id="B0030BA7-9A6D-7EAA-0273-E8579ABA3CFC">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>2341D344-0D0B-4C76-B365-8BEBC25B9A65</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="email" id="64A315FF-7433-DA39-BF92-D8B057A26E44">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>5FDCE771-80AD-AEEA-E7E2-8B868D0A0E16</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ADRESA_id" id="A4911DF3-E30A-AE71-9593-5111550F9DD6">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>D47E2A42-4301-BAD2-D328-AFCE542252A1</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="32ED597E-D90C-9762-E07C-341C71ED56A2" referredColumn="64B873F8-2A06-6DDB-D041-2EF8214FA04E"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="55DA161E-8191-66AA-A3C5-2AE191DA3FF7" name="DODAVATELE_PK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>9DAA812B-FD82-1FDE-E263-AE7763B556E0</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D97832C8-17E3-C71E-A571-430EF9DF884A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7C0D704C-BC7F-C462-1249-57CDA9615D80" name="DODAVATELE_ADRESY_FK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>0BFA05B2-DA4C-0CBB-6170-F0A31AFD7B29</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A4911DF3-E30A-AE71-9593-5111550F9DD6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

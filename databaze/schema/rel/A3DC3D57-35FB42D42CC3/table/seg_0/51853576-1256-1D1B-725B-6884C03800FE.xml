@@ -1,0 +1,120 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="51853576-1256-1D1B-725B-6884C03800FE" name="Kvetiny">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>CA86C627-7D00-B271-E79A-28D9E973D549</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<ordsAlias>kvetina</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_kvetina" id="2E7E0E2C-D88E-1BF7-A595-038F4952E221">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>F6D55F8F-4DFE-1C79-365B-81832110A3BB</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nazev" id="86437F18-6E9A-5BD5-1281-338A5AC2951D">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>E0354BAE-DB50-02D1-2990-60797D837D7F</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>32 CHAR</dataTypeSize>
+<ownDataTypeParameters>32 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cena" id="CF594BE7-4E8B-66A0-E92C-36AB444696D2">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>43949F1E-34F5-D62F-B6CA-11CACAB9C5BB</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_kategorie" id="2DC0E117-71C3-CBEE-9F27-85F2FBAEB8BC">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>017521F0-1425-21A9-248D-48DAF1FB18F9</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1EC17807-DA96-C418-806A-7A76C2CF6F88" referredColumn="774F96C9-370D-42F4-70B3-A9DE9BC5BE7D"/>
+</associations>
+</Column>
+<Column name="id_obrazek" id="21F5C64D-5E37-81C0-4A07-0BD84985EF32">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>7B405063-49DD-94B9-244F-2E7227802BBC</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="24737D6E-BCCA-3214-41A4-A4E2BA9273B5" referredColumn="3DC7D575-ACC2-74E3-643D-F15DC2952CE3"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CBDB255D-96C6-B8D7-0563-C02270B4090E" name="Kvetiny_PK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>FE65574A-8C41-1C59-2700-3E45EBFD5156</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2E7E0E2C-D88E-1BF7-A595-038F4952E221"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4EE3DFF0-8286-B948-FC01-C30571FD38BB" name="Kvetiny_Obrazky_FK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>957F505B-DCB6-CEBD-CD51-EAFA6890440F</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="21F5C64D-5E37-81C0-4A07-0BD84985EF32"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F38E152E-83FD-12E7-1905-ED56EEEB42E9" name="Kvetiny_Kategorie_FK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>AF0DC7E4-58EC-DA44-03DE-28140F4619FC</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2DC0E117-71C3-CBEE-9F27-85F2FBAEB8BC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

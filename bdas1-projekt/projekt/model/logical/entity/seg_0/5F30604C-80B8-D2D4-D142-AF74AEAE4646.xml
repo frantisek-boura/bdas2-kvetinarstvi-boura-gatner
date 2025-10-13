@@ -1,0 +1,137 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="5F30604C-80B8-D2D4-D142-AF74AEAE4646" name="UZIVATEL">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 13:54:25 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="4F0C1F71-C735-1B7F-1479-A4D591DC4A6C">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:06:05 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="username" id="7899DFAB-1B93-6987-B9DE-C14BA8EABDFE">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 13:53:52 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<ownDataTypeParameters>20 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="email" id="4DC30C58-F556-D9C1-CDBC-598FE0FD3019">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:06:05 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="password_hash" id="27C6ECA3-4C10-F726-0103-C6D60E0846E0">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 13:54:18 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT033</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="benefit_body" id="27C2CF64-501D-52B6-EE10-542A4F039973">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 16:22:13 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="prijmeni" id="8CE25CBE-8CD1-A670-1301-0F5B1120D2F2">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:06:05 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="jmeno" id="777AF77D-FAB2-8985-A2EB-E8F4F583CDFD">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:06:05 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="DF44642E-6ACE-2327-4E43-E63052FED406">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:13:33 UTC</createdTime>
+<generatorID>308422F5-C5F9-94C9-A474-12FE47902842</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<referedAttribute>CF1B3E46-8A89-399B-475B-071CF87E8802</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="EAE188F1-C4D5-C185-475F-7AE941DCD760" name="ZAKAZNIK PK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:06:07 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>4F0C1F71-C735-1B7F-1479-A4D591DC4A6C</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

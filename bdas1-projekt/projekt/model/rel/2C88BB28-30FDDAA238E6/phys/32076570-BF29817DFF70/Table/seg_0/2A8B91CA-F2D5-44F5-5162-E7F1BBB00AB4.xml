@@ -1,0 +1,52 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="adresy" directorySegmentName="seg_0" id="2A8B91CA-F2D5-44F5-5162-E7F1BBB00AB4">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="ulice" id="1474F389-3F25-E824-15D0-94C98DB51CFD">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="mesto" id="1EA02360-A1D6-746F-9E74-004D2ADF294B">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="cp" id="4F3CD3DC-42D1-BEC3-E85B-C844B46D7E34">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="psc" id="527C1D20-550B-58D8-0CD6-88B6ADCD8B0E">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="id" id="71E2DCDD-5B81-F41F-D3E4-C71D2F135874">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<autoIncrementDDL>TRIGGER</autoIncrementDDL>
+</ColumnProxy>
+<ColumnProxy name="zeme" id="760272AD-CDC9-7FED-4752-5E1713062F12">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="adresy_pk" id="15E3684E-D577-63D1-6904-FD7579CB73BC">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

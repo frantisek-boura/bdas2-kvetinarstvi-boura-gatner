@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="t_objednavky_datum_podani" directorySegmentName="seg_0" id="B3A8ADBD-A362-B5CF-F61A-D1A247C09079">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:27 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[BEGIN
+    IF :NEW.datum_podani < SYSTIMESTAMP THEN 
+        RAISE_APPLICATION_ERROR(-20000, 'Datum podÃ¡nÃ­ nemÅ¯Å¾e bÃ½t v minulosti');
+    END IF;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<table>D152F972-B5B6-ACE5-E105-E040CF7A9214</table>
+</TriggerOraclev10g>

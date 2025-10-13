@@ -1,0 +1,70 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="78DB666F-A967-5762-88CE-54D6AE919FA1" name="ROLE">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 13:09:11 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="E61B3F2E-DF18-483F-ED05-F1FAF5D04EE9">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 13:09:26 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nazev" id="4981A591-84DB-4D39-A821-9F063B44961E">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 13:09:32 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="uroven_opravneni" id="C4A24B41-7FA8-CB64-58FA-02CB7C67A173">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 20:31:44 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="F095F803-7302-EEF5-8836-6AF40F4683FF" name="ROLE PK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 20:31:43 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>E61B3F2E-DF18-483F-ED05-F1FAF5D04EE9</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

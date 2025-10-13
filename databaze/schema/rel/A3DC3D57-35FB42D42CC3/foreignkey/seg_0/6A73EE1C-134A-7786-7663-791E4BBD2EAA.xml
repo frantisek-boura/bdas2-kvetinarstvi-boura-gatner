@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="6A73EE1C-134A-7786-7663-791E4BBD2EAA" containerWithKeyObject="E8D23E7E-0CB5-8E7F-4E53-4B08F8D91C97" localFKIndex="6CC8C14C-06A2-DD06-BE3F-6780ECAECC0C" name="Dotazy_Uzivatele_FK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>327CD881-F2AC-B062-74A3-08FFA2401ECD</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<referredTableLongName>Uzivatele</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>ABD0424A-E65B-4548-010A-50F4A31C8390</referredTableID>
+<keyObject>349D9056-8327-D2E6-10A6-52E8CB8D8030</keyObject>
+<referredKeyID>349D9056-8327-D2E6-10A6-52E8CB8D8030</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_uzivatel</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

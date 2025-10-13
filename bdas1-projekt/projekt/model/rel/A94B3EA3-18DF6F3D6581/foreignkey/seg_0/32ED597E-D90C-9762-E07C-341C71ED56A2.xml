@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="32ED597E-D90C-9762-E07C-341C71ED56A2" containerWithKeyObject="B8698E77-73DB-A351-B3B5-2432B7799D7B" localFKIndex="7C0D704C-BC7F-C462-1249-57CDA9615D80" name="DODAVATELE_ADRESY_FK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>0BFA05B2-DA4C-0CBB-6170-F0A31AFD7B29</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<referredTableLongName>ADRESY</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>6AA9DA1B-C78C-A376-2A01-024675FD1B46</referredTableID>
+<keyObject>C33665A9-F695-3CEE-CC3C-9E1F8C9265B5</keyObject>
+<referredKeyID>C33665A9-F695-3CEE-CC3C-9E1F8C9265B5</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

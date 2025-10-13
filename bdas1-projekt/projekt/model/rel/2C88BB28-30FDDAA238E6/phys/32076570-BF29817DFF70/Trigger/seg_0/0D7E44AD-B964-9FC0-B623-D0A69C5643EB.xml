@@ -1,0 +1,33 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="arc_fkarc_1_potreby" directorySegmentName="seg_0" id="0D7E44AD-B964-9FC0-B623-D0A69C5643EB">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:31:38 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[DECLARE
+    d CHAR(1 CHAR);
+BEGIN
+    SELECT
+        a.typ
+    INTO d
+    FROM
+        zbozi a
+    WHERE
+        a.id = :new.zbozi_id;
+
+    IF ( d IS NULL OR d <> 'P' ) THEN
+        raise_application_error(-20223, 'FK POTREBY_ZBOZI_FK in Table POTREBY violates Arc constraint on Table ZBOZI - discriminator column typ doesn''t have value ''P'''
+        );
+    END IF;
+
+EXCEPTION
+    WHEN no_data_found THEN
+        NULL;
+    WHEN OTHERS THEN
+        RAISE;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>3593285E-88E5-22B9-0CB6-D4EB92CC5331</columns>
+<table>3CBD89B4-C730-0849-2539-CEB067612E5A</table>
+</TriggerOraclev10g>

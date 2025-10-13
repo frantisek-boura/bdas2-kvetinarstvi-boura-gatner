@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="5E494229-7447-CC92-C7B7-7137418BBFD5" containerWithKeyObject="4A7077BB-0D1C-8A68-0022-135CB215F6C1" localFKIndex="5CFD2052-ED45-14A5-6258-E449287929DA" name="UZIVATELE_ADRESY_FK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>308422F5-C5F9-94C9-A474-12FE47902842</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<referredTableLongName>ADRESY</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>6AA9DA1B-C78C-A376-2A01-024675FD1B46</referredTableID>
+<keyObject>C33665A9-F695-3CEE-CC3C-9E1F8C9265B5</keyObject>
+<referredKeyID>C33665A9-F695-3CEE-CC3C-9E1F8C9265B5</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

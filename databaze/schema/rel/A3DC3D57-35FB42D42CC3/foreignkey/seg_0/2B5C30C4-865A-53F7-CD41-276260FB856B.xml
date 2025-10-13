@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="2B5C30C4-865A-53F7-CD41-276260FB856B" containerWithKeyObject="962ABAB6-508F-465A-91F4-7E2D3C68B18C" localFKIndex="D1446550-49E3-85C9-F384-E9CA9B085C14" name="Adresy_PSC_FK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>DFC151F9-387B-F935-0ECF-F261E27C101A</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<referredTableLongName>PSC</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>27290A7A-5161-C90D-1BB3-CE7FEE2E11DA</referredTableID>
+<keyObject>C99FFEF7-7CBC-2E43-8B5E-05143BECEA6B</keyObject>
+<referredKeyID>C99FFEF7-7CBC-2E43-8B5E-05143BECEA6B</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_psc</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

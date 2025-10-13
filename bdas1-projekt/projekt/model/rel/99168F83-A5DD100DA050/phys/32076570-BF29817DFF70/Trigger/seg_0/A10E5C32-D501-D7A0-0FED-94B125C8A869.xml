@@ -1,0 +1,33 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="arc_fkarc_1_rostliny" directorySegmentName="seg_0" id="A10E5C32-D501-D7A0-0FED-94B125C8A869">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:27 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[DECLARE
+    d CHAR(1 CHAR);
+BEGIN
+    SELECT
+        a.typ
+    INTO d
+    FROM
+        zbozi a
+    WHERE
+        a.id = :new.zbozi_id;
+
+    IF ( d IS NULL OR d <> 'R' ) THEN
+        raise_application_error(-20223, 'FK ROSTLINY_ZBOZI_FK in Table ROSTLINY violates Arc constraint on Table ZBOZI - discriminator column typ doesn''t have value ''R'''
+        );
+    END IF;
+
+EXCEPTION
+    WHEN no_data_found THEN
+        NULL;
+    WHEN OTHERS THEN
+        RAISE;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>F259BBDE-649F-1693-EA7F-474DEE0753D9</columns>
+<table>42259C3E-5C40-1846-6CD6-104D223DDDE8</table>
+</TriggerOraclev10g>

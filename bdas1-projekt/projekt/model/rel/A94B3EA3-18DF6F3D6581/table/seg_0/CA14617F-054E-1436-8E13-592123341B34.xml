@@ -1,0 +1,53 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CA14617F-054E-1436-8E13-592123341B34" name="DRUHY_ROSTLINY">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>CCFE5898-1967-C9CC-F62E-0F3FB362969F</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<ordsAlias>druh_rostliny</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="38D63149-2143-3BFE-53B5-035E2DE52F6B">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>1CC22BC5-66AA-6349-8349-85284348672F</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementSequenceName>s_druhy_rostliny_id</autoIncrementSequenceName>
+<autoIncrementTriggerName>t_druhy_rostliny_id</autoIncrementTriggerName>
+</Column>
+<Column name="nazev" id="83270B75-FA3A-EAFC-48B3-38FB638F224B">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>54F1B1FD-6200-826A-CB61-BBBB69371B07</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="72722DAC-78FC-4B50-2FF2-E17AF1299B83" name="DRUHY_ROSTLINY_PK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>FBB4099B-39E3-3BC4-B53D-F1C5E4C7CD4B</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="38D63149-2143-3BFE-53B5-035E2DE52F6B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

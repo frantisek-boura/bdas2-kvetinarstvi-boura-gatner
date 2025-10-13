@@ -1,0 +1,198 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D4121927-85D6-8D68-B728-A153F4C1ACBE" name="objednavky">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>3A079707-9634-A6A9-FFF6-4BFE57D434A5</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="48B55EB1-1ADB-A848-BA1A-9F856A3A9D9A">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>722F43D5-6979-9763-7CC3-279680F81961</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementSequenceName>s_objednavky_id</autoIncrementSequenceName>
+<autoIncrementTriggerName>t_objednavky_id</autoIncrementTriggerName>
+</Column>
+<Column name="celkova_cena" id="E973EF50-7ECE-474B-6B7D-905C920B2F24">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>0B80D2DE-2888-2A77-37F8-32DF3B8D26A2</importedID>
+<constraintName>chk_objednavky_celkova_cena</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>3D84AC7C-151E-BB33-F515-15643261E7DD</domain>
+<checkConstraint>
+<implementationDef dbType="Oracle Database 11g" definition="celkova_cena &gt;= 0 and celkova_cena &lt;= 999999.99"/>
+</checkConstraint>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="datum_podani" id="4653CCCD-CC63-AC5B-3E6E-D817E92B7200">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>2AF2F1B4-7372-F31C-EF90-97536B5E6C8E</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<domain>40344C98-D8BC-15B2-8FD6-9E2D7CA63D5E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="dorucovaci_adresa_id" id="7B69AE47-8F2B-CC4F-6918-81D9787D83BD">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>AE840FCC-755C-7F91-3F45-CB9F2B9D68B3</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6B875AAD-D4CE-7DD4-B017-F7D341636F5E" referredColumn="71E2DCDD-5B81-F41F-D3E4-C71D2F135874"/>
+</associations>
+</Column>
+<Column name="uzivatel_id" id="7028DD7C-4266-5372-64EA-F779FBD90D76">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>8BC28D17-2F06-116B-201D-71A4261A8A8B</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="74B06BEA-E93F-6611-561B-7AA7972468F5" referredColumn="0B246E10-5B82-7DE3-8D34-95F646BD7696"/>
+</associations>
+</Column>
+<Column name="stav_objednavky_id" id="D64453EC-4E8C-6EA4-44DE-0CA7961FD207">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>D1A4638E-85C1-6EB2-E56F-0BFDB4441EF0</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="89275594-7EC8-EEFB-9FBB-5D6E4DCFDFA5" referredColumn="7784E0D8-FB23-02C6-EED3-7EF331B0BEA3"/>
+</associations>
+</Column>
+<Column name="zpusob_doruceni_id" id="2D2A67A3-FC0C-5E24-FFA6-9A57EA5AE002">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>F64A3EAB-0E20-D4F7-4F00-240782B18F6E</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7D43F7BE-3BF3-AC14-B37D-B83B4D058052" referredColumn="733BDE1C-7E07-6A3B-0F7A-9B8BE824C592"/>
+</associations>
+</Column>
+<Column name="zpusob_platby_id" id="F586A5E9-BE99-9B88-F0B0-39298E246025">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>4193CF75-E1B2-9307-6B2A-045DA5710294</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A5B8C4CD-FA45-2F02-7A71-C3CD21F1E90B" referredColumn="ECB28E2D-BE34-0965-F50D-A059F231BB72"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E0B440DB-1285-7A82-7DB7-31CFEE3A88D4" name="objednavky_pk">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>474C5948-7CBF-D888-A85E-AD8477FB95E6</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="48B55EB1-1ADB-A848-BA1A-9F856A3A9D9A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DED65E5F-0B10-8EA2-E250-8CBA8F763201" name="objednavky_adresy_fk">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7B69AE47-8F2B-CC4F-6918-81D9787D83BD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A347F95E-BC50-CF6D-356E-936EB428FE9F" name="objednavky_stavy_objednavky_fk">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D64453EC-4E8C-6EA4-44DE-0CA7961FD207"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="39EE7350-6EFD-3007-3292-187FDAC87EA4" name="objednavky_uzivatele_fk">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7028DD7C-4266-5372-64EA-F779FBD90D76"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7410CBEB-6C22-5F79-2789-8C2E3544A621" name="objednavky_zpusoby_doruceni_fk">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2D2A67A3-FC0C-5E24-FFA6-9A57EA5AE002"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="51188763-19B1-5C74-A88C-B3F0D4C0014F" name="objednavky_zpusoby_platby_fk">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F586A5E9-BE99-9B88-F0B0-39298E246025"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,103 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B7F37C86-A6F9-175B-E955-98B3AD2B68C9" name="objednane_zbozi">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>3C91F55D-5C67-060F-AA63-1CB5DD4647AA</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="zbozi_id" id="F78E4969-66C2-0E19-A360-D96E22AD033D">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>8496535A-ACB7-78A1-A16E-AA35A24E14D8</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="05A2E2F4-E910-EE78-AFA8-CDD4B9BC17DF" referredColumn="131C6ED7-54AF-77AD-088E-541BE4B8653F"/>
+</associations>
+</Column>
+<Column name="objednavka_id" id="BE4C75ED-CEFB-83AE-F732-C7DC2CA3D8B8">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>04AF32FF-0612-4D28-C74A-2C2EA776732E</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D65F6045-E295-E3A0-8A4B-4A268D9C0C9B" referredColumn="29E9098C-EC29-16D9-8822-A3F179DFF97A"/>
+</associations>
+</Column>
+<Column name="mnozstvi" id="2DFF5CF4-3837-50A2-AA4D-417F958286BB">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>E53ED1D5-519B-A640-BD9F-81AFB4152391</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cena_za_kus" id="80FFDBCC-2F30-50A3-F491-166BBCA188B2">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>23DE5359-3AAD-CF01-B0D6-5AE68FB638FF</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>AA34A9F6-0F8A-77EF-5F77-96C28BB1E6EF</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DF40FA55-B4CA-483C-5FE7-ED07678BC39E" name="objednane_zbozi_pk">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>33152CBC-47BB-031F-FA36-A87668D96AC0</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F78E4969-66C2-0E19-A360-D96E22AD033D"/>
+<colUsage columnID="BE4C75ED-CEFB-83AE-F732-C7DC2CA3D8B8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D095FD2C-F88E-A7CF-EEA6-4630C4E3E1B9" name="objednane_zbozi_objednavky_fk">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BE4C75ED-CEFB-83AE-F732-C7DC2CA3D8B8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4D2418DA-EE09-C223-D587-47F8A9BEFFDB" name="objednane_zbozi_zbozi_fk">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F78E4969-66C2-0E19-A360-D96E22AD033D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

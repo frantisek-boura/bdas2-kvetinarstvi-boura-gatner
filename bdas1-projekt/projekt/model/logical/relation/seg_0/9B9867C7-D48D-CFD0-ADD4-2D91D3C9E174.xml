@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_23" directorySegmentName="seg_0" id="9B9867C7-D48D-CFD0-ADD4-2D91D3C9E174">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 13:11:39 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>patri</nameOnSource>
+<nameOnTarget>zastava</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>78DB666F-A967-5762-88CE-54D6AE919FA1</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>5F30604C-80B8-D2D4-D142-AF74AEAE4646</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

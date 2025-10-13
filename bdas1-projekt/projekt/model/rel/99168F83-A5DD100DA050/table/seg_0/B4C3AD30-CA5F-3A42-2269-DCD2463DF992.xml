@@ -1,0 +1,115 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B4C3AD30-CA5F-3A42-2269-DCD2463DF992" name="dodane_zbozi">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>4202408B-906C-BD10-BA9F-012C3688AE9C</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="dodavatel_id" id="C70D64DA-7A72-25DC-0ABD-2809B3F9DC24">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>CB1CD276-F7F3-32FC-23B3-1C7D08687689</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6D90E98B-3411-9523-6796-D80FE2EB9F8A" referredColumn="BE938958-6A69-219D-37C9-5C2C2D30773A"/>
+</associations>
+</Column>
+<Column name="zbozi_id" id="CA95ABA3-E48C-54B0-1DB8-425ACADC4FB8">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>948D030E-2882-4973-0885-35E7E6057913</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DDDAC1E3-75C0-1414-6357-C1225D49C4B1" referredColumn="131C6ED7-54AF-77AD-088E-541BE4B8653F"/>
+</associations>
+</Column>
+<Column name="mnozstvi" id="140D2506-AF1F-CB29-2A1B-81494042CB9E">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>8DCEB1A2-0A2D-C456-3B34-EF2D694B1F7A</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cena_za_kus" id="FF650C00-019D-E824-8999-C44A658B79A4">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>BFBB9DB1-A6FB-5035-42F9-A20B8358EBDF</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>AA34A9F6-0F8A-77EF-5F77-96C28BB1E6EF</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="datum_dodani" id="064A88F1-5DC6-EA82-8F5C-1C0EF7498648">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>37DDD4F7-9E8C-4BED-E64E-6308878B0476</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<domain>40344C98-D8BC-15B2-8FD6-9E2D7CA63D5E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BE290634-AAA2-7FE3-DE62-5B3B559F2AA5" name="dodane_zbozi_pk">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>7A5B1849-638D-FD1E-9A54-E1E4BD0B4C54</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C70D64DA-7A72-25DC-0ABD-2809B3F9DC24"/>
+<colUsage columnID="CA95ABA3-E48C-54B0-1DB8-425ACADC4FB8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FD309F26-9DAC-7549-E7DC-E33A3D25C6D8" name="dodane_zbozi_dodavatele_fk">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C70D64DA-7A72-25DC-0ABD-2809B3F9DC24"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0853862F-3E72-C8A3-42EA-2689CB804061" name="dodane_zbozi_zbozi_fk">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CA95ABA3-E48C-54B0-1DB8-425ACADC4FB8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,113 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7D12F28C-41A8-7CAF-BBD1-0B4C33604A1C" name="DODANE_ZBOZI">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="DODAVATEL_id" id="62BC20C7-9430-67EC-11A6-CB8F4E504493">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4BEA1D8E-07A8-FBE5-7468-108B1D402981" referredColumn="D97832C8-17E3-C71E-A571-430EF9DF884A"/>
+</associations>
+</Column>
+<Column name="ZBOZI_id" id="2F666FB3-36E5-CB92-F6D3-A1BD3E8D8B0D">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="46932BE0-BA03-A519-6CF9-D9F5215EC0D7" referredColumn="8A1A15F0-6530-F526-F93C-B63FF6110697"/>
+</associations>
+</Column>
+<Column name="mnozstvi" id="D1CF39E6-3AD3-BC7B-2903-25E00F1B2989">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>C0BFEEA7-D2DB-3411-73EC-C4DC4F5402BD</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isRelationshipColumn>true</isRelationshipColumn>
+<isDependOnFK_AsMandatory>true</isDependOnFK_AsMandatory>
+</Column>
+<Column name="cena_za_kus" id="5A351832-0BB7-58E7-FCC7-3A9AD5826EDC">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>E79262E5-8521-8C5A-7094-CCE4D3E6D0B9</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isRelationshipColumn>true</isRelationshipColumn>
+<isDependOnFK_AsMandatory>true</isDependOnFK_AsMandatory>
+</Column>
+<Column name="datum_dodani" id="D3959897-55F7-9D36-FF80-5DDE515E7C7A">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 18:25:13 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="AAAD3E43-6D17-5A3B-FE5D-A175E47167A1" name="DODANE_ZBOZI_PK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="62BC20C7-9430-67EC-11A6-CB8F4E504493"/>
+<colUsage columnID="2F666FB3-36E5-CB92-F6D3-A1BD3E8D8B0D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="75E27B40-2C5C-84E7-65FA-BDD6578D1B8F" name="DODANE_ZBOZI_DODAVATELE_FK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>964A305D-B9A8-2CB8-96F0-DE8423D67A8B</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="62BC20C7-9430-67EC-11A6-CB8F4E504493"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D7C07D6C-603B-5ECE-5281-E44702096A9E" name="DODANE_ZBOZI_ZBOZI_FK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>964A305D-B9A8-2CB8-96F0-DE8423D67A8B</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2F666FB3-36E5-CB92-F6D3-A1BD3E8D8B0D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

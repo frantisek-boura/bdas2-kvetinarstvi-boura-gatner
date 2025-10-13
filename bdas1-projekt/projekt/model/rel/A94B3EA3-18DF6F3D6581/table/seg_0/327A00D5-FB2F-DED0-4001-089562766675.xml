@@ -1,0 +1,53 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="327A00D5-FB2F-DED0-4001-089562766675" name="ZPUSOBY_DORUCENI">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>EA57D63A-3C20-DCC4-D8ED-3091AE1F534A</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<ordsAlias>zpusob_doruceni</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="23288F02-1FE1-ABE9-A920-A5AB1FEF69D2">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>F8515585-372B-D457-9B20-5BEAC55230E9</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementSequenceName>s_zpusoby_doruceni_id</autoIncrementSequenceName>
+<autoIncrementTriggerName>t_zpusoby_doruceni_id</autoIncrementTriggerName>
+</Column>
+<Column name="nazev" id="B272F2DB-1638-C48C-3C65-A73EF7A5810B">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>0B7E77EA-1092-C89F-AF0C-89DDC747C4C8</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="64395F2B-F678-8AE0-094A-59A2381338DA" name="ZPUSOBY_DORUCENI_PK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>EB39602A-0DA1-565D-AFA3-8A3BAE3D6DC2</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="23288F02-1FE1-ABE9-A920-A5AB1FEF69D2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

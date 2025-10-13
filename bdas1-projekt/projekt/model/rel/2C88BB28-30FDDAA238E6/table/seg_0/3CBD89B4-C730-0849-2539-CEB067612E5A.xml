@@ -1,0 +1,105 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3CBD89B4-C730-0849-2539-CEB067612E5A" name="potreby">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>0B4DB635-EF89-36C9-D146-AE9F37A3B53D</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="zbozi_id" id="3593285E-88E5-22B9-0CB6-D4EB92CC5331">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>D4104973-52B0-7A9C-272D-3E66891764C9</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D52F962E-B6A4-5EB6-0EBE-0C42AA4C1B4E" referredColumn="934F55CF-8244-F21F-DCAB-C323CFFFAB24"/>
+</associations>
+</Column>
+<Column name="potreba_id" id="F4C3BF7E-B201-B6AD-59E1-07B8090C1BF6">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>B30E9D16-C4BD-F436-45F2-B8FBDF326B2D</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementSequenceName>s_potreby_id</autoIncrementSequenceName>
+<autoIncrementTriggerName>t_potreby_id</autoIncrementTriggerName>
+</Column>
+<Column name="nazev" id="D8E987E3-5A4E-6CB7-3AE0-4FA6B4A13B77">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:31:45 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>504A1F12-B403-182F-F2EF-F44C52A6DBB9</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FF1ACBD3-662F-631D-1064-1A6C54B73FA9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="hmotnost" id="AE0FB8B5-E756-3C00-67CB-47F360EFDCE0">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>597EB634-EB4D-7349-A6FC-6F2E769DD325</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>AA34A9F6-0F8A-77EF-5F77-96C28BB1E6EF</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2E602F12-DE98-2F13-D395-E872480510FF" name="potreby_pk">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>18BA70DD-85B5-E154-FC13-438A83F4DF7B</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3593285E-88E5-22B9-0CB6-D4EB92CC5331"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7CA2C67F-55CE-5DE3-BC2E-19AD8404DF68" name="potreby_uk">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>96B3F284-616E-41FF-85F5-9F8055C92DF3</importedID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F4C3BF7E-B201-B6AD-59E1-07B8090C1BF6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6F9C6B49-1A68-DCB6-4D73-1A3C777D1591" name="potreby_zbozi_fk">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3593285E-88E5-22B9-0CB6-D4EB92CC5331"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

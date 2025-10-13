@@ -1,0 +1,93 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F34631A8-26F4-A938-A433-8545547B6802" name="potreby">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>D254B353-D332-20FE-84A0-66D6F685D6D3</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="zbozi_id" id="D9EF4D6A-D95F-B52B-3EA6-24238D50994E">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>5537C679-4C18-44DD-DB9C-9DE140DD6114</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6C092F60-6442-E460-C9C4-A887351780D0" referredColumn="131C6ED7-54AF-77AD-088E-541BE4B8653F"/>
+</associations>
+</Column>
+<Column name="potreba_id" id="F84B1917-4CAD-4E48-075A-2C36B4F260AF">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>ED65D02D-265C-93F3-EF2F-546F92A4DB29</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementSequenceName>s_potreby_id</autoIncrementSequenceName>
+<autoIncrementTriggerName>t_potreby_id</autoIncrementTriggerName>
+</Column>
+<Column name="hmotnost" id="89B1F48F-07D7-2C2C-5E26-F41628D84E12">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>ABAEEBA7-4872-60D7-7C29-3448B16C7D73</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>AA34A9F6-0F8A-77EF-5F77-96C28BB1E6EF</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="AA626C97-1ECF-0C3F-6A8A-D17095CA4E7A" name="potreby_pk">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>4A85DA34-25CB-1801-5A2B-4AD7B16E2EED</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D9EF4D6A-D95F-B52B-3EA6-24238D50994E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="42E43138-EB5E-1917-33A7-C7AC1A9DB315" name="potreby_uk">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:36 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>F76D0D7E-899D-6AA5-8A0D-DFCF9E7B1561</importedID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F84B1917-4CAD-4E48-075A-2C36B4F260AF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FEF2F413-3DC4-E96E-3FE2-21B0A0F53B7B" name="potreby_zbozi_fk">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 15:46:37 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D9EF4D6A-D95F-B52B-3EA6-24238D50994E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,35 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_24" directorySegmentName="seg_0" id="FC177CDF-1A86-4723-1BD1-B08363E8A655">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 07:58:37 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>967D93C1-E26F-33CA-B702-A4B797E6A574</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>D63981B2-F07D-6CE0-DA42-1D838C685B19</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<attribute name="pocet" id="BE46AC0F-A03F-09F2-5544-CE79AB95425C">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 07:59:15 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,2,0</ownDataTypeParameters>
+</attribute>
+</attributes>
+</Relation>

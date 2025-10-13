@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="ADF64DF7-1B6D-674F-F05C-A2187A05D0A7" name="POTREBA">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 13:54:19 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="2C88BB28-950D-BE1B-9C9B-30FDDAA238E6" value="true"/>
+<item key="99168F83-27B0-1A16-776A-A5DD100DA050" value="true"/>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>B8F0C8FE-05C3-153C-C6EF-BFC5648FF489</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="0CABB19C-A279-D209-9494-8179BDC5A9C0">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:27:26 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="2C88BB28-950D-BE1B-9C9B-30FDDAA238E6" value="true"/>
+<item key="99168F83-27B0-1A16-776A-A5DD100DA050" value="true"/>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="hmotnost" id="0459E88A-EFA2-05E4-068F-A4AA5AE96D0D">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:27:31 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="2C88BB28-950D-BE1B-9C9B-30FDDAA238E6" value="true"/>
+<item key="99168F83-27B0-1A16-776A-A5DD100DA050" value="true"/>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nazev" id="BEDB1CE6-AD45-30DE-F605-B81337313900">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:11 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="2C88BB28-950D-BE1B-9C9B-30FDDAA238E6" value="true"/>
+<item key="99168F83-27B0-1A16-776A-A5DD100DA050" value="true"/>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="862C786F-6C25-CB53-CC62-14E2D26F49FD" name="POTREBA PK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-10 14:27:31 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="2C88BB28-950D-BE1B-9C9B-30FDDAA238E6" value="true"/>
+<item key="99168F83-27B0-1A16-776A-A5DD100DA050" value="true"/>
+<item key="A94B3EA3-5646-ACBD-DDDF-18DF6F3D6581" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>0CABB19C-A279-D209-9494-8179BDC5A9C0</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

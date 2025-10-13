@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="F588E291-68AA-95D2-A86D-8FAB84B1FDF4" containerWithKeyObject="962ABAB6-508F-465A-91F4-7E2D3C68B18C" localFKIndex="367C7454-6EF2-C9D0-D8A8-8C22F1E081C1" name="Adresy_Mesta_FK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<generatorID>B60C3199-A1E6-CE32-E3D4-2BB2798C0837</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<referredTableLongName>Mesta</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>FD25DE59-2A70-DF3E-A181-5382B0613ECD</referredTableID>
+<keyObject>30BB037E-6474-2D5C-6A33-81ABE6ACF594</keyObject>
+<referredKeyID>30BB037E-6474-2D5C-6A33-81ABE6ACF594</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_mesto</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -1,0 +1,153 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BCF6256E-1355-B63B-EED2-34EE3AFAF6BB" name="ROSTLINY">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>57CAC7D0-7B09-0036-B627-55FCC02755AE</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<ordsAlias>rostlina</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ZBOZI_id" id="3B2540AC-6AF3-6C7C-92F1-E6FE2060C694">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>679C208B-4977-3C7D-C712-F58D9635F0A3</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5A63894F-B7D2-313B-27A4-915373BD88F1" referredColumn="8A1A15F0-6530-F526-F93C-B63FF6110697"/>
+</associations>
+</Column>
+<Column name="rostlina_id" id="0F485C1F-B815-6021-58A7-0F37B9171DC8">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>8AA3F941-5404-9BF6-E6D0-BAB31C473433</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementSequenceName>s_rostliny_id</autoIncrementSequenceName>
+<autoIncrementTriggerName>t_rostliny_id</autoIncrementTriggerName>
+</Column>
+<Column name="pocet_kvetu" id="1920C529-B902-B679-E94B-955988FE00DA">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>57B6A53E-E70C-B4B0-1F7E-67D293041614</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="delka_stonku" id="B9855001-3923-AC8A-514F-1645FF4A66DA">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>A5E931B5-B9D5-21FA-4276-819562562781</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BARVA_id" id="FD64C521-1365-A23B-18B9-54D6FFA63BA6">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>91BBD67A-EEE0-EC93-D06C-5CF63489C667</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D351E6C2-966A-17A6-7EA0-CDF1B7E25091" referredColumn="700F3870-8E39-4420-7169-0C487B5A932C"/>
+</associations>
+</Column>
+<Column name="DRUH_ROSTLINY_id" id="C381046F-4EE1-1BBD-6DC7-A13A76E36996">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>49AAF6BA-9639-F847-4D54-6C49E08C329D</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="32B92E7A-0244-8DC4-BE97-9ABA858685D0" referredColumn="38D63149-2143-3BFE-53B5-035E2DE52F6B"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="46C882E5-BACA-B274-B17C-A14F6860583C" name="ROSTLINY_PK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>01C53EE5-2442-4EEB-3BF4-62C056592E3D</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3B2540AC-6AF3-6C7C-92F1-E6FE2060C694"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="90229F0E-2C77-9EEB-C11D-FFCBA2BDCC2F" name="ROSTLINY_UK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>90C8627F-BFDA-3936-2887-24B0A35F1F53</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0F485C1F-B815-6021-58A7-0F37B9171DC8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B019792D-D6D7-EBEA-16C7-B108F0759450" name="ROSTLINY_ZBOZI_FK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>E7A63CD1-CB2F-738B-24FD-4EE20390804F</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3B2540AC-6AF3-6C7C-92F1-E6FE2060C694"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E649B7BE-73A9-BD67-D6CC-F31BCBF8B9D2" name="ROSTLINY_BARVY_FK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>50CF94F2-6CC2-0B91-EB6E-D7D992629EDA</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FD64C521-1365-A23B-18B9-54D6FFA63BA6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8C72778F-D05C-33D9-8DC8-EC9D9C5BFD82" name="ROSTLINY_DRUHY_ROSTLINY_FK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>724BF778-45BE-111D-DB47-BB0924C36EB6</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C381046F-4EE1-1BBD-6DC7-A13A76E36996"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

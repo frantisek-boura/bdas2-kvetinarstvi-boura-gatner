@@ -1,0 +1,156 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="911F62ED-9820-1F47-91EB-7C9F16D718D7" name="rostliny">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>5A7B7517-832D-B538-0134-0C8471AF5CE5</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="zbozi_id" id="81AB86FB-5161-AAF5-F681-C59A9A6F2066">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>AC8780FC-1F9F-849D-225B-194DA496625F</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="885D8A05-75C1-BA2F-AD25-06BC703847D8" referredColumn="934F55CF-8244-F21F-DCAB-C323CFFFAB24"/>
+</associations>
+</Column>
+<Column name="rostlina_id" id="997C491B-60D8-8C6A-6197-2594FB4F175C">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>C93B4BE8-BACC-6BE2-7824-22F48A386D0C</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementSequenceName>s_rostliny_id</autoIncrementSequenceName>
+<autoIncrementTriggerName>t_rostliny_id</autoIncrementTriggerName>
+</Column>
+<Column name="pocet_kvetu" id="3D187092-76A7-6C5F-DF4A-C71EC6B3C8B1">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>039E7E09-066B-433B-A0F6-7D5F6A1E281A</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="delka_stonku" id="18EE03A4-D2D5-9E52-1648-061AE6DEFF45">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>F4162328-3C41-DD03-F079-46005AD2C9BE</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="barva_id" id="0158877C-B10F-2A91-A39C-DA4D3CDBB81B">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>DFB9681A-66EB-40D8-9DAC-9564D54B2D73</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="617EBCD7-CA6F-C836-CBEF-97623C8CC3BE" referredColumn="1FBE1EFC-A299-98D5-6B1C-C88892C68766"/>
+</associations>
+</Column>
+<Column name="druh_rostliny_id" id="C46DAC89-F37A-F2F8-B892-8F5A9D661277">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>E14AF99D-5274-0A46-3C39-24291B161E02</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9BE1E256-14D2-1294-7A13-FD951AFCA947" referredColumn="83D57CB2-A4CA-27A7-3ACE-4E6104E0DFCD"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="48FDB2EB-8F29-5ED2-8830-3C4596924D8B" name="rostliny_pk">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>31AFCD1B-4AD6-9E0B-43F7-6ED71E3138CC</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="81AB86FB-5161-AAF5-F681-C59A9A6F2066"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="156A9BC3-6237-3E9B-4A35-0946470FE4E8" name="rostliny_uk">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>4C650B99-C69A-EC56-D595-2C96C3488AB8</importedID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="997C491B-60D8-8C6A-6197-2594FB4F175C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="53949E0B-34CA-77CE-7314-278A5496DFD8" name="rostliny_barvy_fk">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0158877C-B10F-2A91-A39C-DA4D3CDBB81B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="04B6FD47-B9B5-C5CC-353A-EFCDC675081B" name="rostliny_druhy_rostliny_fk">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C46DAC89-F37A-F2F8-B892-8F5A9D661277"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EB839AA4-F65B-052E-2BC5-CB93939C1691" name="rostliny_zbozi_fk">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="81AB86FB-5161-AAF5-F681-C59A9A6F2066"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

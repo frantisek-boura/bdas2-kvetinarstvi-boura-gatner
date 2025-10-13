@@ -1,0 +1,139 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4829D18D-BC98-E294-D7D9-1ABF64007CD8" name="zbozi">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>53631502-32B5-9127-7175-52F653DFAA09</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="934F55CF-8244-F21F-DCAB-C323CFFFAB24">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>ACA6A581-F6EC-D504-9D20-5718301DD789</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementSequenceName>s_zbozi_id</autoIncrementSequenceName>
+<autoIncrementTriggerName>t_zbozi_id</autoIncrementTriggerName>
+</Column>
+<Column name="cena" id="61BDF20D-3F0B-898E-DAB1-2115E8638AAB">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>AAC0C0C4-32CC-A8B1-2F5F-AAA11105CA1A</importedID>
+<constraintName>chk_zbozi_cena</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>AA34A9F6-0F8A-77EF-5F77-96C28BB1E6EF</domain>
+<checkConstraint>
+<implementationDef dbType="Oracle Database 11g" definition="cena &gt;= 0 and cena &lt;= 9999.99"/>
+</checkConstraint>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="pocet" id="3F884680-3AD0-65F5-BBC9-DF8A6F5D1122">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>3255D6E9-CBC0-3BE9-DD34-C70C923C463C</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="kategorie_id" id="CD68D456-41C6-A1DF-EB2C-AAAA03AD5C15">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>A56E6AFE-B7DC-1B04-13CE-ECD595111400</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="087F32F7-F523-BA3E-C337-58AF397D352B" referredColumn="F44F9CF5-B511-FE39-8FF9-E2180319953F"/>
+</associations>
+</Column>
+<Column name="dan_id" id="132C6DDA-B976-E4B2-6910-EA8DC56941E0">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>C83F3088-D598-DBC8-DC7C-B54A9D8514A5</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>763D6AB2-52A0-F0C0-884C-D9939080BFB6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="20718339-D6A9-C84B-22AD-B23FD7D391E5" referredColumn="0E7AF0F6-D707-ECAE-ABF4-A81513EB052F"/>
+</associations>
+</Column>
+<Column name="typ" id="42376E78-EDD0-DD09-AF52-5F2EF09E8C6C">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>E349F896-87BB-B4E3-A6AF-F312F9345ECB</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>9B59BE0E-C0ED-6A03-D718-ACA43C225906</domain>
+<listOfValues>
+<valueDef value="P" description=""/>
+<valueDef value="R" description=""/>
+</listOfValues>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8B90A123-BEC4-116D-A89F-5C080B8EBCC2" name="zbozi_pk">
+<sourceDDLFile>ddl.ddl</sourceDDLFile>
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<importedID>8FC075C3-6511-7441-9D85-22A0A7520194</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="934F55CF-8244-F21F-DCAB-C323CFFFAB24"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1143F3BA-1452-9874-7097-D92DDAD1BF82" name="zbozi_dane_fk">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="132C6DDA-B976-E4B2-6910-EA8DC56941E0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="782BF619-21DD-1A64-2C73-58CEE33EBEF9" name="zbozi_kategorie_fk">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 12:11:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CD68D456-41C6-A1DF-EB2C-AAAA03AD5C15"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

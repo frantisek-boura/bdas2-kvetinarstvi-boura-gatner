@@ -1,0 +1,104 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="501B2EE9-765F-5793-AEF2-D68B14E3BC4C" name="Adresa">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 07:21:08 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_adresa" id="8DA1286E-692C-1990-F4C8-4F19E574C742">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 07:21:14 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cp" id="0933B3F2-8796-7EF0-2173-BABBD2D30C90">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 07:21:45 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_mesto" id="AF5751FE-4C04-AB4F-CDDE-547A1674CA0C">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 07:32:52 UTC</createdTime>
+<generatorID>B60C3199-A1E6-CE32-E3D4-2BB2798C0837</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<referedAttribute>2BA5B630-7E3A-1C39-064D-02F974634E86</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_ulice" id="B35705D8-EC55-53C5-0AFF-2CB71B17BB71">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 07:33:27 UTC</createdTime>
+<generatorID>0E60D9CE-E690-65BF-23D4-15DBF4BD792B</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<referedAttribute>18F9FB41-8A0F-AC62-30DC-84E12C07B177</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_psc" id="89DEC497-AF9D-E503-99B5-A62C97F3A838">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 07:33:42 UTC</createdTime>
+<generatorID>DFC151F9-387B-F935-0ECF-F261E27C101A</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<referedAttribute>E0E6B545-5AF3-96A4-2824-53C4F0FEB5CE</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="9657975F-ECDC-FE8C-AE13-B6ED333D9283" name="Adresa PK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 07:21:23 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>8DA1286E-692C-1990-F4C8-4F19E574C742</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

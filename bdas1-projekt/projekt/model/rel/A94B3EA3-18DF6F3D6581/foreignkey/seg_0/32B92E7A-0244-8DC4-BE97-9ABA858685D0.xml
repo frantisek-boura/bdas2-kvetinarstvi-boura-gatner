@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="32B92E7A-0244-8DC4-BE97-9ABA858685D0" containerWithKeyObject="BCF6256E-1355-B63B-EED2-34EE3AFAF6BB" localFKIndex="8C72778F-D05C-33D9-8DC8-EC9D9C5BFD82" name="ROSTLINY_DRUHY_ROSTLINY_FK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>724BF778-45BE-111D-DB47-BB0924C36EB6</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<referredTableLongName>DRUHY_ROSTLINY</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>CA14617F-054E-1436-8E13-592123341B34</referredTableID>
+<keyObject>72722DAC-78FC-4B50-2FF2-E17AF1299B83</keyObject>
+<referredKeyID>72722DAC-78FC-4B50-2FF2-E17AF1299B83</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

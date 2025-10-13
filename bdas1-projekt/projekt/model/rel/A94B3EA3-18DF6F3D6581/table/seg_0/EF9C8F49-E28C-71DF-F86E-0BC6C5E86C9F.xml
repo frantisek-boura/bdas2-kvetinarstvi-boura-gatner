@@ -1,0 +1,102 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EF9C8F49-E28C-71DF-F86E-0BC6C5E86C9F" name="POTREBY">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>ADF64DF7-1B6D-674F-F05C-A2187A05D0A7</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<ordsAlias>potreba</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ZBOZI_id" id="C77A39ED-CC9C-5AFE-FCD2-C942CE8D8F6D">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>679C208B-4977-3C7D-C712-F58D9635F0A3</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2C3851B2-C83B-5F36-974E-6A7F7A0E52BA" referredColumn="8A1A15F0-6530-F526-F93C-B63FF6110697"/>
+</associations>
+</Column>
+<Column name="potreba_id" id="57B7438C-703D-E250-464A-2CF0D77FF535">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>0CABB19C-A279-D209-9494-8179BDC5A9C0</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementSequenceName>s_potreby_id</autoIncrementSequenceName>
+<autoIncrementTriggerName>t_potreby_id</autoIncrementTriggerName>
+</Column>
+<Column name="hmotnost" id="71995152-DDE4-7955-4506-152190C4AA3C">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>0459E88A-EFA2-05E4-068F-A4AA5AE96D0D</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nazev" id="E255A138-60E7-9462-C775-9498CA3F0AA4">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-15 17:30:50 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CC6FA0CB-76F5-90CC-F7F8-96A380F59BAE" name="POTREBY_PK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>01C53EE5-2442-4EEB-3BF4-62C056592E3D</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C77A39ED-CC9C-5AFE-FCD2-C942CE8D8F6D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3F4796B2-9863-4698-4E20-A4243629BCDC" name="POTREBY_UK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>862C786F-6C25-CB53-CC62-14E2D26F49FD</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="57B7438C-703D-E250-464A-2CF0D77FF535"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="90A8E5C2-E343-BCFA-750D-4C4414233A8F" name="POTREBY_ZBOZI_FK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>90DE712A-AC81-569B-7213-9F9117167685</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C77A39ED-CC9C-5AFE-FCD2-C942CE8D8F6D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

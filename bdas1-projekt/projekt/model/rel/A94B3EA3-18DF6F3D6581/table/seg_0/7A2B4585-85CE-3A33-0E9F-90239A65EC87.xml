@@ -1,0 +1,103 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7A2B4585-85CE-3A33-0E9F-90239A65EC87" name="OBJEDNANE_ZBOZI">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ZBOZI_id" id="78B764E7-069D-E360-FA60-D78B6E17A049">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="47CBF5EB-184A-A9B9-0BE7-ADD6A79536AE" referredColumn="8A1A15F0-6530-F526-F93C-B63FF6110697"/>
+</associations>
+</Column>
+<Column name="OBJEDNAVKA_id" id="E8D939D7-6DA5-4599-1022-3284AD0BB009">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AA630329-301A-19F9-902F-3C56D8DE562D" referredColumn="8C4BB938-B4E1-E916-EF37-1104FAA5D441"/>
+</associations>
+</Column>
+<Column name="mnozstvi" id="59EAE97C-A7CB-023D-0310-F9E2B83FFA0C">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>8C224AA7-706F-08CE-B950-F2464E393119</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isRelationshipColumn>true</isRelationshipColumn>
+<isDependOnFK_AsMandatory>true</isDependOnFK_AsMandatory>
+</Column>
+<Column name="cena_za_kus" id="322C6A04-BA1E-C3ED-91EA-38C243009BB7">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>97A51CD6-A6E4-4E80-628A-D5D37148596E</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isRelationshipColumn>true</isRelationshipColumn>
+<isDependOnFK_AsMandatory>true</isDependOnFK_AsMandatory>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1CADFF50-DA46-91B5-85E5-15F85D326A87" name="OBJEDNANE_ZBOZI_PK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="78B764E7-069D-E360-FA60-D78B6E17A049"/>
+<colUsage columnID="E8D939D7-6DA5-4599-1022-3284AD0BB009"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C391CD37-D9E3-D661-955B-90F45ACC3768" name="OBJEDNANE_ZBOZI_ZBOZI_FK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>0223C059-B9DD-8596-5447-334512A8367D</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="78B764E7-069D-E360-FA60-D78B6E17A049"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CE2507DF-4FB5-C149-B6E6-B8491889DFA6" name="OBJEDNANE_ZBOZI_OBJEDNAVKY_FK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>0223C059-B9DD-8596-5447-334512A8367D</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E8D939D7-6DA5-4599-1022-3284AD0BB009"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

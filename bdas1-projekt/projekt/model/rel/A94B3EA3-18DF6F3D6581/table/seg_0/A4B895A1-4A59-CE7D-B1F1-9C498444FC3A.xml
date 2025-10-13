@@ -1,0 +1,106 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A4B895A1-4A59-CE7D-B1F1-9C498444FC3A" name="ZBOZI">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>B8F0C8FE-05C3-153C-C6EF-BFC5648FF489</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="8A1A15F0-6530-F526-F93C-B63FF6110697">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>679C208B-4977-3C7D-C712-F58D9635F0A3</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementSequenceName>s_zbozi_id</autoIncrementSequenceName>
+<autoIncrementTriggerName>t_zbozi_id</autoIncrementTriggerName>
+</Column>
+<Column name="cena" id="0754C54D-D929-9028-3FCC-8F399B7193BD">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>2A6FA83A-8402-97F5-8B57-F07B16890333</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="pocet" id="FE27F424-DD78-B1F3-03C0-46791B57AF62">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>279F8DA6-A7A1-0B1B-704B-4E4B3A97EC41</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="KATEGORIE_id" id="617BC248-CA66-F9A8-A702-98DEB74B6CDA">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>12EC44C3-EC45-92D4-0F89-03BF3DD9EA4B</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1B1B2838-CB6C-BB2A-C967-98D8A667D66E" referredColumn="BE8CCAE1-9DEE-4AAE-72BE-09E98B64BBD9"/>
+</associations>
+</Column>
+<Column name="typ" id="6BFEC886-A551-CDD9-F6A7-85B6E25FB1EC">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 18:06:56 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<listOfValues>
+<valueDef value="P" description="Potreby"/>
+<valueDef value="R" description="Rostliny"/>
+</listOfValues>
+<ownDataTypeParameters>1 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isDiscriminatorColumn>true</isDiscriminatorColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5ED53210-144A-0E99-652A-C896DBB8050D" name="ZBOZI_PK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>01C53EE5-2442-4EEB-3BF4-62C056592E3D</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8A1A15F0-6530-F526-F93C-B63FF6110697"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C773DEE3-BABF-899F-0896-F255A5C51536" name="ZBOZI_KATEGORIE_FK">
+<createdBy>elpha</createdBy>
+<createdTime>2023-10-14 17:11:53 UTC</createdTime>
+<generatorID>49B08A1D-AEDB-9738-3C3E-B493DA56D2C2</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="617BC248-CA66-F9A8-A702-98DEB74B6CDA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
