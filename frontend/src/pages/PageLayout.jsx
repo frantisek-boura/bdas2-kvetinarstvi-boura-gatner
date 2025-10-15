@@ -6,7 +6,7 @@ export default function PageLayout({username}) {
     return (
         <>
             <TopBar username={username} />
-            <main className='container'>
+            <main className='container d-flex flex-row justify-content-center'>
                 <Outlet />
             </main>
         </>

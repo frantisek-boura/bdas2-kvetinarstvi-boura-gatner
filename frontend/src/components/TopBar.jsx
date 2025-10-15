@@ -7,11 +7,11 @@ export default function TopBar({username}) {
 
     return (
         <>
-            <div className='flex-row d-flex justify-content-around align-items-center'>
+            <div className='flex-row d-flex flex-row justify-content-around align-items-center'>
                 <Link to="/"><img className='img-fluid' src={Logo} alt='Logo' /></Link>
-                <div>
-                    <input type='text' placeholder='Vyhledávat...' />
-                    <input type="submit" value="Najít" />
+                <div className='input-group w-25'>
+                    <input type='text' className='form-control' placeholder='Vyhledávat...' />
+                    <input type="submit" className='btn btn-primary' value="Najít" />
                 </div>
                 <UserControls username={username} />
             </div>
