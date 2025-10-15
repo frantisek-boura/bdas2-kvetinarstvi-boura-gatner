@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function UserControls({username}) {
     return (
@@ -13,7 +14,7 @@ export default function UserControls({username}) {
                     </div>
                     :
                     <div className='d-flex flex-row'>
-                        <button>Přihlásit se</button>
+                        <Link to="login"><button>Přihlásit se</button></Link>
                         <button>Registrace</button>
                     </div>
             }

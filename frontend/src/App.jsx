@@ -1,11 +1,15 @@
 import { useState } from 'react'
-import TopBar from './TopBar.jsx'
+import PageLayout from './pages/PageLayout.jsx'
+import LoginPage from './pages/LoginPage.jsx'
+import { Routes, Route } from 'react-router-dom';
 
 export default function App() {
 
     return (
-        <div className='container'>
-            <TopBar username={"Uzivatel"}></TopBar>
-        </div>
+        <Routes>
+            <Route path="/" element={<PageLayout username={null} />} >
+                <Route path="login" element={<LoginPage />} />
+            </Route>
+        </Routes>
     )
 };
