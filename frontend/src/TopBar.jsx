@@ -4,8 +4,6 @@ import UserControls from './UserControls.jsx'
 
 export default function TopBar({username}) {
 
-
-
     return (
         <>
             <div className='flex-row d-flex justify-content-around align-items-center'>
