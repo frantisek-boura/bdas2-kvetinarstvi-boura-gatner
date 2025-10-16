@@ -1,12 +1,12 @@
 # Vite + ReactJS
 
-pro spuštění stačí akorát stáhnout NodeJS:
+pro spuštění stačí akorát stáhnout NodeJS a ve složce frontend nainstalovat dependencies:
 
 ```
 npm install
 ```
 
-ve složce frontend spustit:
+potom spustit:
 
 ```
 npm run dev
