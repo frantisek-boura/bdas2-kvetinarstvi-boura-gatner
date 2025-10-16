@@ -1,0 +1,63 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="480F08D7-A396-3C2D-6702-C87D9EEAF6C1" name="ArchivKvetina">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>967D93C1-E26F-33CA-B702-A4B797E6A574</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_kvetina" id="776A62BF-C328-9A01-A913-881CA69ABCF2">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>43B8A03D-7529-D3DC-A5A4-826F544E9F1C</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nazev" id="D15BDADA-0980-3707-4220-3C740278BE60">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>BC8BA878-15E1-5155-62C8-B0A5957BA38C</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>32 CHAR</dataTypeSize>
+<ownDataTypeParameters>32 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cena" id="561A278A-C6C9-9826-56BB-3CC8865823DE">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>E9E7ED75-F4C6-4912-06D4-FF03DCBF0A97</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="36AE38DA-B08F-A16B-5A56-A39F0FFA27C5" name="ArchivKvetina_PK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>6F43B6AE-A38C-4822-6F33-DD98736CF98E</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="776A62BF-C328-9A01-A913-881CA69ABCF2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

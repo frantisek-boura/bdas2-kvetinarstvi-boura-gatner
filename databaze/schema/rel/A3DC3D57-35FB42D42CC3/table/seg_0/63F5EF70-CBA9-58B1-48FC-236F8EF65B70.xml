@@ -1,0 +1,53 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="63F5EF70-CBA9-58B1-48FC-236F8EF65B70" name="ZpusobyPlateb">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:32 UTC</createdTime>
+<generatorID>3005E106-2C2B-0F91-77D8-67F9E3E2A84A</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<ordsAlias>zpusobplatby</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_zpusob_platby" id="A2CAEF1E-78FE-FC87-9B5F-2F8926D21319">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:32 UTC</createdTime>
+<generatorID>114BAACF-19A3-3310-EA25-ED32EF98DD3C</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nazev" id="35568D89-C956-5CCC-BC6B-F2C38DEE7F89">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:32 UTC</createdTime>
+<generatorID>B8E75D63-503B-91DA-4B02-190EBAF562B1</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>32 CHAR</dataTypeSize>
+<ownDataTypeParameters>32 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="958EC03C-9308-7E66-7E6C-2958D17FF6E9" name="ZpusobyPlateb_PK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:32 UTC</createdTime>
+<generatorID>FFD3D699-00AD-A425-E7E2-DAD6716A6CD3</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A2CAEF1E-78FE-FC87-9B5F-2F8926D21319"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

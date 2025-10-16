@@ -1,0 +1,118 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D8B737F6-C2BF-AE81-FCD1-08A862ABC9DF" name="Dotaz">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>99AAADB1-1C6D-1826-947B-3DBA636558A8</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_dotaz" id="626BA28C-08C8-3152-F8D6-87D205BAE786">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>854E3A49-4876-BC38-D468-EA42B48881C2</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="datum_podani" id="3A3414A8-937D-5A22-6849-7F7131339D21">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>134E82F4-9AED-F920-9F4A-7E55220A714B</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<ownDataTypeParameters>,0,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="verejny" id="0D7EF3C3-0F90-3502-4D07-6B9C0031CF0E">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>7FA6C03B-B961-71C0-2CAC-584CB98D7AFD</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<constraintName>boolean_hodnoty</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<listOfValues>
+<valueDef value="0" description="false"/>
+<valueDef value="1" description="true"/>
+</listOfValues>
+<defaultValue>0</defaultValue>
+<ownDataTypeParameters>,1,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="text" id="8EBECD93-4CE7-BCEA-4A3D-49E1D66A84A7">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>D88AA570-A206-38E9-3D70-25F46245F4E8</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="odpoved" id="4C4C6E29-187F-9345-0F28-64FEFB905652">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>86A4F12C-6357-EB11-1EE2-8377D95E119E</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Uzivatel_id_uzivatel" id="0D2E1492-4E99-9FC5-EAE5-3E9D75AE2002">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>6D566F80-AD52-6190-CB9D-CD5EE49E6E08</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9AF66305-69EB-AFE4-DF03-031117E662DB" referredColumn="2EB6901B-ADB4-2514-2C19-46864F4FA855"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8CE8BA3B-37BE-4F84-0995-5A5255427733" name="Dotaz_PK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>44833BE0-C786-47E2-34F9-350AC81E6E14</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="626BA28C-08C8-3152-F8D6-87D205BAE786"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0140DC60-CC4D-B6A1-7B03-1B7F6F666963" name="Dotaz_Uzivatel_FK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>327CD881-F2AC-B062-74A3-08FFA2401ECD</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0D2E1492-4E99-9FC5-EAE5-3E9D75AE2002"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

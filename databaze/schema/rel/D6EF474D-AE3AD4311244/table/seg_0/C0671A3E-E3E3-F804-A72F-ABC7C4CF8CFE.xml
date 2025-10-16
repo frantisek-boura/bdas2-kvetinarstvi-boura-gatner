@@ -1,17 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3D1E6CB1-2866-8674-E18E-326C78AB8158" name="Kosiky">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C0671A3E-E3E3-F804-A72F-ABC7C4CF8CFE" name="Kosik">
 <createdBy>frantisek</createdBy>
-<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>E8E28F9A-BE56-447E-21B6-AF5FC16AB48F</generatorID>
 <ownerDesignName>schema</ownerDesignName>
-<ordsAlias>kosik</ordsAlias>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="id_kosik" id="A257BB91-2CAA-F6A1-C785-4BA8589F2685">
+<Column name="id_kosik" id="2AEBB856-9BC5-495C-264E-DE0E368F4F4D">
 <createdBy>frantisek</createdBy>
-<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>2E500589-1837-2DA2-83BC-1608A9152683</generatorID>
 <ownerDesignName>schema</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -19,13 +18,11 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
-<autoIncrementColumn>true</autoIncrementColumn>
-<identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="datum_vytvoreni" id="304EAE7A-5CBF-F36C-6F2D-56FD587E1A07">
+<Column name="datum_vytvoreni" id="A793C09E-B146-3E96-4F90-E3881F305B27">
 <createdBy>frantisek</createdBy>
-<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>57A49E81-F7E8-E4AE-5584-DBBEA0BF9A92</generatorID>
 <ownerDesignName>schema</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -35,9 +32,9 @@
 <ownDataTypeParameters>,0,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="cena" id="68F84E1F-127D-1DB9-0122-04DBC1EF4C1F">
+<Column name="cena" id="EE3D9391-F873-33EE-F6DE-4E3B6D60BD0A">
 <createdBy>frantisek</createdBy>
-<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>3151A335-BA5C-30FC-E622-BC10B4300E63</generatorID>
 <ownerDesignName>schema</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -48,53 +45,10 @@
 <ownDataTypeParameters>,12,2</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="id_uzivatel" id="8423A85A-6EDC-430D-1CCF-DD9048DE2BB6">
+<Column name="Uzivatel_id_uzivatel" id="B2383395-B8D8-65D4-8965-3326545CE36E">
 <createdBy>frantisek</createdBy>
-<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>EEACB651-BF0C-5456-6598-99E0FF550FD0</generatorID>
-<ownerDesignName>schema</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,10,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="107EB9F1-7274-ABFC-DE03-641A9F63AE38" referredColumn="632DD28B-88A4-CF69-CAC8-263C6B7802B7"/>
-</associations>
-</Column>
-<Column name="id_stav_objednavky" id="CDFA3D8F-05E7-6E50-CBBC-98079BB4F473">
-<createdBy>frantisek</createdBy>
-<createdTime>2025-10-05 08:25:35 UTC</createdTime>
-<generatorID>45F1DBE2-B6B5-E264-682D-A9700B3FE9FF</generatorID>
-<ownerDesignName>schema</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,10,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="58844A64-C7E1-3922-FBA5-765C35CC65EC" referredColumn="8229A190-335F-5361-9F9E-4BA6F9B4BC7B"/>
-</associations>
-</Column>
-<Column name="sleva" id="70BCAF8D-67ED-BA9D-162A-8F57B3A31A67">
-<createdBy>frantisek</createdBy>
-<createdTime>2025-10-05 19:24:51 UTC</createdTime>
-<ownerDesignName>schema</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>2</dataTypePrecision>
-<ownDataTypeParameters>,2,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ZpusobyPlateb_id_zpusob_platby" id="61B29F55-0FE0-E04C-1CD1-7F3E6377772B">
-<createdBy>frantisek</createdBy>
-<createdTime>2025-10-16 16:53:37 UTC</createdTime>
 <ownerDesignName>schema</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -104,54 +58,98 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="F11CB6B6-0EE3-F11F-E88D-52272194E505" referredColumn="A2CAEF1E-78FE-FC87-9B5F-2F8926D21319"/>
+<colAssociation fkAssociation="D7943463-F2E8-E889-3A74-C504BA4FACE4" referredColumn="2EB6901B-ADB4-2514-2C19-46864F4FA855"/>
+</associations>
+</Column>
+<Column name="StavObjednavky_id_stav_objednavky" id="1B000649-D752-9BE5-74B8-5E15DAE358FA">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>45F1DBE2-B6B5-E264-682D-A9700B3FE9FF</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9B6BCE0C-4F0F-2B76-017A-8103431528E6" referredColumn="C948D663-A3F8-B102-F0DB-C1FA82A031EF"/>
+</associations>
+</Column>
+<Column name="sleva" id="1D62ED83-2C81-AFB0-40AF-F0E105ED652D">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>997940D6-A89E-B42E-85AD-DA996E31AA4D</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ZpusobPlatby_id_zpusob_platby" id="3FADAD56-EF86-C001-93F6-75AC9CD2E19D">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>F5F929B4-9D72-4CFC-1C24-604555F12636</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1D0398AF-9EBC-500E-0654-2C171FA6E28D" referredColumn="F1840F67-3DDE-4AA1-43F6-9BCB12F48FCC"/>
 </associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="785C3553-2527-5F61-132B-A11C72D88A91" name="Kosiky_PK">
+<ind_PK_UK id="5C0A79BE-FE34-0D7A-47F5-AF87A71036D4" name="Kosik_PK">
 <createdBy>frantisek</createdBy>
-<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>9D96F484-467B-7D28-BE54-FB18B6AC6B7D</generatorID>
 <ownerDesignName>schema</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="A257BB91-2CAA-F6A1-C785-4BA8589F2685"/>
+<colUsage columnID="2AEBB856-9BC5-495C-264E-DE0E368F4F4D"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="05CC21CD-14DF-F823-9495-D94BECF99B28" name="Kosiky_Uzivatele_FK">
+<ind_PK_UK id="18F12B3C-885B-7062-4756-3DFF75E83390" name="Kosik_Uzivatel_FK">
 <createdBy>frantisek</createdBy>
-<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>DB4896BA-7464-C39E-3DE8-2345147AA7B9</generatorID>
 <ownerDesignName>schema</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="8423A85A-6EDC-430D-1CCF-DD9048DE2BB6"/>
+<colUsage columnID="B2383395-B8D8-65D4-8965-3326545CE36E"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="111C3273-ED1E-9168-826B-AD77957F62CE" name="Kosiky_StavyObjednavek_FK">
+<ind_PK_UK id="EAE826DD-9B78-652D-EBE3-ECA5CACA8544" name="Kosik_StavObjednavky_FK">
 <createdBy>frantisek</createdBy>
-<createdTime>2025-10-05 08:25:35 UTC</createdTime>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>C7547788-3743-35DC-46E8-3AAF8D2F10E1</generatorID>
 <ownerDesignName>schema</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="CDFA3D8F-05E7-6E50-CBBC-98079BB4F473"/>
+<colUsage columnID="1B000649-D752-9BE5-74B8-5E15DAE358FA"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="568FCEF5-E25C-B236-6053-2EB881ADFA28" name="Kosiky_ZpusobyPlateb_FK">
+<ind_PK_UK id="08D3DB2A-B8B1-A0C6-D586-258ACE8A2A79" name="Kosik_ZpusobPlatby_FK">
 <createdBy>frantisek</createdBy>
-<createdTime>2025-10-16 16:53:37 UTC</createdTime>
-<generatorID>FFD3D699-00AD-A425-E7E2-DAD6716A6CD3</generatorID>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>6CB69DAC-E8C4-AC84-AE82-D44BD020DC4B</generatorID>
 <ownerDesignName>schema</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="61B29F55-0FE0-E04C-1CD1-7F3E6377772B"/>
+<colUsage columnID="3FADAD56-EF86-C001-93F6-75AC9CD2E19D"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

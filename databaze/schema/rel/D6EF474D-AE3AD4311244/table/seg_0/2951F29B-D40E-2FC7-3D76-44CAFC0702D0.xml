@@ -1,0 +1,93 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2951F29B-D40E-2FC7-3D76-44CAFC0702D0" name="Relation_25">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Kvetina_id_kvetina" id="0A056BCC-F5DF-CBEB-EACC-52337544B8FE">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D837B008-E44C-CC52-C770-29ED10A5B4B2" referredColumn="AEB4900D-5C13-98B5-499F-9E250D0EAD06"/>
+</associations>
+</Column>
+<Column name="Kosik_id_kosik" id="B9E42CF5-40F9-4C28-B61D-815022E64EA7">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="79184759-C1B8-3714-46CC-9070A6A7C8CA" referredColumn="2AEBB856-9BC5-495C-264E-DE0E368F4F4D"/>
+</associations>
+</Column>
+<Column name="pocet" id="D689C04A-B080-4642-5516-E90588AB008B">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>02BD33A0-93D3-0574-D22B-72E314300370</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,2,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isRelationshipColumn>true</isRelationshipColumn>
+<isDependOnFK_AsMandatory>true</isDependOnFK_AsMandatory>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D57C2BF6-6454-0A58-FC37-D7D0DDCBE456" name="Relation_25_PK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0A056BCC-F5DF-CBEB-EACC-52337544B8FE"/>
+<colUsage columnID="B9E42CF5-40F9-4C28-B61D-815022E64EA7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="89B9A410-63B5-63C4-6EE5-AEAAB51F4176" name="Relation_25_Kvetina_FK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>FE7DC13F-7ED9-0A74-08E5-FB72524CC865</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0A056BCC-F5DF-CBEB-EACC-52337544B8FE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="50DC4B93-4678-1AA8-EA4C-B0029C4D70D5" name="Relation_25_Kosik_FK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>FE7DC13F-7ED9-0A74-08E5-FB72524CC865</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B9E42CF5-40F9-4C28-B61D-815022E64EA7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

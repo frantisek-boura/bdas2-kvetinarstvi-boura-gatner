@@ -106,6 +106,21 @@
 <dataTypePrecision>2</dataTypePrecision>
 <ownDataTypeParameters>,2,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="id_zpusob_platby" id="F5F929B4-9D72-4CFC-1C24-604555F12636">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 15:52:11 UTC</createdTime>
+<generatorID>6CB69DAC-E8C4-AC84-AE82-D44BD020DC4B</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="D6EF474D-54A9-A993-EF9D-AE3AD4311244" value="true"/>
+<item key="A3DC3D57-AF96-B756-A331-35FB42D42CC3" value="true"/>
+</engineerTo>
+<referedAttribute>114BAACF-19A3-3310-EA25-ED32EF98DD3C</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="9D96F484-467B-7D28-BE54-FB18B6AC6B7D" name="Kosik PK">

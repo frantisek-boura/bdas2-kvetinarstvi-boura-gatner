@@ -1,0 +1,131 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="51373E40-BC2B-7459-3378-DD5B8713DDBF" name="Adresa">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>501B2EE9-765F-5793-AEF2-D68B14E3BC4C</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_adresa" id="38165B79-D321-9B39-79AC-D4992AE2BFC3">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>8DA1286E-692C-1990-F4C8-4F19E574C742</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cp" id="618589B2-4EEF-A61E-BA2C-B1E92138D4F6">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>0933B3F2-8796-7EF0-2173-BABBD2D30C90</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Mesto_id_mesto" id="C7C80A46-3326-F7BA-750A-42E2D7FDEE3A">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>AF5751FE-4C04-AB4F-CDDE-547A1674CA0C</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AE01025D-3526-EA4B-7896-6C8E6BCABD22" referredColumn="7BE5A40E-76A5-410B-3C58-DB63A3868FC6"/>
+</associations>
+</Column>
+<Column name="Ulice_id_ulice" id="4696CF30-D286-9AA2-CA78-6E6F33292DAE">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>B35705D8-EC55-53C5-0AFF-2CB71B17BB71</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F64F65D1-6F19-2489-B964-2F6BC39A800A" referredColumn="306316AB-42F0-8059-CF28-A39E0C0A1FFC"/>
+</associations>
+</Column>
+<Column name="PSC_id_psc" id="7AD46D4F-406B-A595-1020-86CC501AD042">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>89DEC497-AF9D-E503-99B5-A62C97F3A838</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8AECA4D7-7A81-0152-D5DF-7650AB03CE3D" referredColumn="D60144A4-3A54-D9BA-FD9C-B050C27F4725"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A9676F80-A3A7-D471-43EB-77B83889352F" name="Adresa_PK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>9657975F-ECDC-FE8C-AE13-B6ED333D9283</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="38165B79-D321-9B39-79AC-D4992AE2BFC3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="63F6C6B7-4EE3-94A2-753D-9769952159B3" name="Adresa_Mesto_FK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>B60C3199-A1E6-CE32-E3D4-2BB2798C0837</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C7C80A46-3326-F7BA-750A-42E2D7FDEE3A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6348B2BE-B3ED-BAB8-3A65-06D9648A4BD3" name="Adresa_Ulice_FK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>0E60D9CE-E690-65BF-23D4-15DBF4BD792B</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4696CF30-D286-9AA2-CA78-6E6F33292DAE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A4E8C99D-D8A9-644A-E1D2-171D18A40276" name="Adresa_PSC_FK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>DFC151F9-387B-F935-0ECF-F261E27C101A</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7AD46D4F-406B-A595-1020-86CC501AD042"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

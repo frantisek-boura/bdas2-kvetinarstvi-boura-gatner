@@ -1,0 +1,93 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AFA915EC-5E52-420D-AAAA-DECFC3721FB2" name="Relation_24">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ArchivKvetina_id_kvetina" id="EA4C9F23-890A-AEBC-6F33-5E962B1DF935">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="88B42FED-7E6B-89E0-F0A0-341A23C6ABFF" referredColumn="776A62BF-C328-9A01-A913-881CA69ABCF2"/>
+</associations>
+</Column>
+<Column name="ArchivObjednavka_id_objednavka" id="8B4D8FC7-EC9E-4359-D1E6-70F723006483">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="45D695DB-9076-2318-37F0-DB8870793A20" referredColumn="50EB467D-CB2B-9251-4BCB-ECEE0E621F66"/>
+</associations>
+</Column>
+<Column name="pocet" id="71CDDD2F-1989-85CF-FF46-0AAC6DC937F1">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>BE46AC0F-A03F-09F2-5544-CE79AB95425C</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,2,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isRelationshipColumn>true</isRelationshipColumn>
+<isDependOnFK_AsMandatory>true</isDependOnFK_AsMandatory>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F6B10163-0D15-0F7A-D3C0-80D394960AA7" name="Relation_24_PK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EA4C9F23-890A-AEBC-6F33-5E962B1DF935"/>
+<colUsage columnID="8B4D8FC7-EC9E-4359-D1E6-70F723006483"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AABE55B6-4EE2-87E8-4349-81E48DC9E949" name="Relation_24_ArchivKvetina_FK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>FC177CDF-1A86-4723-1BD1-B08363E8A655</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EA4C9F23-890A-AEBC-6F33-5E962B1DF935"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A8EDAF85-10AC-1B29-720C-A0959E3F41F6" name="Relation_24_ArchivObjednavka_FK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-16 16:51:10 UTC</createdTime>
+<generatorID>FC177CDF-1A86-4723-1BD1-B08363E8A655</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8B4D8FC7-EC9E-4359-D1E6-70F723006483"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
