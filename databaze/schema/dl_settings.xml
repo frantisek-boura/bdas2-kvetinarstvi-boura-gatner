@@ -408,9 +408,9 @@
 			<naming_option class_name="oracle.dbtools.crest.model.design.relational.Index" max_name_length="30" case_type="2" valid_characters="" all_valid="true" />
 		</model_options>
 		<model_options objectid="C1FF1F6F-2C1E-1FFF-877F-3F14A4FC987F">
-			<naming_option class_name="oracle.dbtools.crest.model.design.logical.Entity" max_name_length="254" case_type="2" valid_characters="" all_valid="true" />
-			<naming_option class_name="oracle.dbtools.crest.model.design.logical.Attribute" max_name_length="254" case_type="2" valid_characters="" all_valid="true" />
-			<naming_option class_name="oracle.dbtools.crest.model.design.logical.EntityView" max_name_length="254" case_type="2" valid_characters="" all_valid="true" />
+			<naming_option class_name="oracle.dbtools.crest.model.design.logical.Entity" max_name_length="254" case_type="2" valid_characters="null" all_valid="true" />
+			<naming_option class_name="oracle.dbtools.crest.model.design.logical.Attribute" max_name_length="254" case_type="2" valid_characters="null" all_valid="true" />
+			<naming_option class_name="oracle.dbtools.crest.model.design.logical.EntityView" max_name_length="254" case_type="2" valid_characters="null" all_valid="true" />
 		</model_options>
 	</naming_options>
 	<deleted_files>

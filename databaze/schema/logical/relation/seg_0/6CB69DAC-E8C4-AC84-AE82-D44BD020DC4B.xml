@@ -9,6 +9,8 @@
 </engineerTo>
 <sourcePk>FFD3D699-00AD-A425-E7E2-DAD6716A6CD3</sourcePk>
 <identifying>false</identifying>
+<nameOnSource>je vyuzit v</nameOnSource>
+<nameOnTarget>vyuziva zpusob platby</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>

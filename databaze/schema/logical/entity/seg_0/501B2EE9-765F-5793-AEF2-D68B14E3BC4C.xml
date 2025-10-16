@@ -4,7 +4,8 @@
 <createdTime>2025-10-05 07:21:08 UTC</createdTime>
 <ownerDesignName>schema</ownerDesignName>
 <engineerTo>
-<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+<item key="D6EF474D-54A9-A993-EF9D-AE3AD4311244" value="true"/>
+<item key="A3DC3D57-AF96-B756-A331-35FB42D42CC3" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -20,7 +21,8 @@
 <createdTime>2025-10-05 07:21:14 UTC</createdTime>
 <ownerDesignName>schema</ownerDesignName>
 <engineerTo>
-<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+<item key="D6EF474D-54A9-A993-EF9D-AE3AD4311244" value="true"/>
+<item key="A3DC3D57-AF96-B756-A331-35FB42D42CC3" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -33,7 +35,8 @@
 <createdTime>2025-10-05 07:21:45 UTC</createdTime>
 <ownerDesignName>schema</ownerDesignName>
 <engineerTo>
-<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+<item key="D6EF474D-54A9-A993-EF9D-AE3AD4311244" value="true"/>
+<item key="A3DC3D57-AF96-B756-A331-35FB42D42CC3" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -47,14 +50,15 @@
 <generatorID>B60C3199-A1E6-CE32-E3D4-2BB2798C0837</generatorID>
 <ownerDesignName>schema</ownerDesignName>
 <engineerTo>
-<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+<item key="D6EF474D-54A9-A993-EF9D-AE3AD4311244" value="true"/>
+<item key="A3DC3D57-AF96-B756-A331-35FB42D42CC3" value="true"/>
 </engineerTo>
 <referedAttribute>2BA5B630-7E3A-1C39-064D-02F974634E86</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="id_ulice" id="B35705D8-EC55-53C5-0AFF-2CB71B17BB71">
 <createdBy>frantisek</createdBy>
@@ -62,14 +66,15 @@
 <generatorID>0E60D9CE-E690-65BF-23D4-15DBF4BD792B</generatorID>
 <ownerDesignName>schema</ownerDesignName>
 <engineerTo>
-<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+<item key="D6EF474D-54A9-A993-EF9D-AE3AD4311244" value="true"/>
+<item key="A3DC3D57-AF96-B756-A331-35FB42D42CC3" value="true"/>
 </engineerTo>
 <referedAttribute>18F9FB41-8A0F-AC62-30DC-84E12C07B177</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="id_psc" id="89DEC497-AF9D-E503-99B5-A62C97F3A838">
 <createdBy>frantisek</createdBy>
@@ -77,14 +82,15 @@
 <generatorID>DFC151F9-387B-F935-0ECF-F261E27C101A</generatorID>
 <ownerDesignName>schema</ownerDesignName>
 <engineerTo>
-<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+<item key="D6EF474D-54A9-A993-EF9D-AE3AD4311244" value="true"/>
+<item key="A3DC3D57-AF96-B756-A331-35FB42D42CC3" value="true"/>
 </engineerTo>
 <referedAttribute>E0E6B545-5AF3-96A4-2824-53C4F0FEB5CE</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
@@ -93,7 +99,8 @@
 <createdTime>2025-10-05 07:21:23 UTC</createdTime>
 <ownerDesignName>schema</ownerDesignName>
 <engineerTo>
-<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+<item key="D6EF474D-54A9-A993-EF9D-AE3AD4311244" value="true"/>
+<item key="A3DC3D57-AF96-B756-A331-35FB42D42CC3" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

@@ -48,6 +48,18 @@
 <ownDataTypeParameters>,12,2</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="sleva" id="70BCAF8D-67ED-BA9D-162A-8F57B3A31A67">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-05 19:24:51 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="id_uzivatel" id="8423A85A-6EDC-430D-1CCF-DD9048DE2BB6">
 <createdBy>frantisek</createdBy>
 <createdTime>2025-10-05 08:25:35 UTC</createdTime>
@@ -57,7 +69,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
@@ -73,26 +85,14 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="58844A64-C7E1-3922-FBA5-765C35CC65EC" referredColumn="8229A190-335F-5361-9F9E-4BA6F9B4BC7B"/>
 </associations>
 </Column>
-<Column name="sleva" id="70BCAF8D-67ED-BA9D-162A-8F57B3A31A67">
-<createdBy>frantisek</createdBy>
-<createdTime>2025-10-05 19:24:51 UTC</createdTime>
-<ownerDesignName>schema</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>2</dataTypePrecision>
-<ownDataTypeParameters>,2,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ZpusobyPlateb_id_zpusob_platby" id="61B29F55-0FE0-E04C-1CD1-7F3E6377772B">
+<Column name="id_zpusob_platby" id="61B29F55-0FE0-E04C-1CD1-7F3E6377772B">
 <createdBy>frantisek</createdBy>
 <createdTime>2025-10-16 16:53:37 UTC</createdTime>
 <ownerDesignName>schema</ownerDesignName>

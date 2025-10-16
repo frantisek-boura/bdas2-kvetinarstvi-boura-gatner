@@ -4,10 +4,13 @@
 <createdTime>2025-10-05 07:39:33 UTC</createdTime>
 <ownerDesignName>schema</ownerDesignName>
 <engineerTo>
-<item key="7CA4AF90-B485-F199-A276-CF72DE79A43D" value="true"/>
+<item key="D6EF474D-54A9-A993-EF9D-AE3AD4311244" value="true"/>
+<item key="A3DC3D57-AF96-B756-A331-35FB42D42CC3" value="true"/>
 </engineerTo>
 <sourcePk>88AD093D-7495-A6A8-CF4F-67E3F587676A</sourcePk>
 <identifying>false</identifying>
+<nameOnSource>patri</nameOnSource>
+<nameOnTarget>zahrnuje</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
