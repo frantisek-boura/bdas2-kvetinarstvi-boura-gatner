@@ -18,20 +18,20 @@ export default function RegisterPage() {
                     <input type="password" className="form-control" id="password2" name="password2" placeholder="Zadejte heslo znovu" />
                 </div>
                 <div className="form-group p-1">
-                    <label for="city">Město</label>
-                    <input type="text" className="form-control" id="city" name="city" placeholder="Název města" />
-                </div>
-                <div className="form-group p-1">
                     <label for="street">Ulice</label>
                     <input type="text" className="form-control" id="street" name="street" placeholder="Název ulice" />
                 </div>
                 <div className="form-group p-1">
                     <label for="cp">Č.p.</label>
-                    <input type="text" className="form-control" id="cp" name="cp" placeholder="Č.p." />
+                    <input type="number" className="form-control" min={0} id="cp" name="cp" placeholder="Č.p." />
                 </div>
                 <div className="form-group p-1">
                     <label for="psc">PSČ</label>
-                    <input type="text" className="form-control" id="psc" name="psc" placeholder="PSČ" />
+                    <input type="number" className="form-control" min={0}  id="psc" name="psc" placeholder="PSČ" />
+                </div>
+                <div className="form-group p-1">
+                    <label for="city">Město</label>
+                    <input type="text" className="form-control" id="city" name="city" placeholder="Název města" />
                 </div>
                 <div class="form-check m-1">
                     <input type="checkbox" class="form-check-input" id="tos" />
