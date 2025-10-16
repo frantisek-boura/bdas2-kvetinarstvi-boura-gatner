@@ -14,7 +14,7 @@ export default function RegisterPage() {
                     <input type="password" className="form-control" id="password" name="password" placeholder="Zadejte heslo" />
                 </div>
                 <div className="form-group p-1">
-                    <label for="password2">Heslo</label>
+                    <label for="password2">Heslo znovu</label>
                     <input type="password" className="form-control" id="password2" name="password2" placeholder="Zadejte heslo znovu" />
                 </div>
                 <div className="form-group p-1">
