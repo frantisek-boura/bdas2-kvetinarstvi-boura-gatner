@@ -1,10 +1,10 @@
-package bdas.backend.kvetinarstvi;
+package kvetinarstvi.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class KvetinarstviApplicationTests {
+class BackendApplicationTests {
 
 	@Test
 	void contextLoads() {
