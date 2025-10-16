@@ -21,38 +21,38 @@
    <object objectType="Table" objectID="D4121927-85D6-8D68-B728-A153F4C1ACBE" name="objednavky" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" propertyParentId="32076570-BF29817DFF70" propertySourceId="" propertyTargetId=""/>
    <object objectType="Table" objectID="DC9E8A5D-2CD8-35B9-B19E-F9C36F0B80D3" name="barvy" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" propertyParentId="32076570-BF29817DFF70" propertySourceId="" propertyTargetId=""/>
    <object objectType="Sequence" objectID="0A7B64B7-E308-B97A-56A1-DDA2F5FB6162" name="s_adresy_id" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.storage.oracle.v10g.SequenceOraclev10g" propertyParentId="32076570-BF29817DFF70" propertySourceId="" propertyTargetId=""/>
-   <object objectType="Sequence" objectID="1F2F3724-A2EF-2DB8-45A9-FFF36907C7C4" name="" seqName="seg_0"/>
-   <object objectType="Sequence" objectID="2FFAAB2D-7763-842D-97EC-8272CF1F1EEB" name="" seqName="seg_0"/>
+   <object objectType="Sequence" objectID="1F2F3724-A2EF-2DB8-45A9-FFF36907C7C4" name="" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Sequence" objectID="2FFAAB2D-7763-842D-97EC-8272CF1F1EEB" name="" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
    <object objectType="Sequence" objectID="32ECBB4C-73AE-A733-09AB-E5D6842C55CE" name="s_rostliny_id" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.storage.oracle.v10g.SequenceOraclev10g" propertyParentId="32076570-BF29817DFF70" propertySourceId="" propertyTargetId=""/>
-   <object objectType="Sequence" objectID="3EF142A7-7087-9A71-E03A-F62A6FC79DD3" name="" seqName="seg_0"/>
-   <object objectType="Sequence" objectID="43AA6463-F2AC-5C52-9389-AB8037A121D8" name="" seqName="seg_0"/>
-   <object objectType="Sequence" objectID="45BB129B-A54E-45C1-C9D1-6F95671E12FD" name="" seqName="seg_0"/>
+   <object objectType="Sequence" objectID="3EF142A7-7087-9A71-E03A-F62A6FC79DD3" name="" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Sequence" objectID="43AA6463-F2AC-5C52-9389-AB8037A121D8" name="" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Sequence" objectID="45BB129B-A54E-45C1-C9D1-6F95671E12FD" name="" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
    <object objectType="Sequence" objectID="4E569BE3-275D-E4F5-7B53-45A40AD96D76" name="s_zpusoby_platby_id" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.storage.oracle.v10g.SequenceOraclev10g" propertyParentId="32076570-BF29817DFF70" propertySourceId="" propertyTargetId=""/>
-   <object objectType="Sequence" objectID="5440B7EE-DC1D-25A0-665E-025BE92FCF3D" name="" seqName="seg_0"/>
-   <object objectType="Sequence" objectID="60B8FC70-27BD-E4BF-A467-129BD4A8531D" name="" seqName="seg_0"/>
+   <object objectType="Sequence" objectID="5440B7EE-DC1D-25A0-665E-025BE92FCF3D" name="" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Sequence" objectID="60B8FC70-27BD-E4BF-A467-129BD4A8531D" name="" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
    <object objectType="Sequence" objectID="621AD9CB-266D-5F1B-B18E-550DEC87F64D" name="s_role_id" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.storage.oracle.v10g.SequenceOraclev10g" propertyParentId="32076570-BF29817DFF70" propertySourceId="" propertyTargetId=""/>
-   <object objectType="Sequence" objectID="6227E059-53F7-EC7F-B9C2-E65D9F887F7F" name="" seqName="seg_0"/>
+   <object objectType="Sequence" objectID="6227E059-53F7-EC7F-B9C2-E65D9F887F7F" name="" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
    <object objectType="Sequence" objectID="6725AF1A-2163-557F-0496-30E31F49AEB2" name="s_objednavky_id" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.storage.oracle.v10g.SequenceOraclev10g" propertyParentId="32076570-BF29817DFF70" propertySourceId="" propertyTargetId=""/>
    <object objectType="Sequence" objectID="7009651C-A320-BCE3-21CD-74D06F747C01" name="s_zpusoby_doruceni_id" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.storage.oracle.v10g.SequenceOraclev10g" propertyParentId="32076570-BF29817DFF70" propertySourceId="" propertyTargetId=""/>
    <object objectType="Sequence" objectID="73E33173-F275-E6E3-C893-378EFC17F6F1" name="s_kategorie_id" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.storage.oracle.v10g.SequenceOraclev10g" propertyParentId="32076570-BF29817DFF70" propertySourceId="" propertyTargetId=""/>
-   <object objectType="Sequence" objectID="7832DC98-8288-B876-DBBA-73339EDFC55A" name="" seqName="seg_0"/>
-   <object objectType="Sequence" objectID="86E9DF1C-15B7-D806-BC9B-98D3BE086683" name="" seqName="seg_0"/>
-   <object objectType="Sequence" objectID="89FB8B52-A762-ECB0-CA49-706A00E0CE5F" name="" seqName="seg_0"/>
+   <object objectType="Sequence" objectID="7832DC98-8288-B876-DBBA-73339EDFC55A" name="" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Sequence" objectID="86E9DF1C-15B7-D806-BC9B-98D3BE086683" name="" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Sequence" objectID="89FB8B52-A762-ECB0-CA49-706A00E0CE5F" name="" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
    <object objectType="Sequence" objectID="9409F2EF-33D3-264B-1E30-8BC81EC18E7E" name="s_zbozi_id" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.storage.oracle.v10g.SequenceOraclev10g" propertyParentId="32076570-BF29817DFF70" propertySourceId="" propertyTargetId=""/>
    <object objectType="Sequence" objectID="99666385-D523-3AAF-4DD9-93025D9DC985" name="s_uzivatele_id" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.storage.oracle.v10g.SequenceOraclev10g" propertyParentId="32076570-BF29817DFF70" propertySourceId="" propertyTargetId=""/>
    <object objectType="Sequence" objectID="A4A5BD75-6D8F-F0F8-F46E-E7F8181CB3F0" name="s_potreby_id" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.storage.oracle.v10g.SequenceOraclev10g" propertyParentId="32076570-BF29817DFF70" propertySourceId="" propertyTargetId=""/>
-   <object objectType="Sequence" objectID="A93D9D08-A498-2DE3-07F1-7479ABD827AF" name="" seqName="seg_0"/>
+   <object objectType="Sequence" objectID="A93D9D08-A498-2DE3-07F1-7479ABD827AF" name="" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
    <object objectType="Sequence" objectID="C617B003-33D8-5A40-3673-D65550D3DE4E" name="s_dodavatele_id" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.storage.oracle.v10g.SequenceOraclev10g" propertyParentId="32076570-BF29817DFF70" propertySourceId="" propertyTargetId=""/>
    <object objectType="Sequence" objectID="D04579F8-CAF9-BA2E-D0F5-F694A18A5D08" name="s_druhy_rostliny_id" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.storage.oracle.v10g.SequenceOraclev10g" propertyParentId="32076570-BF29817DFF70" propertySourceId="" propertyTargetId=""/>
-   <object objectType="Sequence" objectID="D3E189D7-1EC3-AA90-2DDE-98CABC2BABA4" name="" seqName="seg_0"/>
-   <object objectType="Sequence" objectID="D46794C1-8B9E-166D-600B-EA64C6C7F53D" name="" seqName="seg_0"/>
-   <object objectType="Sequence" objectID="D4E0FD8A-82C1-D84B-633B-A8CEB7B0F7BE" name="" seqName="seg_0"/>
+   <object objectType="Sequence" objectID="D3E189D7-1EC3-AA90-2DDE-98CABC2BABA4" name="" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Sequence" objectID="D46794C1-8B9E-166D-600B-EA64C6C7F53D" name="" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Sequence" objectID="D4E0FD8A-82C1-D84B-633B-A8CEB7B0F7BE" name="" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
    <object objectType="Sequence" objectID="DA7FACFB-B21F-2088-AF5A-D0CA22EFE21F" name="s_barvy_id" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.storage.oracle.v10g.SequenceOraclev10g" propertyParentId="32076570-BF29817DFF70" propertySourceId="" propertyTargetId=""/>
    <object objectType="Sequence" objectID="EB8D8A1B-17A6-C01F-A91F-CAA66AB13C1C" name="s_stavy_objednavky_id" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.storage.oracle.v10g.SequenceOraclev10g" propertyParentId="32076570-BF29817DFF70" propertySourceId="" propertyTargetId=""/>
    <object objectType="Trigger" objectID="0D7E44AD-B964-9FC0-B623-D0A69C5643EB" name="arc_fkarc_1_potreby" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" propertyParentId="32076570-BF29817DFF70" propertySourceId="" propertyTargetId=""/>
    <object objectType="Trigger" objectID="363505FE-ED25-9D70-EBDB-6A5998B654B5" name="t_objednavky_datum_podani" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" propertyParentId="32076570-BF29817DFF70" propertySourceId="" propertyTargetId=""/>
    <object objectType="Trigger" objectID="4D1CB2C9-74AE-B9F1-F169-E556D1A5F24C" name="arc_fkarc_1_rostliny" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" propertyParentId="32076570-BF29817DFF70" propertySourceId="" propertyTargetId=""/>
-   <object objectType="Trigger" objectID="906A9B15-FFC7-9A01-AD54-B440F8561D41" name="" seqName="seg_0"/>
-   <object objectType="Trigger" objectID="ABC2FB7E-A50E-4B7F-866E-90D3FE91627D" name="" seqName="seg_0"/>
-   <object objectType="Trigger" objectID="F0FEAA6D-CB9F-ADD1-7909-7021F21E855A" name="" seqName="seg_0"/>
+   <object objectType="Trigger" objectID="906A9B15-FFC7-9A01-AD54-B440F8561D41" name="" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Trigger" objectID="ABC2FB7E-A50E-4B7F-866E-90D3FE91627D" name="" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Trigger" objectID="F0FEAA6D-CB9F-ADD1-7909-7021F21E855A" name="" seqName="seg_0" propertyClassName="" propertyParentId="" propertySourceId="" propertyTargetId=""/>
 </oracle.dbtools.crest.model.design.storage.oracle.v11g.StorageDesignOraclev11g>
