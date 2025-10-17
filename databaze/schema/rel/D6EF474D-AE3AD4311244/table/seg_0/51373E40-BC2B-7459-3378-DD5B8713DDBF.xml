@@ -32,7 +32,7 @@
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Mesto_id_mesto" id="C7C80A46-3326-F7BA-750A-42E2D7FDEE3A">
+<Column name="id_mesto" id="C7C80A46-3326-F7BA-750A-42E2D7FDEE3A">
 <createdBy>frantisek</createdBy>
 <createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>AF5751FE-4C04-AB4F-CDDE-547A1674CA0C</generatorID>
@@ -41,14 +41,14 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="AE01025D-3526-EA4B-7896-6C8E6BCABD22" referredColumn="7BE5A40E-76A5-410B-3C58-DB63A3868FC6"/>
 </associations>
 </Column>
-<Column name="Ulice_id_ulice" id="4696CF30-D286-9AA2-CA78-6E6F33292DAE">
+<Column name="id_ulice" id="4696CF30-D286-9AA2-CA78-6E6F33292DAE">
 <createdBy>frantisek</createdBy>
 <createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>B35705D8-EC55-53C5-0AFF-2CB71B17BB71</generatorID>
@@ -57,14 +57,14 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="F64F65D1-6F19-2489-B964-2F6BC39A800A" referredColumn="306316AB-42F0-8059-CF28-A39E0C0A1FFC"/>
 </associations>
 </Column>
-<Column name="PSC_id_psc" id="7AD46D4F-406B-A595-1020-86CC501AD042">
+<Column name="id_psc" id="7AD46D4F-406B-A595-1020-86CC501AD042">
 <createdBy>frantisek</createdBy>
 <createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>89DEC497-AF9D-E503-99B5-A62C97F3A838</generatorID>
@@ -73,7 +73,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>

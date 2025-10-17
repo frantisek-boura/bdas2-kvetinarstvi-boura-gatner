@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="FFCA320D-6544-F2FE-B078-D97E0846F199" containerWithKeyObject="4E7B044F-F533-CED5-674C-6AE675A3FDBB" localFKIndex="B2765ECB-56B1-F284-46A4-A395349E14B1" name="Log_LogAkce_FK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-17 08:59:21 UTC</createdTime>
+<generatorID>2791E0E1-D5C9-E272-5FEC-042127D0879D</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<referredTableLongName>LogAkce</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>AA9A58DE-03A2-96AD-B09A-B1C9A24B315A</referredTableID>
+<keyObject>017F68FC-7984-1955-B6B8-7363B4F80339</keyObject>
+<referredKeyID>017F68FC-7984-1955-B6B8-7363B4F80339</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_log_akce</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -56,7 +56,7 @@
 <ownDataTypeParameters>32 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Opravneni_id_opravneni" id="B5765EC3-6719-14CD-BA01-03B24BAE24A5">
+<Column name="id_opravneni" id="B5765EC3-6719-14CD-BA01-03B24BAE24A5">
 <createdBy>frantisek</createdBy>
 <createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>5FBB6823-D183-6D08-A19C-ABE2C876730F</generatorID>
@@ -65,14 +65,14 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="85F1C57E-DD7A-E32B-6446-E9472F8C8258" referredColumn="480B3DB9-820F-54FE-F2B5-E17BF27FF232"/>
 </associations>
 </Column>
-<Column name="Obrazek_id_obrazek" id="6F45E8BB-EAC0-9D3B-7C90-7D8C8DA907F2">
+<Column name="id_obrazek" id="6F45E8BB-EAC0-9D3B-7C90-7D8C8DA907F2">
 <createdBy>frantisek</createdBy>
 <createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>3C8B6043-15E4-1BB2-6E49-8A7A382DE718</generatorID>
@@ -81,14 +81,14 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="358DC0C3-B2AE-8F10-B446-ED23C7EAAA7E" referredColumn="791DEC4B-2675-FC18-342A-E994CCF75F29"/>
 </associations>
 </Column>
-<Column name="Adresa_id_adresa" id="40E4D7D8-EF9B-B16B-528B-1D7D429209BC">
+<Column name="id_adresa" id="40E4D7D8-EF9B-B16B-528B-1D7D429209BC">
 <createdBy>frantisek</createdBy>
 <createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>E6B8305C-89DC-9B36-983C-FECA859C44C7</generatorID>
@@ -97,7 +97,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>

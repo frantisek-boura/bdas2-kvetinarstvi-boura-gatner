@@ -44,7 +44,7 @@
 <ownDataTypeParameters>32 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ArchivUzivatel_id_uzivatel" id="130CDE87-4FF7-D9A7-8F60-C34E507F6EED">
+<Column name="id_uzivatel" id="130CDE87-4FF7-D9A7-8F60-C34E507F6EED">
 <createdBy>frantisek</createdBy>
 <createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>724869D3-AE61-F79B-8F36-B1FEF2EEB99B</generatorID>
@@ -53,7 +53,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>

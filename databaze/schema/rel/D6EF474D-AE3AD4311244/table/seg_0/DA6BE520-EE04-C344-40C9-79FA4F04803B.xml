@@ -32,7 +32,7 @@
 <ownDataTypeParameters>32 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Kategorie_id_kategorie" id="D37EF6AD-CC8A-AC8A-B999-E6D8F78E3F5D">
+<Column name="id_kategorie1" id="D37EF6AD-CC8A-AC8A-B999-E6D8F78E3F5D">
 <createdBy>frantisek</createdBy>
 <createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>2D5FD793-C76C-D064-0D98-787C01BE1D1E</generatorID>
@@ -42,7 +42,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>

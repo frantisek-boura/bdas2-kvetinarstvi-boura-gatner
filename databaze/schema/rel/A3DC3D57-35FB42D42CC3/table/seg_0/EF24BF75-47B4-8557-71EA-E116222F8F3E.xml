@@ -1,0 +1,112 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EF24BF75-47B4-8557-71EA-E116222F8F3E" name="Log">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-17 08:59:46 UTC</createdTime>
+<generatorID>21EF53EF-1E58-2AA0-DA64-0CEF1C3907C0</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_log" id="9513B686-9EFC-4F4D-A88C-0FCF05526174">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-17 08:59:46 UTC</createdTime>
+<generatorID>A4C3C55B-E395-EB61-245C-F9913C998836</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nazev_tabulky" id="F2170C14-48FA-CCF9-8EAF-E25C008573AE">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-17 08:59:46 UTC</createdTime>
+<generatorID>257AFC9D-E301-742B-CC04-57B5C4EDCB76</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>64 CHAR</dataTypeSize>
+<ownDataTypeParameters>64 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="datum" id="3BD13294-F43D-5331-5EBA-495E09B4987D">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-17 08:59:46 UTC</createdTime>
+<generatorID>8A0E4789-CEDB-F12A-51EB-AA8222850A94</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<ownDataTypeParameters>,0,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="novy_zaznam" id="C55B0EE1-BD46-8915-29F7-BA2B6FB584BB">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-17 08:59:46 UTC</createdTime>
+<generatorID>1FDAE726-73D5-87E3-FB9E-AC96A1293084</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>47823B89-BECE-2D4A-B641-EE3BE6149078</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="stary_zaznam" id="F2B01983-8840-2F5E-0397-71248D049B30">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-17 08:59:46 UTC</createdTime>
+<generatorID>BA267109-F625-DAB5-A29D-312E43CB0E41</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>47823B89-BECE-2D4A-B641-EE3BE6149078</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_log_akce" id="5B10EEC9-5B9E-327A-5D87-9E177EBEFD7E">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-17 08:59:46 UTC</createdTime>
+<generatorID>A8B123F1-3D5E-E8F7-B0F7-66B9791A1358</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4E8F4CF7-17F0-EACC-256C-FCECFCCC9CA3" referredColumn="621D17A9-05DD-EFA9-3784-F561BD180B8A"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="89F849E4-6796-ED3A-B06C-B5110D856ADA" name="Log_PK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-17 08:59:46 UTC</createdTime>
+<generatorID>4AD1F454-92A4-9AA4-3651-EDD9B67AD5FE</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9513B686-9EFC-4F4D-A88C-0FCF05526174"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="39C34B8C-B799-F422-A920-A18D81153D4E" name="Log_LogAkce_FK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-17 08:59:46 UTC</createdTime>
+<generatorID>2791E0E1-D5C9-E272-5FEC-042127D0879D</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5B10EEC9-5B9E-327A-5D87-9E177EBEFD7E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -45,7 +45,7 @@
 <ownDataTypeParameters>,12,2</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Uzivatel_id_uzivatel" id="B2383395-B8D8-65D4-8965-3326545CE36E">
+<Column name="id_uzivatel" id="B2383395-B8D8-65D4-8965-3326545CE36E">
 <createdBy>frantisek</createdBy>
 <createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>EEACB651-BF0C-5456-6598-99E0FF550FD0</generatorID>
@@ -54,14 +54,14 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="D7943463-F2E8-E889-3A74-C504BA4FACE4" referredColumn="2EB6901B-ADB4-2514-2C19-46864F4FA855"/>
 </associations>
 </Column>
-<Column name="StavObjednavky_id_stav_objednavky" id="1B000649-D752-9BE5-74B8-5E15DAE358FA">
+<Column name="id_stav_objednavky" id="1B000649-D752-9BE5-74B8-5E15DAE358FA">
 <createdBy>frantisek</createdBy>
 <createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>45F1DBE2-B6B5-E264-682D-A9700B3FE9FF</generatorID>
@@ -70,7 +70,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
@@ -90,7 +90,7 @@
 <ownDataTypeParameters>,2,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ZpusobPlatby_id_zpusob_platby" id="3FADAD56-EF86-C001-93F6-75AC9CD2E19D">
+<Column name="id_zpusob_platby" id="3FADAD56-EF86-C001-93F6-75AC9CD2E19D">
 <createdBy>frantisek</createdBy>
 <createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>F5F929B4-9D72-4CFC-1C24-604555F12636</generatorID>

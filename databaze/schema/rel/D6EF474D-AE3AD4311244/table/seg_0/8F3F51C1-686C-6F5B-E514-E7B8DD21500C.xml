@@ -45,7 +45,7 @@
 <ownDataTypeParameters>,10,2</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Kategorie_id_kategorie" id="BF634822-21CE-E736-1825-0298669E4646">
+<Column name="id_kategorie" id="BF634822-21CE-E736-1825-0298669E4646">
 <createdBy>frantisek</createdBy>
 <createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>017521F0-1425-21A9-248D-48DAF1FB18F9</generatorID>
@@ -54,14 +54,14 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="5210DD9C-48B1-B179-DAE3-6E08ED206848" referredColumn="726C34D2-9766-E40C-0807-09B82377A362"/>
 </associations>
 </Column>
-<Column name="Obrazek_id_obrazek" id="73A815EB-9C95-2BE1-4411-C371BCAA22A0">
+<Column name="id_obrazek" id="73A815EB-9C95-2BE1-4411-C371BCAA22A0">
 <createdBy>frantisek</createdBy>
 <createdTime>2025-10-16 16:51:10 UTC</createdTime>
 <generatorID>7B405063-49DD-94B9-244F-2E7227802BBC</generatorID>
@@ -70,7 +70,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
