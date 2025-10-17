@@ -1,9 +1,10 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EF24BF75-47B4-8557-71EA-E116222F8F3E" name="Log">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EF24BF75-47B4-8557-71EA-E116222F8F3E" name="Logs">
 <createdBy>frantisek</createdBy>
 <createdTime>2025-10-17 08:59:46 UTC</createdTime>
 <generatorID>21EF53EF-1E58-2AA0-DA64-0CEF1C3907C0</generatorID>
 <ownerDesignName>schema</ownerDesignName>
+<ordsAlias>log</ordsAlias>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
@@ -18,6 +19,8 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="nazev_tabulky" id="F2170C14-48FA-CCF9-8EAF-E25C008573AE">
@@ -76,7 +79,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
