@@ -1,0 +1,120 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="21EF53EF-1E58-2AA0-DA64-0CEF1C3907C0" name="Log">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-17 08:42:14 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="D6EF474D-54A9-A993-EF9D-AE3AD4311244" value="true"/>
+<item key="A3DC3D57-AF96-B756-A331-35FB42D42CC3" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_log" id="A4C3C55B-E395-EB61-245C-F9913C998836">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-17 08:42:19 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="D6EF474D-54A9-A993-EF9D-AE3AD4311244" value="true"/>
+<item key="A3DC3D57-AF96-B756-A331-35FB42D42CC3" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nazev_tabulky" id="257AFC9D-E301-742B-CC04-57B5C4EDCB76">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-17 08:43:03 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="D6EF474D-54A9-A993-EF9D-AE3AD4311244" value="true"/>
+<item key="A3DC3D57-AF96-B756-A331-35FB42D42CC3" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>64 CHAR</dataTypeSize>
+<ownDataTypeParameters>64 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="datum" id="8A0E4789-CEDB-F12A-51EB-AA8222850A94">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-17 08:44:20 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="D6EF474D-54A9-A993-EF9D-AE3AD4311244" value="true"/>
+<item key="A3DC3D57-AF96-B756-A331-35FB42D42CC3" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<ownDataTypeParameters>,0,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="novy_zaznam" id="1FDAE726-73D5-87E3-FB9E-AC96A1293084">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-17 08:43:29 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="D6EF474D-54A9-A993-EF9D-AE3AD4311244" value="true"/>
+<item key="A3DC3D57-AF96-B756-A331-35FB42D42CC3" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>47823B89-BECE-2D4A-B641-EE3BE6149078</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="stary_zaznam" id="BA267109-F625-DAB5-A29D-312E43CB0E41">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-17 08:44:09 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="D6EF474D-54A9-A993-EF9D-AE3AD4311244" value="true"/>
+<item key="A3DC3D57-AF96-B756-A331-35FB42D42CC3" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>47823B89-BECE-2D4A-B641-EE3BE6149078</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_log_akce" id="A8B123F1-3D5E-E8F7-B0F7-66B9791A1358">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-17 08:46:30 UTC</createdTime>
+<generatorID>2791E0E1-D5C9-E272-5FEC-042127D0879D</generatorID>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="D6EF474D-54A9-A993-EF9D-AE3AD4311244" value="true"/>
+<item key="A3DC3D57-AF96-B756-A331-35FB42D42CC3" value="true"/>
+</engineerTo>
+<referedAttribute>621F8DAD-A9F4-C80A-D335-80C427B0E387</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="4AD1F454-92A4-9AA4-3651-EDD9B67AD5FE" name="Log PK">
+<createdBy>frantisek</createdBy>
+<createdTime>2025-10-17 08:44:48 UTC</createdTime>
+<ownerDesignName>schema</ownerDesignName>
+<engineerTo>
+<item key="D6EF474D-54A9-A993-EF9D-AE3AD4311244" value="true"/>
+<item key="A3DC3D57-AF96-B756-A331-35FB42D42CC3" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>A4C3C55B-E395-EB61-245C-F9913C998836</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
