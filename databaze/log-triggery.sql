@@ -51,17 +51,126 @@ BEGIN
 END;
 /
 
-insert into mesta(nazev) values ('Pardubice');
-commit;
+CREATE OR REPLACE TRIGGER t_log_uzivatele
+AFTER INSERT OR UPDATE OR DELETE ON Uzivatele
+FOR EACH ROW
+DECLARE
+    v_id_log_akce logakce.id_log_akce%TYPE;
+   v_json_data_novy logs.novy_zaznam%TYPE;
+   v_json_data_stary logs.stary_zaznam%TYPE DEFAULT NULL;
+BEGIN
+    CASE
+        WHEN INSERTING THEN
+            SELECT id_log_akce INTO v_id_log_akce FROM LogAkce WHERE nazev = 'Insert';
+            v_json_data_novy := JSON_OBJECT(
+                'id_uzivatel' VALUE :NEW.id_uzivatel,
+                'email' VALUE :NEW.email,
+                'pw_hash' VALUE :NEW.pw_hash,
+                'salt' VALUE :NEW.salt
+            );
+        WHEN UPDATING THEN
+            SELECT id_log_akce INTO v_id_log_akce FROM LogAkce WHERE nazev = 'Update';
+            v_json_data_stary := JSON_OBJECT(
+                'id_uzivatel' VALUE :OLD.id_uzivatel,
+                'email' VALUE :OLD.email
+            );
+            v_json_data_novy := JSON_OBJECT(
+                'id_uzivatel' VALUE :NEW.id_uzivatel,
+                'email' VALUE :NEW.email
+            );
+        WHEN DELETING THEN
+            SELECT id_log_akce INTO v_id_log_akce FROM LogAkce WHERE nazev = 'Delete';
+            v_json_data_novy := JSON_OBJECT(
+                'id_uzivatel' VALUE :OLD.id_uzivatel,
+                'email' VALUE :OLD.email
+            );
+    END CASE;
 
-update mesta 
-set nazev = 'Hradec Králové'
-where id_mesto = 8;
-commit;
+    INSERT INTO logs (nazev_tabulky, datum, novy_zaznam, stary_zaznam, id_log_akce)
+    VALUES ('UZIVATELE', CURRENT_TIMESTAMP, v_json_data_novy, v_json_data_stary, v_id_log_akce);
+END;
+/
 
-delete from mesta
-where id_mesto = 8;
-commit;
+CREATE OR REPLACE TRIGGER t_log_kosiky
+AFTER INSERT OR UPDATE OR DELETE ON Kosiky
+FOR EACH ROW
+DECLARE
+    v_id_log_akce logakce.id_log_akce%TYPE;
+   v_json_data_novy logs.novy_zaznam%TYPE;
+   v_json_data_stary logs.stary_zaznam%TYPE DEFAULT NULL;
+BEGIN
+    CASE
+        WHEN INSERTING THEN
+            SELECT id_log_akce INTO v_id_log_akce FROM LogAkce WHERE nazev = 'Insert';
+            v_json_data_novy := JSON_OBJECT(
+                'id_kosik' VALUE :NEW.id_kosik,
+                'datum_vytvoreni' VALUE TO_CHAR(:NEW.datum_vytvoreni, 'YYYY-MM-DD HH24:MI:SS'),
+                'cena' VALUE :NEW.cena,
+                'sleva' VALUE :NEW.sleva
+            );
+        WHEN UPDATING THEN
+            SELECT id_log_akce INTO v_id_log_akce FROM LogAkce WHERE nazev = 'Update';
+            v_json_data_stary := JSON_OBJECT(
+                'id_kosik' VALUE :OLD.id_kosik,
+                'cena' VALUE :OLD.cena,
+                'sleva' VALUE :OLD.sleva
+            );
+            v_json_data_novy := JSON_OBJECT(
+                'id_kosik' VALUE :NEW.id_kosik,
+                'cena' VALUE :NEW.cena,
+                'sleva' VALUE :NEW.sleva
+            );
+        WHEN DELETING THEN
+            SELECT id_log_akce INTO v_id_log_akce FROM LogAkce WHERE nazev = 'Delete';
+            v_json_data_novy := JSON_OBJECT(
+                'id_kosik' VALUE :OLD.id_kosik,
+                'datum_vytvoreni' VALUE TO_CHAR(:OLD.datum_vytvoreni, 'YYYY-MM-DD HH24:MI:SS')
+            );
+    END CASE;
 
-truncate table mesta;
-truncate table logs;
+    INSERT INTO logs (nazev_tabulky, datum, novy_zaznam, stary_zaznam, id_log_akce)
+    VALUES ('KOSIKY', CURRENT_TIMESTAMP, v_json_data_novy, v_json_data_stary, v_id_log_akce);
+END;
+/
+
+CREATE OR REPLACE TRIGGER t_log_kvetiny
+AFTER INSERT OR UPDATE OR DELETE ON Kvetiny
+FOR EACH ROW
+DECLARE
+    v_id_log_akce logakce.id_log_akce%TYPE;
+   v_json_data_novy logs.novy_zaznam%TYPE;
+   v_json_data_stary logs.stary_zaznam%TYPE DEFAULT NULL;
+BEGIN
+    CASE
+        WHEN INSERTING THEN
+            SELECT id_log_akce INTO v_id_log_akce FROM LogAkce WHERE nazev = 'Insert';
+            v_json_data_novy := JSON_OBJECT(
+                'id_kvetina' VALUE :NEW.id_kvetina,
+                'nazev' VALUE :NEW.nazev,
+                'cena' VALUE :NEW.cena
+            );
+        WHEN UPDATING THEN
+            SELECT id_log_akce INTO v_id_log_akce FROM LogAkce WHERE nazev = 'Update';
+            v_json_data_stary := JSON_OBJECT(
+                'id_kvetina' VALUE :OLD.id_kvetina,
+                'nazev' VALUE :OLD.nazev,
+                'cena' VALUE :OLD.cena
+            );
+            v_json_data_novy := JSON_OBJECT(
+                'id_kvetina' VALUE :NEW.id_kvetina,
+                'nazev' VALUE :NEW.nazev,
+                'cena' VALUE :NEW.cena
+            );
+        WHEN DELETING THEN
+            SELECT id_log_akce INTO v_id_log_akce FROM LogAkce WHERE nazev = 'Delete';
+            v_json_data_novy := JSON_OBJECT(
+                'id_kvetina' VALUE :OLD.id_kvetina,
+                'nazev' VALUE :OLD.nazev,
+                'cena' VALUE :OLD.cena
+            );
+    END CASE;
+
+    INSERT INTO logs (nazev_tabulky, datum, novy_zaznam, stary_zaznam, id_log_akce)
+    VALUES ('KVETINY', CURRENT_TIMESTAMP, v_json_data_novy, v_json_data_stary, v_id_log_akce);
+END;
+/
