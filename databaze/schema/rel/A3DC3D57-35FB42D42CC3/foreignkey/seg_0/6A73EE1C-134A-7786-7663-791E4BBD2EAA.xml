@@ -9,7 +9,7 @@
 <referredTableID>ABD0424A-E65B-4548-010A-50F4A31C8390</referredTableID>
 <keyObject>349D9056-8327-D2E6-10A6-52E8CB8D8030</keyObject>
 <referredKeyID>349D9056-8327-D2E6-10A6-52E8CB8D8030</referredKeyID>
-<mandatory>true</mandatory>
+<mandatory>false</mandatory>
 <refColNames>id_uzivatel</refColNames>
 <transferable>true</transferable>
 <rely>false</rely>

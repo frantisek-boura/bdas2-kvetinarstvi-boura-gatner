@@ -100,6 +100,7 @@
 <item key="D6EF474D-54A9-A993-EF9D-AE3AD4311244" value="true"/>
 <item key="A3DC3D57-AF96-B756-A331-35FB42D42CC3" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <referedAttribute>72C26E65-A962-2E5B-63AD-AC5EFD13B681</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>

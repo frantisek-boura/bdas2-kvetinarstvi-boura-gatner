@@ -81,11 +81,12 @@
 <createdTime>2025-10-05 08:25:35 UTC</createdTime>
 <generatorID>6D566F80-AD52-6190-CB9D-CD5EE49E6E08</generatorID>
 <ownerDesignName>schema</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>

@@ -35,7 +35,7 @@
 <ownDataTypeParameters>,10,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Mesto_id_mesto" id="8C207F5E-917F-681A-DA5F-8259F1DD7476">
+<Column name="id_mesto" id="8C207F5E-917F-681A-DA5F-8259F1DD7476">
 <createdBy>frantisek</createdBy>
 <createdTime>2025-10-05 08:25:35 UTC</createdTime>
 <generatorID>AF5751FE-4C04-AB4F-CDDE-547A1674CA0C</generatorID>
@@ -51,7 +51,7 @@
 <colAssociation fkAssociation="F588E291-68AA-95D2-A86D-8FAB84B1FDF4" referredColumn="79A999EC-8397-C48E-E9E0-13D20ED88C61"/>
 </associations>
 </Column>
-<Column name="Ulice_id_ulice" id="BF88AE06-39AF-D333-ACFF-05C92A2A4E8D">
+<Column name="id_ulice" id="BF88AE06-39AF-D333-ACFF-05C92A2A4E8D">
 <createdBy>frantisek</createdBy>
 <createdTime>2025-10-05 08:25:35 UTC</createdTime>
 <generatorID>B35705D8-EC55-53C5-0AFF-2CB71B17BB71</generatorID>
@@ -67,7 +67,7 @@
 <colAssociation fkAssociation="BAAADB0A-0F93-F095-7488-8E2624B4C62E" referredColumn="9A9234A1-D143-7E1D-9517-70397F3ECE2A"/>
 </associations>
 </Column>
-<Column name="PSC_id_psc" id="C9D09DF4-6BCE-67A9-14B4-1D39F0B12707">
+<Column name="id_psc" id="C9D09DF4-6BCE-67A9-14B4-1D39F0B12707">
 <createdBy>frantisek</createdBy>
 <createdTime>2025-10-05 08:25:35 UTC</createdTime>
 <generatorID>89DEC497-AF9D-E503-99B5-A62C97F3A838</generatorID>
