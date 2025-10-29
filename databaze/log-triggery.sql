@@ -91,7 +91,7 @@ BEGIN
 END;
 /
 
-CREATE OR REPLACE TRIGGER t_log_kosiky
+create or replace TRIGGER t_log_kosiky
 AFTER INSERT OR UPDATE OR DELETE ON Kosiky
 FOR EACH ROW
 DECLARE
@@ -106,32 +106,41 @@ BEGIN
                 'id_kosik' VALUE :NEW.id_kosik,
                 'datum_vytvoreni' VALUE TO_CHAR(:NEW.datum_vytvoreni, 'YYYY-MM-DD HH24:MI:SS'),
                 'cena' VALUE :NEW.cena,
-                'sleva' VALUE :NEW.sleva
+                'sleva' VALUE :NEW.sleva,
+                'id_uzivatel' VALUE :NEW.id_uzivatel,
+                'id_stav_objednavky' VALUE :NEW.id_stav_objednavky,
+                'id_zpusob_platby' VALUE :NEW.id_zpusob_platby
             );
         WHEN UPDATING THEN
             SELECT id_log_akce INTO v_id_log_akce FROM LogAkce WHERE nazev = 'Update';
             v_json_data_stary := JSON_OBJECT(
                 'id_kosik' VALUE :OLD.id_kosik,
                 'cena' VALUE :OLD.cena,
-                'sleva' VALUE :OLD.sleva
+                'sleva' VALUE :OLD.sleva,
+                'id_stav_objednavky' VALUE :OLD.id_stav_objednavky
             );
             v_json_data_novy := JSON_OBJECT(
                 'id_kosik' VALUE :NEW.id_kosik,
                 'cena' VALUE :NEW.cena,
-                'sleva' VALUE :NEW.sleva
+                'sleva' VALUE :NEW.sleva,
+                'id_stav_objednavky' VALUE :OLD.id_stav_objednavky
             );
         WHEN DELETING THEN
             SELECT id_log_akce INTO v_id_log_akce FROM LogAkce WHERE nazev = 'Delete';
             v_json_data_novy := JSON_OBJECT(
                 'id_kosik' VALUE :OLD.id_kosik,
-                'datum_vytvoreni' VALUE TO_CHAR(:OLD.datum_vytvoreni, 'YYYY-MM-DD HH24:MI:SS')
+                'datum_vytvoreni' VALUE TO_CHAR(:OLD.datum_vytvoreni, 'YYYY-MM-DD HH24:MI:SS'),
+                'cena' VALUE :OLD.cena,
+                'sleva' VALUE :OLD.sleva,
+                'id_uzivatel' VALUE :OLD.id_uzivatel,
+                'id_stav_objednavky' VALUE :OLD.id_stav_objednavky,
+                'id_zpusob_platby' VALUE :OLD.id_zpusob_platby
             );
     END CASE;
 
     INSERT INTO logs (nazev_tabulky, datum, novy_zaznam, stary_zaznam, id_log_akce)
     VALUES ('KOSIKY', CURRENT_TIMESTAMP, v_json_data_novy, v_json_data_stary, v_id_log_akce);
 END;
-/
 
 CREATE OR REPLACE TRIGGER t_log_kvetiny
 AFTER INSERT OR UPDATE OR DELETE ON Kvetiny
