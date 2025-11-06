@@ -22,7 +22,7 @@ public class AdresaController {
     private AdresaService service;
 
     @GetMapping("")
-    public ResponseEntity<List<Adresa>> getadresy() {
+    public ResponseEntity<List<Adresa>> getAdresy() {
         try {
             List<Adresa> adresy = service.findAllAdresy();
 
