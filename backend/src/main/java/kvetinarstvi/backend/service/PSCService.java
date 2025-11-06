@@ -23,7 +23,7 @@ public class PSCService {
 
     public List<PSC> findAllPSC() throws SQLException {
         final String QUERY = "SELECT id_psc, psc FROM psc";
-        List<PSC> mesta = new ArrayList<>();
+        List<PSC> pscs = new ArrayList<>();
 
         Connection c = dataSource.getConnection();
         PreparedStatement stmt = c.prepareStatement(QUERY);        
@@ -33,10 +33,10 @@ public class PSCService {
             int id_psc = rs.getInt("id_psc");
             String psc = rs.getString("psc");
 
-            mesta.add(new PSC(id_psc, psc));
+            pscs.add(new PSC(id_psc, psc));
         } 
 
-        return mesta;
+        return pscs;
     }
 
     public Optional<PSC> findPSCById(Integer id) throws SQLException {

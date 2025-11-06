@@ -27,7 +27,7 @@ public class PSCController {
             List<PSC> psc = service.findAllPSC();
 
             if (psc.isEmpty()) {
-                return ResponseEntity.notFound().build();
+                return ResponseEntity.noContent().build();
             }
 
             return ResponseEntity.ok(psc);
@@ -42,7 +42,7 @@ public class PSCController {
             Optional<PSC> psc = service.findPSCById(id);
 
             if (psc.isEmpty()) {
-                return ResponseEntity.noContent().build();
+                return ResponseEntity.notFound().build();
             }
 
             return ResponseEntity.ok(psc.get());

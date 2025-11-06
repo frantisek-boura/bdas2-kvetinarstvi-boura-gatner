@@ -11,41 +11,41 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kvetinarstvi.backend.records.Mesto;
-import kvetinarstvi.backend.service.MestoService;
+import kvetinarstvi.backend.records.Ulice;
+import kvetinarstvi.backend.service.UliceService;
 
 @RestController
-@RequestMapping("/api/mesta")
-public class MestoController {
+@RequestMapping("/api/ulice")
+public class UliceController {
 
     @Autowired
-    private MestoService service;
+    private UliceService service;
 
     @GetMapping("")
-    public ResponseEntity<List<Mesto>> getMesta() {
+    public ResponseEntity<List<Ulice>> getUlice() {
         try {
-            List<Mesto> mesta = service.findAllMesta();
+            List<Ulice> ulice = service.findAllUlice();
 
-            if (mesta.isEmpty()) {
+            if (ulice.isEmpty()) {
                 return ResponseEntity.noContent().build();
             }
 
-            return ResponseEntity.ok(mesta);
+            return ResponseEntity.ok(ulice);
         } catch (SQLException e) {
             return ResponseEntity.internalServerError().build();
         } 
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Mesto> getMestoById(@PathVariable Integer id) {
+    public ResponseEntity<Ulice> getUliceById(@PathVariable Integer id) {
         try {
-            Optional<Mesto> mesto = service.findMestoById(id);
+            Optional<Ulice> ulice = service.findUliceById(id);
 
-            if (mesto.isEmpty()) {
+            if (ulice.isEmpty()) {
                 return ResponseEntity.notFound().build();
             }
 
-            return ResponseEntity.ok(mesto.get());
+            return ResponseEntity.ok(ulice.get());
         } catch (SQLException e) {
             return ResponseEntity.internalServerError().build();
         } 
