@@ -22,7 +22,7 @@ public class ObrazekController {
     private ObrazekService service;
 
     @GetMapping("")
-    public ResponseEntity<List<Obrazek>> getObrazky() {
+    public ResponseEntity<List<Obrazek>> getAllObrazky() {
         try {
             List<Obrazek> mesta = service.findAllObrazky();
 

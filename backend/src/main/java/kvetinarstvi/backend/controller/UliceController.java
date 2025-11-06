@@ -22,7 +22,7 @@ public class UliceController {
     private UliceService service;
 
     @GetMapping("")
-    public ResponseEntity<List<Ulice>> getUlice() {
+    public ResponseEntity<List<Ulice>> getAllUlice() {
         try {
             List<Ulice> ulice = service.findAllUlice();
 

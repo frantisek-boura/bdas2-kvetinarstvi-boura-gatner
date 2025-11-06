@@ -22,7 +22,7 @@ public class PSCController {
     private PSCService service;
 
     @GetMapping("")
-    public ResponseEntity<List<PSC>> getPSC() {
+    public ResponseEntity<List<PSC>> getAllPSC() {
         try {
             List<PSC> psc = service.findAllPSC();
 

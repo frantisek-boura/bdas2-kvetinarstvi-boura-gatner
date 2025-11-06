@@ -22,7 +22,7 @@ public class MestoController {
     private MestoService service;
 
     @GetMapping("")
-    public ResponseEntity<List<Mesto>> getMesta() {
+    public ResponseEntity<List<Mesto>> getAllMesta() {
         try {
             List<Mesto> mesta = service.findAllMesta();
 

@@ -24,7 +24,7 @@ public class OpravneniController {
     private OpravneniService service;
 
     @GetMapping("")
-    public ResponseEntity<List<Opravneni>> getOpravneni() {
+    public ResponseEntity<List<Opravneni>> getAllOpravneni() {
         try {
             List<Opravneni> opravneni = service.findAllOpravneni();
 
