@@ -1,6 +1,9 @@
 package kvetinarstvi.backend.controller;
 
-import kvetinarstvi.backend.records.Uzivatel;
+import kvetinarstvi.backend.records.Dotaz;
+import kvetinarstvi.backend.records.Mesto;
+import kvetinarstvi.backend.service.DotazService;
+import kvetinarstvi.backend.service.MestoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,48 +11,44 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kvetinarstvi.backend.service.UzivatelService;
-
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-
 @RestController
-@RequestMapping("/api/uzivatele")
-public class UzivatelController {
+@RequestMapping("/api/dotazy")
+public class DotazController {
 
     @Autowired
-    private UzivatelService service;
+    private DotazService service;
 
     @GetMapping("")
-    public ResponseEntity<List<Uzivatel>> getAllUzivatele() {
+    public ResponseEntity<List<Dotaz>> getAllDotazy() {
         try {
-            List<Uzivatel> uzivatele = service.findAllUzivatele();
+            List<Dotaz> dotazy = service.findAllDotazy();
 
-            if (uzivatele.isEmpty()) {
+            if (dotazy.isEmpty()) {
                 return ResponseEntity.noContent().build();
             }
 
-            return ResponseEntity.ok(uzivatele);
+            return ResponseEntity.ok(dotazy);
         } catch (SQLException e) {
             return ResponseEntity.internalServerError().build();
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Uzivatel> getUzivatelById(@PathVariable Integer id) {
+    public ResponseEntity<Dotaz> getDotazById(@PathVariable Integer id) {
         try {
-            Optional<Uzivatel> uzivatel = service.findUzivatelById(id);
+            Optional<Dotaz> dotaz = service.findDotazById(id);
 
-            if (uzivatel.isEmpty()) {
+            if (dotaz.isEmpty()) {
                 return ResponseEntity.notFound().build();
             }
 
-            return ResponseEntity.ok(uzivatel.get());
+            return ResponseEntity.ok(dotaz.get());
         } catch (SQLException e) {
             return ResponseEntity.internalServerError().build();
         }
     }
-
 }
