@@ -1,8 +1,7 @@
 package kvetinarstvi.backend.controller;
 
 import kvetinarstvi.backend.records.Kategorie;
-import kvetinarstvi.backend.records.Mesto;
-import kvetinarstvi.backend.service.KategorieService;
+import kvetinarstvi.backend.repository.KategorieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +18,12 @@ import java.util.Optional;
 public class KategorieController {
 
     @Autowired
-    private KategorieService service;
+    private KategorieRepository repository;
 
     @GetMapping("")
     public ResponseEntity<List<Kategorie>> getAllKategorie() {
         try {
-            List<Kategorie> kategorie = service.findAllKategorie();
+            List<Kategorie> kategorie = repository.findAllKategorie();
 
             if (kategorie.isEmpty()) {
                 return ResponseEntity.noContent().build();
@@ -39,7 +38,7 @@ public class KategorieController {
     @GetMapping("/{id}")
     public ResponseEntity<Kategorie> getKategorieById(@PathVariable Integer id) {
         try {
-            Optional<Kategorie> kategorie = service.findKategorieById(id);
+            Optional<Kategorie> kategorie = repository.findKategorieById(id);
 
             if (kategorie.isEmpty()) {
                 return ResponseEntity.notFound().build();

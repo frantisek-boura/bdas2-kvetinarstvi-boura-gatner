@@ -1,9 +1,7 @@
 package kvetinarstvi.backend.controller;
 
-import kvetinarstvi.backend.records.Mesto;
 import kvetinarstvi.backend.records.ZpusobPlatby;
-import kvetinarstvi.backend.service.MestoService;
-import kvetinarstvi.backend.service.ZpusobPlatbyService;
+import kvetinarstvi.backend.repository.ZpusobPlatbyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,12 +18,12 @@ import java.util.Optional;
 public class ZpusobPlatbyController {
 
     @Autowired
-    private ZpusobPlatbyService service;
+    private ZpusobPlatbyRepository repository;
 
     @GetMapping("")
     public ResponseEntity<List<ZpusobPlatby>> getAllZpusobyPlateb() {
         try {
-            List<ZpusobPlatby> zpusobyplateb = service.findAllZpusobyPlateb();
+            List<ZpusobPlatby> zpusobyplateb = repository.findAllZpusobyPlateb();
 
             if (zpusobyplateb.isEmpty()) {
                 return ResponseEntity.noContent().build();
@@ -40,7 +38,7 @@ public class ZpusobPlatbyController {
     @GetMapping("/{id}")
     public ResponseEntity<ZpusobPlatby> getZpusobPlatbyById(@PathVariable Integer id) {
         try {
-            Optional<ZpusobPlatby> zpusobPlatby = service.findZpusobPlatbyById(id);
+            Optional<ZpusobPlatby> zpusobPlatby = repository.findZpusobPlatbyById(id);
 
             if (zpusobPlatby.isEmpty()) {
                 return ResponseEntity.notFound().build();

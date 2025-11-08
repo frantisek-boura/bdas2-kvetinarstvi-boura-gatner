@@ -1,4 +1,4 @@
-package kvetinarstvi.backend.service;
+package kvetinarstvi.backend.repository;
 
 import kvetinarstvi.backend.records.Kategorie;
 import kvetinarstvi.backend.records.Kvetina;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class KvetinaService {
+public class KvetinaRepository {
 
     @Autowired
     private DataSource dataSource;

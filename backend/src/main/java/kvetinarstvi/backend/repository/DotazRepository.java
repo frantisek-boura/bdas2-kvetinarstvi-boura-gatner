@@ -1,4 +1,4 @@
-package kvetinarstvi.backend.service;
+package kvetinarstvi.backend.repository;
 
 import kvetinarstvi.backend.records.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DotazService {
+public class DotazRepository {
 
     @Autowired
     private DataSource dataSource;

@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kvetinarstvi.backend.records.Mesto;
-import kvetinarstvi.backend.service.MestoService;
+import kvetinarstvi.backend.repository.MestoRepository;
 
 @RestController
 @RequestMapping("/api/mesta")
 public class MestoController {
 
     @Autowired
-    private MestoService service;
+    private MestoRepository repository;
 
     @GetMapping("")
     public ResponseEntity<List<Mesto>> getAllMesta() {
         try {
-            List<Mesto> mesta = service.findAllMesta();
+            List<Mesto> mesta = repository.findAllMesta();
 
             if (mesta.isEmpty()) {
                 return ResponseEntity.noContent().build();
@@ -39,7 +39,7 @@ public class MestoController {
     @GetMapping("/{id}")
     public ResponseEntity<Mesto> getMestoById(@PathVariable Integer id) {
         try {
-            Optional<Mesto> mesto = service.findMestoById(id);
+            Optional<Mesto> mesto = repository.findMestoById(id);
 
             if (mesto.isEmpty()) {
                 return ResponseEntity.notFound().build();

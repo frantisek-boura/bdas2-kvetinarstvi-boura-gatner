@@ -1,4 +1,4 @@
-package kvetinarstvi.backend.service;
+package kvetinarstvi.backend.repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +19,7 @@ import kvetinarstvi.backend.records.PSC;
 import kvetinarstvi.backend.records.Ulice;
 
 @Service
-public class AdresaService {
+public class AdresaRepository {
     
     @Autowired
     private DataSource dataSource;

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kvetinarstvi.backend.service.UzivatelService;
+import kvetinarstvi.backend.repository.UzivatelRepository;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -20,12 +20,12 @@ import java.util.Optional;
 public class UzivatelController {
 
     @Autowired
-    private UzivatelService service;
+    private UzivatelRepository repository;
 
     @GetMapping("")
     public ResponseEntity<List<Uzivatel>> getAllUzivatele() {
         try {
-            List<Uzivatel> uzivatele = service.findAllUzivatele();
+            List<Uzivatel> uzivatele = repository.findAllUzivatele();
 
             if (uzivatele.isEmpty()) {
                 return ResponseEntity.noContent().build();
@@ -40,7 +40,7 @@ public class UzivatelController {
     @GetMapping("/{id}")
     public ResponseEntity<Uzivatel> getUzivatelById(@PathVariable Integer id) {
         try {
-            Optional<Uzivatel> uzivatel = service.findUzivatelById(id);
+            Optional<Uzivatel> uzivatel = repository.findUzivatelById(id);
 
             if (uzivatel.isEmpty()) {
                 return ResponseEntity.notFound().build();

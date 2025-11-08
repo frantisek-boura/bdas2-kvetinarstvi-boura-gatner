@@ -1,4 +1,4 @@
-package kvetinarstvi.backend.service;
+package kvetinarstvi.backend.repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UzivatelService {
+public class UzivatelRepository {
     
     @Autowired
     private DataSource dataSource;

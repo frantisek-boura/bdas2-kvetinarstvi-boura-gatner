@@ -1,4 +1,4 @@
-package kvetinarstvi.backend.service;
+package kvetinarstvi.backend.repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 import kvetinarstvi.backend.records.Ulice;
 
 @Service
-public class UliceService {
+public class UliceRepository {
     
     @Autowired
     private DataSource dataSource;

@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kvetinarstvi.backend.records.PSC;
-import kvetinarstvi.backend.service.PSCService;
+import kvetinarstvi.backend.repository.PSCRepository;
 
 @RestController
 @RequestMapping("/api/psc")
 public class PSCController {
     
     @Autowired
-    private PSCService service;
+    private PSCRepository repository;
 
     @GetMapping("")
     public ResponseEntity<List<PSC>> getAllPSC() {
         try {
-            List<PSC> psc = service.findAllPSC();
+            List<PSC> psc = repository.findAllPSC();
 
             if (psc.isEmpty()) {
                 return ResponseEntity.noContent().build();
@@ -39,7 +39,7 @@ public class PSCController {
     @GetMapping("/{id}")
     public ResponseEntity<PSC> getPSCById(@PathVariable Integer id) {
         try {
-            Optional<PSC> psc = service.findPSCById(id);
+            Optional<PSC> psc = repository.findPSCById(id);
 
             if (psc.isEmpty()) {
                 return ResponseEntity.notFound().build();

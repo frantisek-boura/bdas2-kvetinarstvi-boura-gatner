@@ -1,7 +1,7 @@
 package kvetinarstvi.backend.controller;
 
 import kvetinarstvi.backend.records.Kvetina;
-import kvetinarstvi.backend.service.KvetinaService;
+import kvetinarstvi.backend.repository.KvetinaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,12 +18,12 @@ import java.util.Optional;
 public class KvetinaController {
 
     @Autowired
-    private KvetinaService service;
+    private KvetinaRepository repository;
 
     @GetMapping("")
     public ResponseEntity<List<Kvetina>> getAllKvetiny() {
         try {
-            List<Kvetina> kvetiny = service.findAllKvetiny();
+            List<Kvetina> kvetiny = repository.findAllKvetiny();
 
             if (kvetiny.isEmpty()) {
                 return ResponseEntity.noContent().build();
@@ -38,7 +38,7 @@ public class KvetinaController {
     @GetMapping("/{id}")
     public ResponseEntity<Kvetina> getKvetinaById(@PathVariable Integer id) {
         try {
-            Optional<Kvetina> kvetina = service.findKvetinaById(id);
+            Optional<Kvetina> kvetina = repository.findKvetinaById(id);
 
             if (kvetina.isEmpty()) {
                 return ResponseEntity.notFound().build();

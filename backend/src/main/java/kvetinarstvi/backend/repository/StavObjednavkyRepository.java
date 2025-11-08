@@ -1,7 +1,6 @@
-package kvetinarstvi.backend.service;
+package kvetinarstvi.backend.repository;
 
-import kvetinarstvi.backend.records.Mesto;
-import kvetinarstvi.backend.records.ZpusobPlatby;
+import kvetinarstvi.backend.records.StavObjednavky;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,31 +14,31 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ZpusobPlatbyService {
+public class StavObjednavkyRepository {
 
     @Autowired
     private DataSource dataSource;
 
-    public List<ZpusobPlatby> findAllZpusobyPlateb() throws SQLException {
-        final String QUERY = "SELECT id_zpusob_platby, nazev FROM zpusobyplateb";
-        List<ZpusobPlatby> zpusobyplateb = new ArrayList<>();
+    public List<StavObjednavky> findAllStavyObjednavek() throws SQLException {
+        final String QUERY = "SELECT id_stav_objednavky, nazev FROM stavyobjednavek";
+        List<StavObjednavky> stavyObjednavek = new ArrayList<>();
 
         Connection c = dataSource.getConnection();
         PreparedStatement stmt = c.prepareStatement(QUERY);
         ResultSet rs = stmt.executeQuery();
 
         while (rs.next()) {
-            int id_zpusob_platby = rs.getInt("id_zpusob_platby");
+            int id_stav_objednavky = rs.getInt("id_stav_objednavky");
             String nazev = rs.getString("nazev");
 
-            zpusobyplateb.add(new ZpusobPlatby(id_zpusob_platby, nazev));
+            stavyObjednavek.add(new StavObjednavky(id_stav_objednavky, nazev));
         }
 
-        return zpusobyplateb;
+        return stavyObjednavek;
     }
 
-    public Optional<ZpusobPlatby> findZpusobPlatbyById(Integer id) throws SQLException {
-        final String QUERY = "SELECT id_zpusob_platby, nazev FROM zpusobyplateb WHERE id_zpusob_platby = ?";
+    public Optional<StavObjednavky> findStavObjednavkyById(Integer id) throws SQLException {
+        final String QUERY = "SELECT id_stav_objednavky, nazev FROM stavyobjednavek WHERE id_stav_objednavky = ?";
 
         Connection c = dataSource.getConnection();
         PreparedStatement stmt = c.prepareStatement(QUERY);
@@ -48,10 +47,10 @@ public class ZpusobPlatbyService {
         ResultSet rs = stmt.executeQuery();
 
         if (rs.next()) {
-            int id_zpusob_platby = rs.getInt("id_zpusob_platby");
+            int id_stav_objednavky = rs.getInt("id_stav_objednavky");
             String nazev = rs.getString("nazev");
 
-            return Optional.of(new ZpusobPlatby(id_zpusob_platby, nazev));
+            return Optional.of(new StavObjednavky(id_stav_objednavky, nazev));
         } else {
             return Optional.empty();
         }

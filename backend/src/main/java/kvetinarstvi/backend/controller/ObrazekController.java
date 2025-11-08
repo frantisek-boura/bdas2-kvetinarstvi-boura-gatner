@@ -1,8 +1,7 @@
 package kvetinarstvi.backend.controller;
 
-import kvetinarstvi.backend.records.Mesto;
 import kvetinarstvi.backend.records.Obrazek;
-import kvetinarstvi.backend.service.ObrazekService;
+import kvetinarstvi.backend.repository.ObrazekRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +18,12 @@ import java.util.Optional;
 public class ObrazekController {
 
     @Autowired
-    private ObrazekService service;
+    private ObrazekRepository repository;
 
     @GetMapping("")
     public ResponseEntity<List<Obrazek>> getAllObrazky() {
         try {
-            List<Obrazek> mesta = service.findAllObrazky();
+            List<Obrazek> mesta = repository.findAllObrazky();
 
             if (mesta.isEmpty()) {
                 return ResponseEntity.noContent().build();
@@ -39,7 +38,7 @@ public class ObrazekController {
     @GetMapping("/{id}")
     public ResponseEntity<Obrazek> getObrazekById(@PathVariable Integer id) {
         try {
-            Optional<Obrazek> obrazek = service.findObrazekById(id);
+            Optional<Obrazek> obrazek = repository.findObrazekById(id);
 
             if (obrazek.isEmpty()) {
                 return ResponseEntity.notFound().build();

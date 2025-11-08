@@ -1,9 +1,7 @@
 package kvetinarstvi.backend.controller;
 
-import kvetinarstvi.backend.records.Mesto;
 import kvetinarstvi.backend.records.StavObjednavky;
-import kvetinarstvi.backend.service.MestoService;
-import kvetinarstvi.backend.service.StavObjednavkyService;
+import kvetinarstvi.backend.repository.StavObjednavkyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,12 +18,12 @@ import java.util.Optional;
 public class StavObjednavkyController {
 
     @Autowired
-    private StavObjednavkyService service;
+    private StavObjednavkyRepository repository;
 
     @GetMapping("")
     public ResponseEntity<List<StavObjednavky>> getAllStavyObjednavek() {
         try {
-            List<StavObjednavky> stavyobjednavek = service.findAllStavyObjednavek();
+            List<StavObjednavky> stavyobjednavek = repository.findAllStavyObjednavek();
 
             if (stavyobjednavek.isEmpty()) {
                 return ResponseEntity.noContent().build();
@@ -40,7 +38,7 @@ public class StavObjednavkyController {
     @GetMapping("/{id}")
     public ResponseEntity<StavObjednavky> getStavObjednavkyById(@PathVariable Integer id) {
         try {
-            Optional<StavObjednavky> stavObjednavky = service.findStavObjednavkyById(id);
+            Optional<StavObjednavky> stavObjednavky = repository.findStavObjednavkyById(id);
 
             if (stavObjednavky.isEmpty()) {
                 return ResponseEntity.notFound().build();

@@ -1,8 +1,6 @@
-package kvetinarstvi.backend.service;
+package kvetinarstvi.backend.repository;
 
 import kvetinarstvi.backend.records.Kategorie;
-import kvetinarstvi.backend.records.Mesto;
-import kvetinarstvi.backend.records.Obrazek;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class KategorieService {
+public class KategorieRepository {
 
     @Autowired
     private DataSource dataSource;

@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kvetinarstvi.backend.records.Ulice;
-import kvetinarstvi.backend.service.UliceService;
+import kvetinarstvi.backend.repository.UliceRepository;
 
 @RestController
 @RequestMapping("/api/ulice")
 public class UliceController {
 
     @Autowired
-    private UliceService service;
+    private UliceRepository repository;
 
     @GetMapping("")
     public ResponseEntity<List<Ulice>> getAllUlice() {
         try {
-            List<Ulice> ulice = service.findAllUlice();
+            List<Ulice> ulice = repository.findAllUlice();
 
             if (ulice.isEmpty()) {
                 return ResponseEntity.noContent().build();
@@ -39,7 +39,7 @@ public class UliceController {
     @GetMapping("/{id}")
     public ResponseEntity<Ulice> getUliceById(@PathVariable Integer id) {
         try {
-            Optional<Ulice> ulice = service.findUliceById(id);
+            Optional<Ulice> ulice = repository.findUliceById(id);
 
             if (ulice.isEmpty()) {
                 return ResponseEntity.notFound().build();

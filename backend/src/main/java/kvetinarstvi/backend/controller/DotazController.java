@@ -1,9 +1,7 @@
 package kvetinarstvi.backend.controller;
 
 import kvetinarstvi.backend.records.Dotaz;
-import kvetinarstvi.backend.records.Mesto;
-import kvetinarstvi.backend.service.DotazService;
-import kvetinarstvi.backend.service.MestoService;
+import kvetinarstvi.backend.repository.DotazRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,12 +18,12 @@ import java.util.Optional;
 public class DotazController {
 
     @Autowired
-    private DotazService service;
+    private DotazRepository repository;
 
     @GetMapping("")
     public ResponseEntity<List<Dotaz>> getAllDotazy() {
         try {
-            List<Dotaz> dotazy = service.findAllDotazy();
+            List<Dotaz> dotazy = repository.findAllDotazy();
 
             if (dotazy.isEmpty()) {
                 return ResponseEntity.noContent().build();
@@ -40,7 +38,7 @@ public class DotazController {
     @GetMapping("/{id}")
     public ResponseEntity<Dotaz> getDotazById(@PathVariable Integer id) {
         try {
-            Optional<Dotaz> dotaz = service.findDotazById(id);
+            Optional<Dotaz> dotaz = repository.findDotazById(id);
 
             if (dotaz.isEmpty()) {
                 return ResponseEntity.notFound().build();

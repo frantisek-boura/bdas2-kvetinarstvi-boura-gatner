@@ -1,4 +1,4 @@
-package kvetinarstvi.backend.service;
+package kvetinarstvi.backend.repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,10 +14,8 @@ import kvetinarstvi.backend.records.Obrazek;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kvetinarstvi.backend.records.Obrazek;
-
 @Service
-public class ObrazekService {
+public class ObrazekRepository {
     
     @Autowired
     private DataSource dataSource;

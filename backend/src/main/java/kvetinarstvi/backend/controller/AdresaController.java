@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kvetinarstvi.backend.records.Adresa;
-import kvetinarstvi.backend.service.AdresaService;
+import kvetinarstvi.backend.repository.AdresaRepository;
 
 @RestController
 @RequestMapping("/api/adresy")
 public class AdresaController {
 
     @Autowired
-    private AdresaService service;
+    private AdresaRepository repository;
 
     @GetMapping("")
     public ResponseEntity<List<Adresa>> getAllAdresy() {
         try {
-            List<Adresa> adresy = service.findAllAdresy();
+            List<Adresa> adresy = repository.findAllAdresy();
 
             if (adresy.isEmpty()) {
                 return ResponseEntity.noContent().build();
@@ -39,7 +39,7 @@ public class AdresaController {
     @GetMapping("/{id}")
     public ResponseEntity<Adresa> getAdresaById(@PathVariable Integer id) {
         try {
-            Optional<Adresa> adresa = service.findAdresaById(id);
+            Optional<Adresa> adresa = repository.findAdresaById(id);
 
             if (adresa.isEmpty()) {
                 return ResponseEntity.notFound().build();
