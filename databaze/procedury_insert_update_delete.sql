@@ -76,16 +76,21 @@ AS
         o_status    OUT NUMBER
     )
     AS
-        -- osetreni kdyby se mazal zaznam ktery je pouzivany v jinych tabulkach
-        E_CHILD_RECORD_FOUND EXCEPTION;
-        PRAGMA EXCEPTION_INIT(E_CHILD_RECORD_FOUND, -2292);
     BEGIN
         DELETE FROM mesta
         WHERE id_mesto = p_id_mesto;
         o_status := 1;
+        
+        IF SQL%ROWCOUNT = 1 THEN
+            o_status := 1;
+        ELSE
+            RAISE NO_DATA_FOUND;
+        END IF;
     EXCEPTION
-        WHEN E_CHILD_RECORD_FOUND THEN
+        WHEN NO_DATA_FOUND THEN 
             o_status := 0;
+        WHEN OTHERS THEN
+            o_status := -1;
     END;
     
 END PCK_MESTA;
@@ -169,16 +174,21 @@ AS
         o_status    OUT NUMBER
     )
     AS
-        -- osetreni kdyby se mazal zaznam ktery je pouzivany v jinych tabulkach
-        E_CHILD_RECORD_FOUND EXCEPTION;
-        PRAGMA EXCEPTION_INIT(E_CHILD_RECORD_FOUND, -2292);
     BEGIN
         DELETE FROM ulice
         WHERE id_ulice = p_id_ulice;
         o_status := 1;
+        
+        IF SQL%ROWCOUNT = 1 THEN
+            o_status := 1;
+        ELSE
+            RAISE NO_DATA_FOUND;
+        END IF;
     EXCEPTION
-        WHEN E_CHILD_RECORD_FOUND THEN
+        WHEN NO_DATA_FOUND THEN 
             o_status := 0;
+        WHEN OTHERS THEN
+            o_status := -1;
     END;
     
 END PCK_ULICE;
@@ -262,16 +272,21 @@ AS
         o_status    OUT NUMBER
     )
     AS
-        -- osetreni kdyby se mazal zaznam ktery je pouzivany v jinych tabulkach
-        E_CHILD_RECORD_FOUND EXCEPTION;
-        PRAGMA EXCEPTION_INIT(E_CHILD_RECORD_FOUND, -2292);
     BEGIN
         DELETE FROM psc
         WHERE id_psc = p_id_psc;
         o_status := 1;
+        
+        IF SQL%ROWCOUNT = 1 THEN
+            o_status := 1;
+        ELSE
+            RAISE NO_DATA_FOUND;
+        END IF;
     EXCEPTION
-        WHEN E_CHILD_RECORD_FOUND THEN
+        WHEN NO_DATA_FOUND THEN 
             o_status := 0;
+        WHEN OTHERS THEN
+            o_status := -1;
     END;
     
 END PCK_PSC;
@@ -386,16 +401,20 @@ AS
         o_status      OUT NUMBER
     )
     AS
-        -- osetreni kdyby se mazal zaznam ktery je pouzivany v jinych tabulkach
-        E_CHILD_RECORD_FOUND EXCEPTION;
-        PRAGMA EXCEPTION_INIT(E_CHILD_RECORD_FOUND, -2292);
     BEGIN
         DELETE FROM adresy
         WHERE id_adresa = p_id_adresa;
-        o_status := 1;
+        
+        IF SQL%ROWCOUNT = 1 THEN
+            o_status := 1;
+        ELSE
+            RAISE NO_DATA_FOUND;
+        END IF;
     EXCEPTION
-        WHEN E_CHILD_RECORD_FOUND THEN
+        WHEN NO_DATA_FOUND THEN 
             o_status := 0;
+        WHEN OTHERS THEN
+            o_status := -1;
     END;
     
 END PCK_ADRESY;
@@ -405,13 +424,13 @@ declare
     v_id_adresa NUMBER;
     v_status    NUMBER;
 begin
-    pck_adresy.proc_insert_adresa(456, 'Liberec', 'Karlova', '40001', v_id_adresa);
-    dbms_output.put_line('id adresy: ' || v_id_adresa);
+    --pck_adresy.proc_insert_adresa(456, 'Liberec', 'Karlova', '40001', v_id_adresa);
+    --dbms_output.put_line('id adresy: ' || v_id_adresa);
     
     --pck_adresy.proc_update_adresa(22, 654, 'Plzeň', 'Karlova', '40001', v_id_adresa);
     --dbms_output.put_line('id adresy: ' || v_id_adresa);
     
-    --pck_adresy.proc_delete_adresa(21, v_status);
+    --pck_adresy.proc_delete_adresa(10, v_status);
     --dbms_output.put_line('status: ' || v_status);
 end;
 /
