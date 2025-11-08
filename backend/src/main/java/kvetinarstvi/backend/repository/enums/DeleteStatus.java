@@ -1,6 +1,6 @@
 package kvetinarstvi.backend.repository.enums;
 
-public enum DELETE_RESULT {
+public enum DeleteStatus {
 
     SUCCESS(1),
     NOT_FOUND(0),
@@ -8,7 +8,7 @@ public enum DELETE_RESULT {
 
     private final int status;
 
-    DELETE_RESULT(int status) {
+    DeleteStatus(int status) {
         this.status = status;
     }
 
@@ -16,13 +16,12 @@ public enum DELETE_RESULT {
         return status;
     }
 
-    // Static method to retrieve enum by custom code (recommended way to "lookup")
-    public static Status fromCode(int code) {
-        for (Status status : values()) {
-            if (status.code == code) {
-                return status;
+    public static DeleteStatus fromCode(int code) {
+        for (DeleteStatus deleteStatus : values()) {
+            if (deleteStatus.status == code) {
+                return deleteStatus;
             }
         }
-        // Or throw IllegalArgumentException if code is not found
-        return null;
+
+        return FAILURE;
     }}
