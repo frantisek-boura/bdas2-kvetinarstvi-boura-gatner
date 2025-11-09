@@ -1,7 +1,7 @@
 
 -- priklad triggeru
 CREATE OR REPLACE TRIGGER t_log_mesta AFTER
-   INSERT OR UPDATE OR DELETE ON mesta
+   INSERT OR UPDATE OR DELETE ON Mesta
    FOR EACH ROW
 DECLARE
    v_id_log_akce logakce.id_log_akce%TYPE;
@@ -66,23 +66,35 @@ BEGIN
                 'id_uzivatel' VALUE :NEW.id_uzivatel,
                 'email' VALUE :NEW.email,
                 'pw_hash' VALUE :NEW.pw_hash,
-                'salt' VALUE :NEW.salt
+                'salt' VALUE :NEW.salt,
+                'id_opravneni' VALUE :NEW.id_opravneni,
+                'id_obrazek' VALUE :NEW.id_obrazek,
+                'id_adresa' VALUE :NEW.id_adresa
             );
         WHEN UPDATING THEN
             SELECT id_log_akce INTO v_id_log_akce FROM LogAkce WHERE nazev = 'Update';
             v_json_data_stary := JSON_OBJECT(
                 'id_uzivatel' VALUE :OLD.id_uzivatel,
-                'email' VALUE :OLD.email
+                'email' VALUE :OLD.email,
+                'id_opravneni' VALUE :OLD.id_opravneni,
+                'id_obrazek' VALUE :OLD.id_obrazek,
+                'id_adresa' VALUE :OLD.id_adresa
             );
             v_json_data_novy := JSON_OBJECT(
                 'id_uzivatel' VALUE :NEW.id_uzivatel,
-                'email' VALUE :NEW.email
+                'email' VALUE :NEW.email,
+                'id_opravneni' VALUE :NEW.id_opravneni,
+                'id_obrazek' VALUE :NEW.id_obrazek,
+                'id_adresa' VALUE :NEW.id_adresa
             );
         WHEN DELETING THEN
             SELECT id_log_akce INTO v_id_log_akce FROM LogAkce WHERE nazev = 'Delete';
             v_json_data_novy := JSON_OBJECT(
                 'id_uzivatel' VALUE :OLD.id_uzivatel,
-                'email' VALUE :OLD.email
+                'email' VALUE :OLD.email,
+                'id_opravneni' VALUE :OLD.id_opravneni,
+                'id_obrazek' VALUE :OLD.id_obrazek,
+                'id_adresa' VALUE :OLD.id_adresa
             );
     END CASE;
 
@@ -123,7 +135,7 @@ BEGIN
                 'id_kosik' VALUE :NEW.id_kosik,
                 'cena' VALUE :NEW.cena,
                 'sleva' VALUE :NEW.sleva,
-                'id_stav_objednavky' VALUE :OLD.id_stav_objednavky
+                'id_stav_objednavky' VALUE :NEW.id_stav_objednavky
             );
         WHEN DELETING THEN
             SELECT id_log_akce INTO v_id_log_akce FROM LogAkce WHERE nazev = 'Delete';
@@ -141,6 +153,7 @@ BEGIN
     INSERT INTO logs (nazev_tabulky, datum, novy_zaznam, stary_zaznam, id_log_akce)
     VALUES ('KOSIKY', CURRENT_TIMESTAMP, v_json_data_novy, v_json_data_stary, v_id_log_akce);
 END;
+/
 
 CREATE OR REPLACE TRIGGER t_log_kvetiny
 AFTER INSERT OR UPDATE OR DELETE ON Kvetiny
@@ -156,26 +169,34 @@ BEGIN
             v_json_data_novy := JSON_OBJECT(
                 'id_kvetina' VALUE :NEW.id_kvetina,
                 'nazev' VALUE :NEW.nazev,
-                'cena' VALUE :NEW.cena
+                'cena' VALUE :NEW.cena,
+                'id_kategorie' VALUE :NEW.id_kategorie,
+                'id_obrazek' VALUE :NEW.id_obrazek
             );
         WHEN UPDATING THEN
             SELECT id_log_akce INTO v_id_log_akce FROM LogAkce WHERE nazev = 'Update';
             v_json_data_stary := JSON_OBJECT(
                 'id_kvetina' VALUE :OLD.id_kvetina,
                 'nazev' VALUE :OLD.nazev,
-                'cena' VALUE :OLD.cena
+                'cena' VALUE :OLD.cena,
+                'id_kategorie' VALUE :OLD.id_kategorie,
+                'id_obrazek' VALUE :OLD.id_obrazek
             );
             v_json_data_novy := JSON_OBJECT(
                 'id_kvetina' VALUE :NEW.id_kvetina,
                 'nazev' VALUE :NEW.nazev,
-                'cena' VALUE :NEW.cena
+                'cena' VALUE :NEW.cena,
+                'id_kategorie' VALUE :NEW.id_kategorie,
+                'id_obrazek' VALUE :NEW.id_obrazek
             );
         WHEN DELETING THEN
             SELECT id_log_akce INTO v_id_log_akce FROM LogAkce WHERE nazev = 'Delete';
             v_json_data_novy := JSON_OBJECT(
                 'id_kvetina' VALUE :OLD.id_kvetina,
                 'nazev' VALUE :OLD.nazev,
-                'cena' VALUE :OLD.cena
+                'cena' VALUE :OLD.cena,
+                'id_kategorie' VALUE :OLD.id_kategorie,
+                'id_obrazek' VALUE :OLD.id_obrazek
             );
     END CASE;
 
