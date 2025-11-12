@@ -471,7 +471,26 @@ CREATE OR REPLACE PACKAGE BODY PCK_KATEGORIE AS
   )
   AS
     v_nazev_clean   KATEGORIE.NAZEV%TYPE := TRIM(p_nazev);
+    v_dummy NUMBER;
   BEGIN
+    -- CYKLICKÁ KONTROLA: je nový rodič v mém podstromu?
+    IF p_id_nadrazene IS NOT NULL THEN
+      SELECT 1
+        INTO v_dummy
+        FROM dual
+       WHERE EXISTS (
+              SELECT 1
+                FROM KATEGORIE
+               START WITH id_kategorie = p_id_kategorie
+            CONNECT BY PRIOR id_kategorie = id_nadrazene_kategorie
+               AND id_kategorie = p_id_nadrazene
+       );
+
+      IF v_dummy = 1 THEN
+        RAISE_APPLICATION_ERROR(-20051, 'Cyklická hierarchie: nového rodiče nelze nastavit na vlastního potomka.');
+      END IF;
+    END IF;
+
     UPDATE KATEGORIE
        SET nazev = v_nazev_clean,
            id_nadrazene_kategorie = p_id_nadrazene
@@ -913,29 +932,36 @@ END PCK_KVETINY;
 ------------------------------------------------------------------
 CREATE OR REPLACE PACKAGE PCK_UZIVATELE AS
   PROCEDURE PROC_INSERT_UZIVATEL(
-    p_email         IN VARCHAR2,
-    p_pw_hash       IN VARCHAR2,
-    p_salt          IN VARCHAR2,
-    p_nazev_opr     IN VARCHAR2,
-    p_cp            IN NUMBER,
-    p_nazev_mesta   IN VARCHAR2,
-    p_nazev_ulice   IN VARCHAR2,
-    p_psc           IN VARCHAR2,
-    p_nazev_souboru IN VARCHAR2,   -- může být NULL
-    o_id_uzivatel   OUT NUMBER
+    p_email             IN VARCHAR2,
+    p_pw_hash           IN VARCHAR2,
+    p_salt              IN VARCHAR2,
+    p_nazev_opr         IN VARCHAR2,
+    p_cp                IN NUMBER,
+    p_nazev_mesta       IN VARCHAR2,
+    p_nazev_ulice       IN VARCHAR2,
+    p_psc               IN VARCHAR2,
+    -- nové:
+    p_nazev_souboru     IN VARCHAR2,  -- může být NULL
+    p_data_obrazku      IN BLOB,      -- může být NULL
+    p_id_obrazek_default IN NUMBER,   -- fallback, když název/data nepřijdou
+    o_id_uzivatel       OUT NUMBER
   );
+
   PROCEDURE PROC_UPDATE_UZIVATEL(
-    p_id_uzivatel   IN NUMBER,
-    p_email         IN VARCHAR2,
-    p_pw_hash       IN VARCHAR2,
-    p_salt          IN VARCHAR2,
-    p_nazev_opr     IN VARCHAR2,
-    p_cp            IN NUMBER,
-    p_nazev_mesta   IN VARCHAR2,
-    p_nazev_ulice   IN VARCHAR2,
-    p_psc           IN VARCHAR2,
-    p_nazev_souboru IN VARCHAR2,   -- může být NULL
-    o_id_uzivatel   OUT NUMBER
+    p_id_uzivatel       IN NUMBER,
+    p_email             IN VARCHAR2,
+    p_pw_hash           IN VARCHAR2,
+    p_salt              IN VARCHAR2,
+    p_nazev_opr         IN VARCHAR2,
+    p_cp                IN NUMBER,
+    p_nazev_mesta       IN VARCHAR2,
+    p_nazev_ulice       IN VARCHAR2,
+    p_psc               IN VARCHAR2,
+    -- nové:
+    p_nazev_souboru     IN VARCHAR2,  -- může být NULL
+    p_data_obrazku      IN BLOB,      -- může být NULL
+    p_id_obrazek_default IN NUMBER,   -- fallback
+    o_id_uzivatel       OUT NUMBER
   );
   PROCEDURE PROC_DELETE_UZIVATEL(
     p_id_uzivatel IN NUMBER,
@@ -946,16 +972,18 @@ END PCK_UZIVATELE;
 
 CREATE OR REPLACE PACKAGE BODY PCK_UZIVATELE AS
   PROCEDURE PROC_INSERT_UZIVATEL(
-    p_email         IN VARCHAR2,
-    p_pw_hash       IN VARCHAR2,
-    p_salt          IN VARCHAR2,
-    p_nazev_opr     IN VARCHAR2,
-    p_cp            IN NUMBER,
-    p_nazev_mesta   IN VARCHAR2,
-    p_nazev_ulice   IN VARCHAR2,
-    p_psc           IN VARCHAR2,
-    p_nazev_souboru IN VARCHAR2,
-    o_id_uzivatel   OUT NUMBER
+    p_email             IN VARCHAR2,
+    p_pw_hash           IN VARCHAR2,
+    p_salt              IN VARCHAR2,
+    p_nazev_opr         IN VARCHAR2,
+    p_cp                IN NUMBER,
+    p_nazev_mesta       IN VARCHAR2,
+    p_nazev_ulice       IN VARCHAR2,
+    p_psc               IN VARCHAR2,
+    p_nazev_souboru     IN VARCHAR2,
+    p_data_obrazku      IN BLOB,
+    p_id_obrazek_default IN NUMBER,
+    o_id_uzivatel       OUT NUMBER
   )
   AS
     v_id_uzivatel  UZIVATELE.ID_UZIVATEL%TYPE;
@@ -964,19 +992,22 @@ CREATE OR REPLACE PACKAGE BODY PCK_UZIVATELE AS
     v_id_adr       ADRESY.ID_ADRESA%TYPE;
     v_id_img       OBRAZKY.ID_OBRAZEK%TYPE;
   BEGIN
-    PCK_OPRAVNENI.PROC_INSERT_OPRAVNENI(p_nazev_opr, 1, v_id_opr);
+    -- vyřeš FK podle jmen (stejná logika jako u adres)
+    PCK_OPRAVNENI.PROC_INSERT_OPRAVNENI(TRIM(p_nazev_opr), 1, v_id_opr);
     PCK_ADRESY.PROC_INSERT_ADRESA(p_cp, p_nazev_mesta, p_nazev_ulice, p_psc, v_id_adr);
 
+    -- obrázek: pokud je název (a klidně i s NULL daty), založ OBRAZEK; jinak použij default
     IF p_nazev_souboru IS NOT NULL THEN
-      PCK_OBRAZKY.PROC_INSERT_OBRAZEK(p_nazev_souboru, NULL, v_id_img);
+      PCK_OBRAZKY.PROC_INSERT_OBRAZEK(TRIM(p_nazev_souboru), p_data_obrazku, v_id_img);
     ELSE
-      v_id_img := NULL;
+      v_id_img := p_id_obrazek_default;
     END IF;
 
+    -- existuje uživatel se stejným emailem?
     SELECT id_uzivatel
       INTO v_id_uzivatel
       FROM UZIVATELE
-     WHERE UPPER(email) = UPPER(v_email_clean);
+     WHERE email = v_email_clean;
 
     o_id_uzivatel := v_id_uzivatel;
   EXCEPTION
@@ -987,17 +1018,19 @@ CREATE OR REPLACE PACKAGE BODY PCK_UZIVATELE AS
   END;
 
   PROCEDURE PROC_UPDATE_UZIVATEL(
-    p_id_uzivatel   IN NUMBER,
-    p_email         IN VARCHAR2,
-    p_pw_hash       IN VARCHAR2,
-    p_salt          IN VARCHAR2,
-    p_nazev_opr     IN VARCHAR2,
-    p_cp            IN NUMBER,
-    p_nazev_mesta   IN VARCHAR2,
-    p_nazev_ulice   IN VARCHAR2,
-    p_psc           IN VARCHAR2,
-    p_nazev_souboru IN VARCHAR2,
-    o_id_uzivatel   OUT NUMBER
+    p_id_uzivatel       IN NUMBER,
+    p_email             IN VARCHAR2,
+    p_pw_hash           IN VARCHAR2,
+    p_salt              IN VARCHAR2,
+    p_nazev_opr         IN VARCHAR2,
+    p_cp                IN NUMBER,
+    p_nazev_mesta       IN VARCHAR2,
+    p_nazev_ulice       IN VARCHAR2,
+    p_psc               IN VARCHAR2,
+    p_nazev_souboru     IN VARCHAR2,
+    p_data_obrazku      IN BLOB,
+    p_id_obrazek_default IN NUMBER,
+    o_id_uzivatel       OUT NUMBER
   )
   AS
     v_email_clean  UZIVATELE.EMAIL%TYPE := TRIM(p_email);
@@ -1005,13 +1038,13 @@ CREATE OR REPLACE PACKAGE BODY PCK_UZIVATELE AS
     v_id_adr       ADRESY.ID_ADRESA%TYPE;
     v_id_img       OBRAZKY.ID_OBRAZEK%TYPE;
   BEGIN
-    PCK_OPRAVNENI.PROC_INSERT_OPRAVNENI(p_nazev_opr, 1, v_id_opr);
+    PCK_OPRAVNENI.PROC_INSERT_OPRAVNENI(TRIM(p_nazev_opr), 1, v_id_opr);
     PCK_ADRESY.PROC_INSERT_ADRESA(p_cp, p_nazev_mesta, p_nazev_ulice, p_psc, v_id_adr);
 
     IF p_nazev_souboru IS NOT NULL THEN
-      PCK_OBRAZKY.PROC_INSERT_OBRAZEK(p_nazev_souboru, NULL, v_id_img);
+      PCK_OBRAZKY.PROC_INSERT_OBRAZEK(TRIM(p_nazev_souboru), p_data_obrazku, v_id_img);
     ELSE
-      v_id_img := NULL;
+      v_id_img := p_id_obrazek_default;
     END IF;
 
     UPDATE UZIVATELE
@@ -1024,9 +1057,12 @@ CREATE OR REPLACE PACKAGE BODY PCK_UZIVATELE AS
      WHERE id_uzivatel  = p_id_uzivatel;
 
     IF SQL%ROWCOUNT = 0 THEN
-      PROC_INSERT_UZIVATEL(v_email_clean, p_pw_hash, p_salt, p_nazev_opr,
-                           p_cp, p_nazev_mesta, p_nazev_ulice, p_psc,
-                           p_nazev_souboru, o_id_uzivatel);
+      PROC_INSERT_UZIVATEL(
+        v_email_clean, p_pw_hash, p_salt, p_nazev_opr,
+        p_cp, p_nazev_mesta, p_nazev_ulice, p_psc,
+        p_nazev_souboru, p_data_obrazku, p_id_obrazek_default,
+        o_id_uzivatel
+      );
     ELSE
       o_id_uzivatel := p_id_uzivatel;
     END IF;
