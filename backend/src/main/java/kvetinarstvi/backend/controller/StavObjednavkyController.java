@@ -23,13 +23,13 @@ public class StavObjednavkyController {
     @GetMapping("")
     public ResponseEntity<List<StavObjednavky>> getAllStavyObjednavek() {
         try {
-            List<StavObjednavky> stavyobjednavek = repository.findAllStavyObjednavek();
+            List<StavObjednavky> stavyObjednavek = repository.findAllStavyObjednavek();
 
-            if (stavyobjednavek.isEmpty()) {
+            if (stavyObjednavek.isEmpty()) {
                 return ResponseEntity.noContent().build();
             }
 
-            return ResponseEntity.ok(stavyobjednavek);
+            return ResponseEntity.ok(stavyObjednavek);
         } catch (SQLException e) {
             return ResponseEntity.internalServerError().build();
         }
