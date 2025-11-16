@@ -1,20 +1,28 @@
-CREATE OR REPLACE VIEW VIEW_HISTORIE_CEN_KVETIN
+CREATE OR REPLACE VIEW VIEW_CENY_KVETIN_PRI_OBJEDNANI
 AS
 SELECT
-    l.datum,
-    JSON_VALUE(novy_zaznam, '$.id_kvetina' RETURNING NUMBER) AS id_kvetina,
-    JSON_VALUE(novy_zaznam, '$.cena' RETURNING NUMBER) AS cena
+    kk.id_kosik,
+    kk.id_kvetina,
+    h.cena AS cena_za_kus,
+    kk.pocet
 FROM
-    LOGS l
-WHERE
-    UPPER(nazev_tabulky) = UPPER('Kvetiny')
-ORDER BY
-    id_kvetina ASC,
-    l.datum DESC;
-    
-SELECT * FROM VIEW_HISTORIE_CEN_KVETIN;
-
-SELECT * FROM VIEW_HISTORIE_CEN_KVETIN
-WHERE
-    id_kvetina = 1
-    AND datum <= (SELECT datum_vytvoreni FROM kosiky WHERE id_kosik = 4);
+    kvetinykosiky kk
+JOIN
+    (
+        SELECT
+            l.datum,
+            JSON_VALUE(novy_zaznam, '$.id_kvetina' RETURNING NUMBER) AS id_kvetina,
+            JSON_VALUE(novy_zaznam, '$.cena' RETURNING NUMBER) AS cena,
+            ROW_NUMBER() OVER (
+                PARTITION BY JSON_VALUE(novy_zaznam, '$.id_kvetina')
+                ORDER BY l.datum DESC
+            ) AS rn,
+            ko.datum_vytvoreni
+        FROM
+            LOGS l
+        CROSS JOIN
+            kosiky ko
+        WHERE
+            UPPER(nazev_tabulky) = UPPER('Kvetiny')
+            AND l.datum <= ko.datum_vytvoreni
+    ) h ON h.id_kvetina = kk.id_kvetina AND h.rn = 1;
