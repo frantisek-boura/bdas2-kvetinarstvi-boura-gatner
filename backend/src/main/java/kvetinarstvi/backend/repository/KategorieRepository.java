@@ -2,106 +2,155 @@ package kvetinarstvi.backend.repository;
 
 import kvetinarstvi.backend.records.Kategorie;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class KategorieRepository {
+@Repository
+public class KategorieRepository implements IRepository<Kategorie> {
 
     @Autowired
     private DataSource dataSource;
 
-    public List<Kategorie> findAllKategorie() throws SQLException {
-        final String QUERY = """
-                SELECT
-                    id_kategorie,
-                    nazev,
-                    id_nadrazene_kategorie
-                FROM
-                    kategorie
-                ORDER BY
-                    id_nadrazene_kategorie ASC NULLS FIRST 
-                """;
-        List<Kategorie> kategorie = new ArrayList<>();
-        HashMap<Integer, Kategorie> paryIDKategorie = new HashMap<>();
+    @Override
+    public Optional<Kategorie> findById(Integer ID) throws SQLException {
+        final String QUERY = "SELECT id_kategorie, nazev, id_nadrazene_kategorie FROM kategorie WHERE id_kategorie = ?";
+
+        Connection c = dataSource.getConnection();
+        PreparedStatement stmt = c.prepareStatement(QUERY);
+        stmt.setInt(1, ID);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            int id_kategorie = rs.getInt("id_kategorie");
+            String nazev = rs.getString("nazev");
+            int id_nadrazene_kategorie = rs.getInt("id_nadrazene_kategorie");
+            Integer id_nadrazene = rs.wasNull() ? null : id_nadrazene_kategorie;
+
+            return Optional.of(new Kategorie(id_kategorie, nazev, id_nadrazene));
+        }
+
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Kategorie> findAll() throws SQLException {
+        List<Kategorie> kategorieList = new ArrayList<>();
+        final String QUERY = "SELECT id_kategorie, nazev, id_nadrazene_kategorie FROM kategorie";
 
         Connection c = dataSource.getConnection();
         PreparedStatement stmt = c.prepareStatement(QUERY);
         ResultSet rs = stmt.executeQuery();
 
-        Kategorie k;
         while (rs.next()) {
             int id_kategorie = rs.getInt("id_kategorie");
             String nazev = rs.getString("nazev");
             int id_nadrazene_kategorie = rs.getInt("id_nadrazene_kategorie");
+            Integer id_nadrazene = rs.wasNull() ? null : id_nadrazene_kategorie;
 
-            if (rs.wasNull()) {
-                k = new Kategorie(id_kategorie, nazev, null);
-            } else {
-                k = new Kategorie(id_kategorie, nazev, paryIDKategorie.get(id_nadrazene_kategorie));
-            }
-
-            paryIDKategorie.put(id_kategorie, k);
-            kategorie.add(k);
+            kategorieList.add(new Kategorie(id_kategorie, nazev, id_nadrazene));
         }
 
-        return kategorie;
+        return kategorieList;
     }
 
-    public Optional<Kategorie> findKategorieById(Integer id) throws SQLException {
-        final String QUERY = """
-                SELECT
-                    id_kategorie,
-                    nazev,
-                    id_nadrazene_kategorie,
-                    LEVEL AS uroven
-                FROM
-                    kategorie k
-                START WITH
-                    id_kategorie = ?
-                CONNECT BY
-                    PRIOR id_nadrazene_kategorie = id_kategorie
-                ORDER BY
-                    uroven DESC
-                """;
+    @Override
+    public Status<Kategorie> insert(Kategorie kategorieRequest) {
+        final String QUERY = "{CALL PCK_KATEGORIE.PROC_INSERT_KATEGORIE(?, ?, ?, ?, ?)}";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        stmt.setInt(1, id);
+        try {
+            Connection c = dataSource.getConnection();
+            CallableStatement stmt = c.prepareCall(QUERY);
 
-        ResultSet rs = stmt.executeQuery();
-        HashMap<Integer, Kategorie> paryIDKategorie = new HashMap<>();
+            stmt.setString(1, kategorieRequest.nazev());
 
-        Kategorie k = null;
-        while (rs.next()) {
-            int id_kategorie = rs.getInt("id_kategorie");
-            String nazev = rs.getString("nazev");
-            int id_nadrazene_kategorie = rs.getInt("id_nadrazene_kategorie");
-
-            if (rs.wasNull()) {
-                k = new Kategorie(id_kategorie, nazev, null);
+            if (kategorieRequest.id_nadrazene_kategorie() == null) {
+                stmt.setNull(2, Types.INTEGER);
             } else {
-                k = new Kategorie(id_kategorie, nazev, paryIDKategorie.get(id_nadrazene_kategorie));
+                stmt.setInt(2, kategorieRequest.id_nadrazene_kategorie());
             }
 
-            paryIDKategorie.put(id_kategorie, k);
+            stmt.registerOutParameter(3, Types.INTEGER);
+            stmt.registerOutParameter(4, Types.INTEGER);
+            stmt.registerOutParameter(5, Types.VARCHAR);
+
+            stmt.execute();
+
+            int id_kategorie = stmt.getInt(3);
+            int status_code = stmt.getInt(4);
+            String status_message = stmt.getString(5);
+
+            if (status_code == 1) {
+                Kategorie kategorie = findById(id_kategorie).get();
+                return new Status<>(status_code, status_message, kategorie);
+            } else {
+                return new Status<>(status_code, status_message, null);
+            }
+        } catch (SQLException e) {
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
         }
-
-        if (k == null) {
-            return Optional.empty();
-        }
-
-        return Optional.of(paryIDKategorie.get(id));
-
     }
 
+    @Override
+    public Status<Kategorie> update(Kategorie kategorieRequest) {
+        final String QUERY = "{CALL PCK_KATEGORIE.PROC_UPDATE_KATEGORIE(?, ?, ?, ?, ?, ?)}";
+
+        try {
+            Connection c = dataSource.getConnection();
+            CallableStatement stmt = c.prepareCall(QUERY);
+
+            stmt.setInt(1, kategorieRequest.id_kategorie());
+            stmt.setString(2, kategorieRequest.nazev());
+
+            if (kategorieRequest.id_nadrazene_kategorie() == null) {
+                stmt.setNull(3, Types.INTEGER);
+            } else {
+                stmt.setInt(3, kategorieRequest.id_nadrazene_kategorie());
+            }
+
+            stmt.registerOutParameter(4, Types.INTEGER);
+            stmt.registerOutParameter(5, Types.INTEGER);
+            stmt.registerOutParameter(6, Types.VARCHAR);
+
+            stmt.execute();
+
+            int id_kategorie = stmt.getInt(4);
+            int status_code = stmt.getInt(5);
+            String status_message = stmt.getString(6);
+
+            if (status_code == 1) {
+                Kategorie kategorie = findById(id_kategorie).get();
+                return new Status<>(status_code, status_message, kategorie);
+            } else {
+                return new Status<>(status_code, status_message, null);
+            }
+        } catch (SQLException e) {
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
+        }
+    }
+
+    @Override
+    public Status<Kategorie> delete(Integer id) {
+        final String QUERY = "{CALL PCK_KATEGORIE.PROC_DELETE_KATEGORIE(?, ?, ?)}";
+
+        try {
+            Connection c = dataSource.getConnection();
+            CallableStatement stmt = c.prepareCall(QUERY);
+            stmt.setInt(1, id);
+            stmt.registerOutParameter(2, Types.INTEGER);
+            stmt.registerOutParameter(3, Types.VARCHAR);
+
+            stmt.execute();
+            int status_code = stmt.getInt(2);
+            String status_message = stmt.getString(3);
+
+            return new Status<>(status_code, status_message, null);
+        } catch (SQLException e) {
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
+        }
+    }
 }

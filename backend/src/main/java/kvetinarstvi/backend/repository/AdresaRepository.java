@@ -1,9 +1,6 @@
 package kvetinarstvi.backend.repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -11,110 +8,166 @@ import java.util.Optional;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import kvetinarstvi.backend.records.Adresa;
 import kvetinarstvi.backend.records.Mesto;
 import kvetinarstvi.backend.records.PSC;
 import kvetinarstvi.backend.records.Ulice;
 
-@Service
-public class AdresaRepository {
-    
+@Repository
+public class AdresaRepository implements IRepository<Adresa> {
+
     @Autowired
     private DataSource dataSource;
 
-    public List<Adresa> findAllAdresy() throws SQLException {
-        final String QUERY = """
-                    SELECT 
-                        a.id_adresa, a.cp, 
-                        a.id_mesto, m.nazev AS mesto_nazev,
-                        a.id_ulice, u.nazev AS ulice_nazev,
-                        a.id_psc, p.psc AS psc 
-                    FROM 
-                        adresy a  
-                    JOIN 
-                        mesta m ON a.id_mesto = m.id_mesto
-                    JOIN
-                        ulice u ON a.id_ulice = u.id_ulice
-                    JOIN 
-                        psc p ON a.id_psc = p.id_psc
-                """;
-                
+    @Autowired
+    private IRepository<Mesto> mestoRepository;
+    @Autowired
+    private IRepository<PSC> pscRepository;
+    @Autowired
+    private IRepository<Ulice> uliceRepository;
+
+    @Override
+    public List<Adresa> findAll() throws SQLException {
+        final String QUERY = "SELECT id_adresa, cp, id_mesto, id_ulice, id_psc FROM ADRESY";
+
         List<Adresa> adresy = new ArrayList<>();
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);        
-        ResultSet rs = stmt.executeQuery();
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY);
+             ResultSet rs = stmt.executeQuery()) {
 
-        while (rs.next()) {
-            int id_adresa = rs.getInt("id_adresa");
-            int cp = rs.getInt("cp");
-            int id_mesto = rs.getInt("id_mesto");
-            String mesto_nazev = rs.getString("mesto_nazev");
-            int id_ulice = rs.getInt("id_ulice");
-            String ulice_nazev = rs.getString("ulice_nazev");
-            int id_psc = rs.getInt("id_psc");
-            String psc = rs.getString("psc");
+            while (rs.next()) {
+                int id_adresa = rs.getInt("id_adresa");
+                int cp = rs.getInt("cp");
+                int id_mesto = rs.getInt("id_mesto");
+                int id_ulice = rs.getInt("id_ulice");
+                int id_psc = rs.getInt("id_psc");
 
-
-            adresy.add(
-                new Adresa(
-                    id_adresa, cp,
-                    new Mesto(id_mesto, mesto_nazev),
-                    new Ulice(id_ulice, ulice_nazev),
-                    new PSC(id_psc, psc) 
-                ));
-        } 
+                adresy.add(new Adresa(id_adresa, cp, id_mesto, id_ulice, id_psc));
+            }
+        }
 
         return adresy;
     }
 
-    public Optional<Adresa> findAdresaById(Integer id) throws SQLException {
-        final String QUERY = """
-                    SELECT 
-                        a.id_adresa, a.cp, 
-                        a.id_mesto, m.nazev AS mesto_nazev,
-                        a.id_ulice, u.nazev AS ulice_nazev,
-                        a.id_psc, p.psc AS psc 
-                    FROM 
-                        adresy a  
-                    JOIN 
-                        mesta m ON a.id_mesto = m.id_mesto
-                    JOIN
-                        ulice u ON a.id_ulice = u.id_ulice
-                    JOIN 
-                        psc p ON a.id_psc = p.id_psc
-                    WHERE
-                        a.id_adresa = ?
-                """;
+    @Override
+    public Optional<Adresa> findById(Integer id) throws SQLException {
+        final String QUERY = "SELECT id_adresa, cp, id_mesto, id_ulice, id_psc FROM ADRESY WHERE ID_ADRESA = ?";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);        
-        stmt.setInt(1, id);
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY)) {
 
-        ResultSet rs = stmt.executeQuery();
+            stmt.setInt(1, id);
 
-        if (rs.next()) {
-            int id_adresa = rs.getInt("id_adresa");
-            int cp = rs.getInt("cp");
-            int id_mesto = rs.getInt("id_mesto");
-            String mesto_nazev = rs.getString("mesto_nazev");
-            int id_ulice = rs.getInt("id_ulice");
-            String ulice_nazev = rs.getString("ulice_nazev");
-            int id_psc = rs.getInt("id_psc");
-            String psc = rs.getString("psc");
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    int id_adresa = rs.getInt("id_adresa");
+                    int cp = rs.getInt("cp");
+                    int id_mesto = rs.getInt("id_mesto");
+                    int id_ulice = rs.getInt("id_ulice");
+                    int id_psc = rs.getInt("id_psc");
 
-            return Optional.of(
-                new Adresa(
-                    id_adresa, cp,
-                    new Mesto(id_mesto, mesto_nazev),
-                    new Ulice(id_ulice, ulice_nazev),
-                    new PSC(id_psc, psc) 
-                ));
-        } else {
-            return Optional.empty();
+                    return Optional.of(new Adresa(id_adresa, cp, id_mesto, id_ulice, id_psc));
+                } else {
+                    return Optional.empty();
+                }
+            }
         }
     }
 
+    @Override
+    public Status<Adresa> insert(Adresa adresaRequest) {
+        final String QUERY = "{CALL PCK_ADRESY.PROC_INSERT_ADRESA(?, ?, ?, ?, ?, ?, ?)}";
+
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
+
+            stmt.setInt(1, adresaRequest.cp());
+            stmt.setInt(2, adresaRequest.id_mesto());
+            stmt.setInt(3, adresaRequest.id_ulice());
+            stmt.setInt(4, adresaRequest.id_psc());
+
+            stmt.registerOutParameter(5, Types.INTEGER); // o_id_adresa
+            stmt.registerOutParameter(6, Types.INTEGER); // o_status_code
+            stmt.registerOutParameter(7, Types.VARCHAR); // o_status_message
+
+            stmt.execute();
+
+            int id_adresa = stmt.getInt(5);
+            int status_code = stmt.getInt(6);
+            String status_message = stmt.getString(7);
+
+            if (status_code == 1) {
+                Adresa adresa = findById(id_adresa).get();
+                return new Status<>(status_code, status_message, adresa);
+            } else {
+                return new Status<>(status_code, status_message, null);
+            }
+        } catch (SQLException e) {
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
+        }
+    }
+
+    @Override
+    public Status<Adresa> update(Adresa adresaRequest) {
+        final String QUERY = "{CALL PCK_ADRESY.PROC_UPDATE_ADRESA(?, ?, ?, ?, ?, ?, ?, ?)}";
+
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
+
+            stmt.setInt(1, adresaRequest.id_adresa());
+            stmt.setInt(2, adresaRequest.cp());
+            stmt.setInt(3, adresaRequest.id_mesto());
+            stmt.setInt(4, adresaRequest.id_ulice());
+            stmt.setInt(5, adresaRequest.id_psc());
+
+            stmt.registerOutParameter(6, Types.INTEGER);
+            stmt.registerOutParameter(7, Types.INTEGER);
+            stmt.registerOutParameter(8, Types.VARCHAR);
+
+            stmt.execute();
+
+            int id_adresa = stmt.getInt(6);
+            int status_code = stmt.getInt(7);
+            String status_message = stmt.getString(8);
+
+            if (status_code == 1) {
+                Adresa adresa = findById(id_adresa).get();
+                return new Status<>(status_code, status_message, adresa);
+            } else {
+                return new Status<>(status_code, status_message, null);
+            }
+        } catch (SQLException e) {
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
+        }
+    }
+
+    /**
+     * Implementace delete metody pro Adresa
+     * Procedura: PCK_ADRESY.PROC_DELETE_ADRESA(p_id_adresa, o_status_code, o_status_message)
+     */
+    @Override
+    public Status<Adresa> delete(Integer id) {
+        final String QUERY = "{CALL PCK_ADRESY.PROC_DELETE_ADRESA(?, ?, ?)}";
+
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
+
+            stmt.setInt(1, id);
+
+            stmt.registerOutParameter(2, Types.INTEGER); // o_status_code
+            stmt.registerOutParameter(3, Types.VARCHAR); // o_status_message
+
+            stmt.execute();
+
+            int status_code = stmt.getInt(2);
+            String status_message = stmt.getString(3);
+
+            return new Status<>(status_code, status_message, null);
+        } catch (SQLException e) {
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
+        }
+    }
 }

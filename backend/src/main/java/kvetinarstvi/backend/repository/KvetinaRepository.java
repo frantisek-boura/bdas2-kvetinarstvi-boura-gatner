@@ -1,40 +1,47 @@
 package kvetinarstvi.backend.repository;
 
-import kvetinarstvi.backend.records.Kategorie;
 import kvetinarstvi.backend.records.Kvetina;
-import kvetinarstvi.backend.records.Obrazek;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class KvetinaRepository {
+@Repository
+public class KvetinaRepository implements IRepository<Kvetina> {
 
     @Autowired
     private DataSource dataSource;
 
-    public List<Kvetina> findAllKvetiny() throws SQLException {
-        final String QUERY = """
-                SELECT
-                    k.id_kvetina, k.nazev AS nazev_kvetiny, k.cena,
-                    k.id_kategorie, ka.nazev AS nazev_kategorie,
-                    k.id_obrazek, o.nazev_souboru, o.data
-                FROM
-                    kvetiny k
-                JOIN
-                    kategorie ka ON k.id_kategorie = ka.id_kategorie
-                JOIN
-                    obrazky o ON k.id_obrazek = o.id_obrazek
-                """;
+    @Override
+    public Optional<Kvetina> findById(Integer ID) throws SQLException {
+        final String QUERY = "SELECT id_kvetina, nazev, cena, id_kategorie, id_obrazek FROM kvetiny WHERE id_kvetina = ?";
+
+        Connection c = dataSource.getConnection();
+        PreparedStatement stmt = c.prepareStatement(QUERY);
+        stmt.setInt(1, ID);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            int id_kvetina = rs.getInt("id_kvetina");
+            String nazev = rs.getString("nazev");
+            Double cena = rs.getDouble("cena");
+            Integer id_kategorie = rs.getInt("id_kategorie");
+            Integer id_obrazek = rs.getInt("id_obrazek");
+
+            return Optional.of(new Kvetina(id_kvetina, nazev, cena, id_kategorie, id_obrazek));
+        }
+
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Kvetina> findAll() throws SQLException {
         List<Kvetina> kvetiny = new ArrayList<>();
+        final String QUERY = "SELECT id_kvetina, nazev, cena, id_kategorie, id_obrazek FROM kvetiny";
 
         Connection c = dataSource.getConnection();
         PreparedStatement stmt = c.prepareStatement(QUERY);
@@ -42,68 +49,104 @@ public class KvetinaRepository {
 
         while (rs.next()) {
             int id_kvetina = rs.getInt("id_kvetina");
-            String nazev_kvetiny = rs.getString("nazev_kvetiny");
-            double cena = rs.getDouble("cena");
-            int id_kategorie = rs.getInt("id_kategorie");
-            String nazev_kategorie = rs.getString("nazev_kategorie");
-            int id_obrazek = rs.getInt("id_obrazek");
-            String nazev_souboru = rs.getString("nazev_souboru");
-            byte[] data = rs.getBytes("data");
+            String nazev = rs.getString("nazev");
+            Double cena = rs.getDouble("cena");
+            Integer id_kategorie = rs.getInt("id_kategorie");
+            Integer id_obrazek = rs.getInt("id_obrazek");
 
-            kvetiny.add(
-                    new Kvetina(
-                            id_kvetina, nazev_kvetiny, cena,
-                            new Kategorie(id_kategorie, nazev_kategorie, null),
-                            new Obrazek(id_obrazek, nazev_souboru, data)
-                    )
-            );
+            kvetiny.add(new Kvetina(id_kvetina, nazev, cena, id_kategorie, id_obrazek));
         }
 
         return kvetiny;
     }
 
-    public Optional<Kvetina> findKvetinaById(Integer id) throws SQLException {
-        final String QUERY = """
-                SELECT
-                    k.id_kvetina, k.nazev AS nazev_kvetiny, k.cena,
-                    k.id_kategorie, ka.nazev AS nazev_kategorie,
-                    k.id_obrazek, o.nazev_souboru, o.data
-                FROM
-                    kvetiny k
-                JOIN
-                    kategorie ka ON k.id_kategorie = ka.id_kategorie
-                JOIN
-                    obrazky o ON k.id_obrazek = o.id_obrazek
-                WHERE
-                    k.id_kvetina = ?
-                """;
+    @Override
+    public Status<Kvetina> insert(Kvetina kvetinaRequest) {
+        final String QUERY = "{CALL PCK_KVETINY.PROC_INSERT_KVETINA(?, ?, ?, ?, ?, ?, ?)}";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        stmt.setInt(1, id);
+        try {
+            Connection c = dataSource.getConnection();
+            CallableStatement stmt = c.prepareCall(QUERY);
 
-        ResultSet rs = stmt.executeQuery();
+            stmt.setString(1, kvetinaRequest.nazev());
+            stmt.setDouble(2, kvetinaRequest.cena());
+            stmt.setInt(3, kvetinaRequest.id_kategorie());
+            stmt.setInt(4, kvetinaRequest.id_obrazek());
 
-        if (rs.next()) {
-            int id_kvetina = rs.getInt("id_kvetina");
-            String nazev_kvetiny = rs.getString("nazev_kvetiny");
-            double cena = rs.getDouble("cena");
-            int id_kategorie = rs.getInt("id_kategorie");
-            String nazev_kategorie = rs.getString("nazev_kategorie");
-            int id_obrazek = rs.getInt("id_obrazek");
-            String nazev_souboru = rs.getString("nazev_souboru");
-            byte[] data = rs.getBytes("data");
+            stmt.registerOutParameter(5, Types.INTEGER); // o_id_kvetina
+            stmt.registerOutParameter(6, Types.INTEGER); // o_status_code
+            stmt.registerOutParameter(7, Types.VARCHAR); // o_status_message
 
-            return Optional.of(
-                    new Kvetina(
-                            id_kvetina, nazev_kvetiny, cena,
-                            new Kategorie(id_kategorie, nazev_kategorie, null),
-                            new Obrazek(id_obrazek, nazev_souboru, data)
-                    )
-            );
-        } else {
-            return Optional.empty();
+            stmt.execute();
+
+            int id_kvetina = stmt.getInt(5);
+            int status_code = stmt.getInt(6);
+            String status_message = stmt.getString(7);
+
+            if (status_code == 1) {
+                Kvetina kvetina = findById(id_kvetina).get();
+                return new Status<>(status_code, status_message, kvetina);
+            } else {
+                return new Status<>(status_code, status_message, null);
+            }
+        } catch (SQLException e) {
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
         }
     }
 
+    @Override
+    public Status<Kvetina> update(Kvetina kvetinaRequest) {
+        final String QUERY = "{CALL PCK_KVETINY.PROC_UPDATE_KVETINA(?, ?, ?, ?, ?, ?, ?, ?)}";
+
+        try {
+            Connection c = dataSource.getConnection();
+            CallableStatement stmt = c.prepareCall(QUERY);
+
+            stmt.setInt(1, kvetinaRequest.id_kvetina());
+            stmt.setString(2, kvetinaRequest.nazev());
+            stmt.setDouble(3, kvetinaRequest.cena());
+            stmt.setInt(4, kvetinaRequest.id_kategorie());
+            stmt.setInt(5, kvetinaRequest.id_obrazek());
+
+            stmt.registerOutParameter(6, Types.INTEGER); // o_id_kvetina
+            stmt.registerOutParameter(7, Types.INTEGER); // o_status_code
+            stmt.registerOutParameter(8, Types.VARCHAR); // o_status_message
+
+            stmt.execute();
+
+            int id_kvetina = stmt.getInt(6);
+            int status_code = stmt.getInt(7);
+            String status_message = stmt.getString(8);
+
+            if (status_code == 1) {
+                Kvetina kvetina = findById(id_kvetina).get();
+                return new Status<>(status_code, status_message, kvetina);
+            } else {
+                return new Status<>(status_code, status_message, null);
+            }
+        } catch (SQLException e) {
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
+        }
+    }
+
+    @Override
+    public Status<Kvetina> delete(Integer id) {
+        final String QUERY = "{CALL PCK_KVETINY.PROC_DELETE_KVETINA(?, ?, ?)}";
+
+        try {
+            Connection c = dataSource.getConnection();
+            CallableStatement stmt = c.prepareCall(QUERY);
+            stmt.setInt(1, id);
+            stmt.registerOutParameter(2, Types.INTEGER);
+            stmt.registerOutParameter(3, Types.VARCHAR);
+
+            stmt.execute();
+            int status_code = stmt.getInt(2);
+            String status_message = stmt.getString(3);
+
+            return new Status<>(status_code, status_message, null);
+        } catch (SQLException e) {
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
+        }
+    }
 }

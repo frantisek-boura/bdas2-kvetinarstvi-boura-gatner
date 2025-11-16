@@ -1,7 +1,6 @@
 package kvetinarstvi.backend.records;
 
-import java.time.OffsetDateTime;
-import java.util.List;
+import java.time.ZonedDateTime;
 
-public record Kosik(Integer id_kosik, OffsetDateTime datum_vytvoreni, Double cena, Integer sleva, Uzivatel uzivatel, StavObjednavky stav_objednavky, ZpusobPlatby zpusob_platby) {
+public record Kosik(Integer id_kosik, ZonedDateTime datum_vytvoreni, Double cena, Integer sleva, Integer id_uzivatel, Integer id_stav_objednavky, Integer id_zpusob_platby) {
 }

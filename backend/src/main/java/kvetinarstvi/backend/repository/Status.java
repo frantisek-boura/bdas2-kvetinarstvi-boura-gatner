@@ -1,4 +1,4 @@
 package kvetinarstvi.backend.repository;
 
-public class Status {
+public record Status<E>(Integer status_code, String status_message, E value) {
 }

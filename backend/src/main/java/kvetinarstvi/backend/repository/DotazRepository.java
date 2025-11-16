@@ -1,43 +1,58 @@
 package kvetinarstvi.backend.repository;
 
-import kvetinarstvi.backend.records.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.OffsetDateTime;
+import java.sql.*;
+import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class DotazRepository {
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import kvetinarstvi.backend.records.Dotaz;
+
+@Repository
+public class DotazRepository implements IRepository<Dotaz> {
 
     @Autowired
     private DataSource dataSource;
 
-    public List<Dotaz> findAllDotazy() throws SQLException {
-        final String QUERY = """
-                SELECT
-                    d.id_dotaz, d.datum_podani, d.verejny, d.text, d.odpoved, d.id_odpovidajici_uzivatel,
-                    u.email,
-                    u.id_opravneni, op.nazev, op.uroven,
-                    u.id_obrazek, o.nazev_souboru, o.data
-                FROM
-                    dotazy d
-                LEFT JOIN
-                    uzivatele u ON d.id_odpovidajici_uzivatel = u.id_uzivatel
-                LEFT JOIN
-                    obrazky o ON u.id_obrazek = o.id_obrazek
-                LEFT JOIN
-                    opravneni op ON u.id_opravneni = op.id_opravneni
-                """;
+    @Override
+    public Optional<Dotaz> findById(Integer ID) throws SQLException {
+        final String QUERY = "SELECT id_dotaz, datum_podani, verejny, text, odpoved, id_odpovidajici_uzivatel FROM dotazy WHERE id_dotaz = ?";
+
+        Connection c = dataSource.getConnection();
+        PreparedStatement stmt = c.prepareStatement(QUERY);
+        stmt.setInt(1, ID);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            int id_dotaz = rs.getInt("id_dotaz");
+            Timestamp timestamp = rs.getTimestamp("datum_podani");
+            ZonedDateTime datum_podani = timestamp != null
+                    ? timestamp.toLocalDateTime().atZone(ZoneId.systemDefault())
+                    : null;
+
+            boolean verejny = rs.getBoolean("verejny");
+            String text = rs.getString("text");
+            String odpoved = rs.getString("odpoved");
+
+            int id_odpovidajici_uzivatel = rs.getInt("id_odpovidajici_uzivatel");
+            Integer id_uzivatel = rs.wasNull() ? null : id_odpovidajici_uzivatel;
+
+            return Optional.of(new Dotaz(id_dotaz, datum_podani, verejny, text, odpoved, id_uzivatel));
+        }
+
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Dotaz> findAll() throws SQLException {
         List<Dotaz> dotazy = new ArrayList<>();
+        final String QUERY = "SELECT id_dotaz, datum_podani, verejny, text, odpoved, id_odpovidajici_uzivatel FROM dotazy";
 
         Connection c = dataSource.getConnection();
         PreparedStatement stmt = c.prepareStatement(QUERY);
@@ -45,96 +60,131 @@ public class DotazRepository {
 
         while (rs.next()) {
             int id_dotaz = rs.getInt("id_dotaz");
-            OffsetDateTime datum_podani = rs.getTimestamp("datum_podani").toInstant().atZone(ZoneId.systemDefault()).toOffsetDateTime();
+            Timestamp timestamp = rs.getTimestamp("datum_podani");
+            ZonedDateTime datum_podani = timestamp != null
+                    ? timestamp.toLocalDateTime().atZone(ZoneId.systemDefault())
+                    : null;
+
             boolean verejny = rs.getBoolean("verejny");
             String text = rs.getString("text");
             String odpoved = rs.getString("odpoved");
 
-            Dotaz dotaz;
-            if (!rs.wasNull()) {
-                int id_uzivatel = rs.getInt("id_odpovidajici_uzivatel");
-                String email = rs.getString("email");
-                int id_opravneni = rs.getInt("id_opravneni");
-                String nazev = rs.getString("nazev");
-                int uroven = rs.getInt("uroven");
-                int id_obrazek = rs.getInt("id_obrazek");
-                String nazev_souboru = rs.getString("nazev_souboru");
-                byte[] data = rs.getBytes("data");
+            int id_odpovidajici_uzivatel = rs.getInt("id_odpovidajici_uzivatel");
+            Integer id_uzivatel = rs.wasNull() ? null : id_odpovidajici_uzivatel;
 
-                // neni potreba poskytovat dalsi data o uzivateli jako hash, sul, adresu atd...
-                Uzivatel odpovidajiciUzivatel = new Uzivatel(id_uzivatel, email, null, null,
-                        new Opravneni(id_opravneni, nazev, uroven),
-                        new Obrazek(id_obrazek, nazev_souboru, data),
-                        null
-                );
-
-                dotaz = new Dotaz(id_dotaz, datum_podani, verejny, text, odpoved, odpovidajiciUzivatel);
-            } else {
-                dotaz = new Dotaz(id_dotaz, datum_podani, verejny, text, odpoved, null);
-            }
-
-            dotazy.add(dotaz);
+            dotazy.add(new Dotaz(id_dotaz, datum_podani, verejny, text, odpoved, id_uzivatel));
         }
 
         return dotazy;
     }
 
-    public Optional<Dotaz> findDotazById(Integer id) throws SQLException {
-        final String QUERY = """
-                SELECT
-                    d.id_dotaz, d.datum_podani, d.verejny, d.text, d.odpoved, d.id_odpovidajici_uzivatel,
-                    u.email,
-                    u.id_opravneni, op.nazev, op.uroven,
-                    u.id_obrazek, o.nazev_souboru, o.data
-                FROM
-                    dotazy d
-                LEFT JOIN
-                    uzivatele u ON d.id_odpovidajici_uzivatel = u.id_uzivatel
-                LEFT JOIN
-                    obrazky o ON u.id_obrazek = o.id_obrazek
-                LEFT JOIN
-                    opravneni op ON u.id_opravneni = op.id_opravneni
-                WHERE
-                    d.id_dotaz = ?
-                """;
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        stmt.setInt(1, id);
-        ResultSet rs = stmt.executeQuery();
+    @Override
+    public Status<Dotaz> insert(Dotaz dotazRequest) {
+        final String QUERY = "{CALL PCK_DOTAZY.PROC_INSERT_DOTAZ(?, ?, ?, ?, ?, ?, ?)}";
 
-        if (rs.next()) {
-            int id_dotaz = rs.getInt("id_dotaz");
-            OffsetDateTime datum_podani = rs.getTimestamp("datum_podani").toInstant().atZone(ZoneId.systemDefault()).toOffsetDateTime();
-            boolean verejny = rs.getBoolean("verejny");
-            String text = rs.getString("text");
-            String odpoved = rs.getString("odpoved");
+        try {
+            Connection c = dataSource.getConnection();
+            CallableStatement stmt = c.prepareCall(QUERY);
 
-            Dotaz dotaz;
-            if (!rs.wasNull()) {
-                int id_uzivatel = rs.getInt("id_odpovidajici_uzivatel");
-                String email = rs.getString("email");
-                int id_opravneni = rs.getInt("id_opravneni");
-                String nazev = rs.getString("nazev");
-                int uroven = rs.getInt("uroven");
-                int id_obrazek = rs.getInt("id_obrazek");
-                String nazev_souboru = rs.getString("nazev_souboru");
-                byte[] data = rs.getBytes("data");
+            stmt.setString(1, dotazRequest.text());
+            stmt.setInt(2, dotazRequest.verejny() ? 1 : 0);
 
-                // neni potreba poskytovat dalsi data o uzivateli jako hash, sul, adresu atd...
-                Uzivatel odpovidajiciUzivatel = new Uzivatel(id_uzivatel, email, null, null,
-                        new Opravneni(id_opravneni, nazev, uroven),
-                        new Obrazek(id_obrazek, nazev_souboru, data),
-                        null
-                );
-
-                return Optional.of(new Dotaz(id_dotaz, datum_podani, verejny, text, odpoved, odpovidajiciUzivatel));
+            if (dotazRequest.odpoved() == null) {
+                stmt.setNull(3, Types.CLOB);
             } else {
-                return Optional.of(new Dotaz(id_dotaz, datum_podani, verejny, text, odpoved, null));
+                stmt.setString(3, dotazRequest.odpoved());
             }
 
-        } else {
-            return Optional.empty();
+            if (dotazRequest.id_odpovidajici_uzivatel() == null) {
+                stmt.setNull(4, Types.INTEGER);
+            } else {
+                stmt.setInt(4, dotazRequest.id_odpovidajici_uzivatel());
+            }
+
+            stmt.registerOutParameter(5, Types.INTEGER);
+            stmt.registerOutParameter(6, Types.INTEGER);
+            stmt.registerOutParameter(7, Types.VARCHAR);
+
+            stmt.execute();
+
+            int id_dotaz = stmt.getInt(5);
+            int status_code = stmt.getInt(6);
+            String status_message = stmt.getString(7);
+
+            if (status_code == 1) {
+                Dotaz dotaz = findById(id_dotaz).get();
+                return new Status<>(status_code, status_message, dotaz);
+            } else {
+                return new Status<>(status_code, status_message, null);
+            }
+        } catch (SQLException e) {
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
         }
     }
 
+    @Override
+    public Status<Dotaz> update(Dotaz dotazRequest) {
+        final String QUERY = "{CALL PCK_DOTAZY.PROC_UPDATE_DOTAZ(?, ?, ?, ?, ?, ?, ?, ?)}";
+
+        try {
+            Connection c = dataSource.getConnection();
+            CallableStatement stmt = c.prepareCall(QUERY);
+
+            stmt.setInt(1, dotazRequest.id_dotaz());
+            stmt.setString(2, dotazRequest.text());
+            stmt.setInt(3, dotazRequest.verejny() ? 1 : 0);
+
+            if (dotazRequest.odpoved() == null) {
+                stmt.setNull(4, Types.CLOB);
+            } else {
+                stmt.setString(4, dotazRequest.odpoved());
+            }
+
+            if (dotazRequest.id_odpovidajici_uzivatel() == null) {
+                stmt.setNull(5, Types.INTEGER);
+            } else {
+                stmt.setInt(5, dotazRequest.id_odpovidajici_uzivatel());
+            }
+
+            stmt.registerOutParameter(6, Types.INTEGER);
+            stmt.registerOutParameter(7, Types.INTEGER);
+            stmt.registerOutParameter(8, Types.VARCHAR);
+
+            stmt.execute();
+
+            int id_dotaz = stmt.getInt(6);
+            int status_code = stmt.getInt(7);
+            String status_message = stmt.getString(8);
+
+            if (status_code == 1) {
+                Dotaz dotaz = findById(id_dotaz).get();
+                return new Status<>(status_code, status_message, dotaz);
+            } else {
+                return new Status<>(status_code, status_message, null);
+            }
+        } catch (SQLException e) {
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
+        }
+    }
+
+    @Override
+    public Status<Dotaz> delete(Integer id) {
+        final String QUERY = "{CALL PCK_DOTAZY.PROC_DELETE_DOTAZ(?, ?, ?)}";
+
+        try {
+            Connection c = dataSource.getConnection();
+            CallableStatement stmt = c.prepareCall(QUERY);
+            stmt.setInt(1, id);
+            stmt.registerOutParameter(2, Types.INTEGER);
+            stmt.registerOutParameter(3, Types.VARCHAR);
+
+            stmt.execute();
+            int status_code = stmt.getInt(2);
+            String status_message = stmt.getString(3);
+
+            return new Status<>(status_code, status_message, null);
+        } catch (SQLException e) {
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
+        }
+    }
 }

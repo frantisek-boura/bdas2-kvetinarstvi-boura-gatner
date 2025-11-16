@@ -1,51 +1,51 @@
 package kvetinarstvi.backend.repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import javax.sql.DataSource;
 
-import kvetinarstvi.backend.records.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-@Service
-public class UzivatelRepository {
-    
+import kvetinarstvi.backend.records.Uzivatel;
+
+@Repository
+public class UzivatelRepository implements IRepository<Uzivatel> {
+
     @Autowired
     private DataSource dataSource;
 
-    public List<Uzivatel> findAllUzivatele() throws SQLException {
-        final String QUERY = """
-                SELECT
-                    u.id_uzivatel, u.email, u.pw_hash, u.salt,
-                    u.id_opravneni, op.nazev as nazev_opravneni, op.uroven,
-                    u.id_obrazek, o.nazev_souboru, o.data,
-                    u.id_adresa, a.cp,
-                    a.id_ulice, ul.nazev as nazev_ulice,
-                    a.id_psc, p.psc,
-                    a.id_mesto, m.nazev as nazev_mesta
-                FROM
-                    uzivatele u
-                JOIN
-                    opravneni op ON op.id_opravneni = u.id_opravneni
-                JOIN
-                    obrazky o ON o.id_obrazek = u.id_obrazek
-                JOIN
-                    adresy a ON a.id_adresa = u.id_adresa
-                JOIN
-                    ulice ul ON ul.id_ulice = a.id_ulice
-                JOIN
-                    psc p ON p.id_psc = a.id_psc
-                JOIN
-                    mesta m ON m.id_mesto = a.id_mesto
-                """;
+    @Override
+    public Optional<Uzivatel> findById(Integer ID) throws SQLException {
+        final String QUERY = "SELECT id_uzivatel, email, hash, salt, id_opravneni, id_obrazek, id_adresa FROM uzivatele WHERE id_uzivatel = ?";
+
+        Connection c = dataSource.getConnection();
+        PreparedStatement stmt = c.prepareStatement(QUERY);
+        stmt.setInt(1, ID);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            int id_uzivatel = rs.getInt("id_uzivatel");
+            String email = rs.getString("email");
+            String hash = rs.getString("hash");
+            String salt = rs.getString("salt");
+            Integer id_opravneni = rs.getInt("id_opravneni");
+            Integer id_obrazek = rs.getInt("id_obrazek");
+            Integer id_adresa = rs.getInt("id_adresa");
+
+            return Optional.of(new Uzivatel(id_uzivatel, email, hash, salt, id_opravneni, id_obrazek, id_adresa));
+        }
+
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Uzivatel> findAll() throws SQLException {
         List<Uzivatel> uzivatele = new ArrayList<>();
+        final String QUERY = "SELECT id_uzivatel, email, hash, salt, id_opravneni, id_obrazek, id_adresa FROM uzivatele";
 
         Connection c = dataSource.getConnection();
         PreparedStatement stmt = c.prepareStatement(QUERY);
@@ -54,152 +54,103 @@ public class UzivatelRepository {
         while (rs.next()) {
             int id_uzivatel = rs.getInt("id_uzivatel");
             String email = rs.getString("email");
-            String pw_hash = rs.getString("pw_hash");
+            String hash = rs.getString("hash");
             String salt = rs.getString("salt");
-            int id_opravneni = rs.getInt("id_opravneni");
-            String nazev_opravneni = rs.getString("nazev_opravneni");
-            int uroven = rs.getInt("uroven");
-            int id_obrazek = rs.getInt("id_obrazek");
-            String nazev_souboru = rs.getString("nazev_souboru");
-            byte[] data = rs.getBytes("data");
-            int id_adresa = rs.getInt("id_adresa");
-            int cp = rs.getInt("cp");
-            int id_ulice = rs.getInt("id_ulice");
-            String nazev_ulice = rs.getString("nazev_ulice");
-            int id_psc = rs.getInt("id_psc");
-            String psc = rs.getString("psc");
-            int id_mesto = rs.getInt("id_mesto");
-            String nazev_mesta = rs.getString("nazev_mesta");
+            Integer id_opravneni = rs.getInt("id_opravneni");
+            Integer id_obrazek = rs.getInt("id_obrazek");
+            Integer id_adresa = rs.getInt("id_adresa");
 
-            Uzivatel uzivatel = new Uzivatel(
-                    id_uzivatel,
-                    email,
-                    pw_hash,
-                    salt,
-                    new Opravneni(
-                            id_opravneni,
-                            nazev_opravneni,
-                            uroven
-                    ),
-                    new Obrazek(
-                            id_obrazek,
-                            nazev_souboru,
-                            data
-                    ),
-                    new Adresa(
-                            id_adresa,
-                            cp,
-                            new Mesto(
-                                    id_mesto,
-                                    nazev_mesta
-                            ),
-                            new Ulice(
-                                    id_ulice,
-                                    nazev_ulice
-                            ),
-                            new PSC(
-                                    id_psc,
-                                    psc
-                            )
-                    )
-            );
-
-            uzivatele.add(uzivatel);
+            uzivatele.add(new Uzivatel(id_uzivatel, email, hash, salt, id_opravneni, id_obrazek, id_adresa));
         }
 
         return uzivatele;
     }
 
-    public Optional<Uzivatel> findUzivatelById(Integer id) throws SQLException {
-        final String QUERY = """
-                SELECT
-                    u.id_uzivatel, u.email, u.pw_hash, u.salt,
-                    u.id_opravneni, op.nazev as nazev_opravneni, op.uroven,
-                    u.id_obrazek, o.nazev_souboru, o.data,
-                    u.id_adresa, a.cp,
-                    a.id_ulice, ul.nazev as nazev_ulice,
-                    a.id_psc, p.psc,
-                    a.id_mesto, m.nazev as nazev_mesta
-                FROM
-                    uzivatele u
-                JOIN
-                    opravneni op ON op.id_opravneni = u.id_opravneni
-                JOIN
-                    obrazky o ON o.id_obrazek = u.id_obrazek
-                JOIN
-                    adresy a ON a.id_adresa = u.id_adresa
-                JOIN
-                    ulice ul ON ul.id_ulice = a.id_ulice
-                JOIN
-                    psc p ON p.id_psc = a.id_psc
-                JOIN
-                    mesta m ON m.id_mesto = a.id_mesto
-                WHERE
-                    u.id_uzivatel = ?
-                """;
+    @Override
+    public Status<Uzivatel> insert(Uzivatel uzivatelRequest) {
+        final String QUERY = "{CALL PCK_UZIVATELE.PROC_INSERT_UZIVATEL(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        stmt.setInt(1, id);
+        try {
+            Connection c = dataSource.getConnection();
+            CallableStatement stmt = c.prepareCall(QUERY);
+            stmt.setString(1, uzivatelRequest.email());
+            stmt.setString(2, uzivatelRequest.hash());
+            stmt.setString(3, uzivatelRequest.salt());
+            stmt.setInt(4, uzivatelRequest.id_opravneni());
+            stmt.setInt(5, uzivatelRequest.id_obrazek());
+            stmt.setInt(6, uzivatelRequest.id_adresa());
+            stmt.registerOutParameter(7, Types.INTEGER);
+            stmt.registerOutParameter(8, Types.INTEGER);
+            stmt.registerOutParameter(9, Types.VARCHAR);
 
-        ResultSet rs = stmt.executeQuery();
+            stmt.execute();
+            int id_uzivatel = stmt.getInt(7);
+            int status_code = stmt.getInt(8);
+            String status_message = stmt.getString(9);
 
-        if (rs.next()) {
-            int id_uzivatel = rs.getInt("id_uzivatel");
-            String email = rs.getString("email");
-            String pw_hash = rs.getString("pw_hash");
-            String salt = rs.getString("salt");
-            int id_opravneni = rs.getInt("id_opravneni");
-            String nazev_opravneni = rs.getString("nazev_opravneni");
-            int uroven = rs.getInt("uroven");
-            int id_obrazek = rs.getInt("id_obrazek");
-            String nazev_souboru = rs.getString("nazev_souboru");
-            byte[] data = rs.getBytes("data");
-            int id_adresa = rs.getInt("id_adresa");
-            int cp = rs.getInt("cp");
-            int id_ulice = rs.getInt("id_ulice");
-            String nazev_ulice = rs.getString("nazev_ulice");
-            int id_psc = rs.getInt("id_psc");
-            String psc = rs.getString("psc");
-            int id_mesto = rs.getInt("id_mesto");
-            String nazev_mesta = rs.getString("nazev_mesta");
-
-            return Optional.of(new Uzivatel(
-                    id_uzivatel,
-                    email,
-                    pw_hash,
-                    salt,
-                    new Opravneni(
-                            id_opravneni,
-                            nazev_opravneni,
-                            uroven
-                    ),
-                    new Obrazek(
-                            id_obrazek,
-                            nazev_souboru,
-                            data
-                    ),
-                    new Adresa(
-                            id_adresa,
-                            cp,
-                            new Mesto(
-                                    id_mesto,
-                                    nazev_mesta
-                            ),
-                            new Ulice(
-                                    id_ulice,
-                                    nazev_ulice
-                            ),
-                            new PSC(
-                                    id_psc,
-                                    psc
-                            )
-                    )
-            ));
-        } else {
-            return Optional.empty();
+            if (status_code == 1) {
+                Uzivatel uzivatel = findById(id_uzivatel).get();
+                return new Status<>(status_code, status_message, uzivatel);
+            } else {
+                return new Status<>(status_code, status_message, null);
+            }
+        } catch (SQLException e) {
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
         }
     }
 
+    @Override
+    public Status<Uzivatel> update(Uzivatel uzivatelRequest) {
+        final String QUERY = "{CALL PCK_UZIVATELE.PROC_UPDATE_UZIVATEL(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 
+        try {
+            Connection c = dataSource.getConnection();
+            CallableStatement stmt = c.prepareCall(QUERY);
+            stmt.setInt(1, uzivatelRequest.id_uzivatel());
+            stmt.setString(2, uzivatelRequest.email());
+            stmt.setString(3, uzivatelRequest.hash());
+            stmt.setString(4, uzivatelRequest.salt());
+            stmt.setInt(5, uzivatelRequest.id_opravneni());
+            stmt.setInt(6, uzivatelRequest.id_obrazek());
+            stmt.setInt(7, uzivatelRequest.id_adresa());
+            stmt.registerOutParameter(8, Types.INTEGER);
+            stmt.registerOutParameter(9, Types.INTEGER);
+            stmt.registerOutParameter(10, Types.VARCHAR);
+
+            stmt.execute();
+            int id_uzivatel = stmt.getInt(8);
+            int status_code = stmt.getInt(9);
+            String status_message = stmt.getString(10);
+
+            if (status_code == 1) {
+                Uzivatel uzivatel = findById(id_uzivatel).get();
+                return new Status<>(status_code, status_message, uzivatel);
+            } else {
+                return new Status<>(status_code, status_message, null);
+            }
+        } catch (SQLException e) {
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
+        }
+    }
+
+    @Override
+    public Status<Uzivatel> delete(Integer id) {
+        final String QUERY = "{CALL PCK_UZIVATELE.PROC_DELETE_UZIVATEL(?, ?, ?)}";
+
+        try {
+            Connection c = dataSource.getConnection();
+            CallableStatement stmt = c.prepareCall(QUERY);
+            stmt.setInt(1, id);
+            stmt.registerOutParameter(2, Types.INTEGER);
+            stmt.registerOutParameter(3, Types.VARCHAR);
+
+            stmt.execute();
+            int status_code = stmt.getInt(2);
+            String status_message = stmt.getString(3);
+
+            return new Status<>(status_code, status_message, null);
+        } catch (SQLException e) {
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
+        }
+    }
 }

@@ -2,26 +2,43 @@ package kvetinarstvi.backend.repository;
 
 import kvetinarstvi.backend.records.StavObjednavky;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class StavObjednavkyRepository {
+@Repository
+public class StavObjednavkyRepository implements IRepository<StavObjednavky> {
 
     @Autowired
     private DataSource dataSource;
 
-    public List<StavObjednavky> findAllStavyObjednavek() throws SQLException {
-        final String QUERY = "SELECT id_stav_objednavky, nazev FROM stavyobjednavek";
+    @Override
+    public Optional<StavObjednavky> findById(Integer ID) throws SQLException {
+        final String QUERY = "SELECT id_stav_objednavky, nazev FROM stavyobjednavek WHERE id_stav_objednavky = ?";
+
+        Connection c = dataSource.getConnection();
+        PreparedStatement stmt = c.prepareStatement(QUERY);
+        stmt.setInt(1, ID);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            int id_stav_objednavky = rs.getInt("id_stav_objednavky");
+            String nazev = rs.getString("nazev");
+
+            return Optional.of(new StavObjednavky(id_stav_objednavky, nazev));
+        }
+
+        return Optional.empty();
+    }
+
+    @Override
+    public List<StavObjednavky> findAll() throws SQLException {
         List<StavObjednavky> stavyObjednavek = new ArrayList<>();
+        final String QUERY = "SELECT id_stav_objednavky, nazev FROM stavyobjednavek";
 
         Connection c = dataSource.getConnection();
         PreparedStatement stmt = c.prepareStatement(QUERY);
@@ -37,23 +54,81 @@ public class StavObjednavkyRepository {
         return stavyObjednavek;
     }
 
-    public Optional<StavObjednavky> findStavObjednavkyById(Integer id) throws SQLException {
-        final String QUERY = "SELECT id_stav_objednavky, nazev FROM stavyobjednavek WHERE id_stav_objednavky = ?";
+    @Override
+    public Status<StavObjednavky> insert(StavObjednavky stavObjednavkyRequest) {
+        final String QUERY = "{CALL PCK_STAVYOBJEDNAVEK.PROC_INSERT_STAV(?, ?, ?, ?)}";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        stmt.setInt(1, id);
+        try {
+            Connection c = dataSource.getConnection();
+            CallableStatement stmt = c.prepareCall(QUERY);
+            stmt.setString(1, stavObjednavkyRequest.nazev());
+            stmt.registerOutParameter(2, Types.INTEGER);
+            stmt.registerOutParameter(3, Types.INTEGER);
+            stmt.registerOutParameter(4, Types.VARCHAR);
 
-        ResultSet rs = stmt.executeQuery();
+            stmt.execute();
+            int id_stav_objednavky = stmt.getInt(2);
+            int status_code = stmt.getInt(3);
+            String status_message = stmt.getString(4);
 
-        if (rs.next()) {
-            int id_stav_objednavky = rs.getInt("id_stav_objednavky");
-            String nazev = rs.getString("nazev");
-
-            return Optional.of(new StavObjednavky(id_stav_objednavky, nazev));
-        } else {
-            return Optional.empty();
+            if (status_code == 1) {
+                StavObjednavky stav = findById(id_stav_objednavky).get();
+                return new Status<>(status_code, status_message, stav);
+            } else {
+                return new Status<>(status_code, status_message, null);
+            }
+        } catch (SQLException e) {
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
         }
     }
 
+    @Override
+    public Status<StavObjednavky> update(StavObjednavky stavObjednavkyRequest) {
+        final String QUERY = "{CALL PCK_STAVYOBJEDNAVEK.PROC_UPDATE_STAV(?, ?, ?, ?, ?)}";
+
+        try {
+            Connection c = dataSource.getConnection();
+            CallableStatement stmt = c.prepareCall(QUERY);
+            stmt.setInt(1, stavObjednavkyRequest.id_stav_objednavky());
+            stmt.setString(2, stavObjednavkyRequest.nazev());
+            stmt.registerOutParameter(3, Types.INTEGER);
+            stmt.registerOutParameter(4, Types.INTEGER);
+            stmt.registerOutParameter(5, Types.VARCHAR);
+
+            stmt.execute();
+            int id_stav_objednavky = stmt.getInt(3);
+            int status_code = stmt.getInt(4);
+            String status_message = stmt.getString(5);
+
+            if (status_code == 1) {
+                StavObjednavky stav = findById(id_stav_objednavky).get();
+                return new Status<>(status_code, status_message, stav);
+            } else {
+                return new Status<>(status_code, status_message, null);
+            }
+        } catch (SQLException e) {
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
+        }
+    }
+
+    @Override
+    public Status<StavObjednavky> delete(Integer id) {
+        final String QUERY = "{CALL PCK_STAVYOBJEDNAVEK.PROC_DELETE_STAV(?, ?, ?)}";
+
+        try {
+            Connection c = dataSource.getConnection();
+            CallableStatement stmt = c.prepareCall(QUERY);
+            stmt.setInt(1, id);
+            stmt.registerOutParameter(2, Types.INTEGER);
+            stmt.registerOutParameter(3, Types.VARCHAR);
+
+            stmt.execute();
+            int status_code = stmt.getInt(2);
+            String status_message = stmt.getString(3);
+
+            return new Status<>(status_code, status_message, null);
+        } catch (SQLException e) {
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
+        }
+    }
 }
