@@ -24,26 +24,29 @@ public class DotazRepository implements IRepository<Dotaz> {
     public Optional<Dotaz> findById(Integer ID) throws SQLException {
         final String QUERY = "SELECT id_dotaz, datum_podani, verejny, text, odpoved, id_odpovidajici_uzivatel FROM dotazy WHERE id_dotaz = ?";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        stmt.setInt(1, ID);
-        ResultSet rs = stmt.executeQuery();
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY)
+        ) {
+            stmt.setInt(1, ID);
+            try (ResultSet rs = stmt.executeQuery()) {
 
-        if (rs.next()) {
-            int id_dotaz = rs.getInt("id_dotaz");
-            Timestamp timestamp = rs.getTimestamp("datum_podani");
-            ZonedDateTime datum_podani = timestamp != null
-                    ? timestamp.toLocalDateTime().atZone(ZoneId.systemDefault())
-                    : null;
+                if (rs.next()) {
+                    int id_dotaz = rs.getInt("id_dotaz");
+                    Timestamp timestamp = rs.getTimestamp("datum_podani");
+                    ZonedDateTime datum_podani = timestamp != null
+                            ? timestamp.toLocalDateTime().atZone(ZoneId.systemDefault())
+                            : null;
 
-            boolean verejny = rs.getBoolean("verejny");
-            String text = rs.getString("text");
-            String odpoved = rs.getString("odpoved");
+                    boolean verejny = rs.getBoolean("verejny");
+                    String text = rs.getString("text");
+                    String odpoved = rs.getString("odpoved");
 
-            int id_odpovidajici_uzivatel = rs.getInt("id_odpovidajici_uzivatel");
-            Integer id_uzivatel = rs.wasNull() ? null : id_odpovidajici_uzivatel;
+                    int id_odpovidajici_uzivatel = rs.getInt("id_odpovidajici_uzivatel");
+                    Integer id_uzivatel = rs.wasNull() ? null : id_odpovidajici_uzivatel;
 
-            return Optional.of(new Dotaz(id_dotaz, datum_podani, verejny, text, odpoved, id_uzivatel));
+                    return Optional.of(new Dotaz(id_dotaz, datum_podani, verejny, text, odpoved, id_uzivatel));
+                }
+            }
         }
 
         return Optional.empty();
@@ -54,25 +57,26 @@ public class DotazRepository implements IRepository<Dotaz> {
         List<Dotaz> dotazy = new ArrayList<>();
         final String QUERY = "SELECT id_dotaz, datum_podani, verejny, text, odpoved, id_odpovidajici_uzivatel FROM dotazy";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        ResultSet rs = stmt.executeQuery();
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY);
+             ResultSet rs = stmt.executeQuery()
+        ) {
+            while (rs.next()) {
+                int id_dotaz = rs.getInt("id_dotaz");
+                Timestamp timestamp = rs.getTimestamp("datum_podani");
+                ZonedDateTime datum_podani = timestamp != null
+                        ? timestamp.toLocalDateTime().atZone(ZoneId.systemDefault())
+                        : null;
 
-        while (rs.next()) {
-            int id_dotaz = rs.getInt("id_dotaz");
-            Timestamp timestamp = rs.getTimestamp("datum_podani");
-            ZonedDateTime datum_podani = timestamp != null
-                    ? timestamp.toLocalDateTime().atZone(ZoneId.systemDefault())
-                    : null;
+                boolean verejny = rs.getBoolean("verejny");
+                String text = rs.getString("text");
+                String odpoved = rs.getString("odpoved");
 
-            boolean verejny = rs.getBoolean("verejny");
-            String text = rs.getString("text");
-            String odpoved = rs.getString("odpoved");
+                int id_odpovidajici_uzivatel = rs.getInt("id_odpovidajici_uzivatel");
+                Integer id_uzivatel = rs.wasNull() ? null : id_odpovidajici_uzivatel;
 
-            int id_odpovidajici_uzivatel = rs.getInt("id_odpovidajici_uzivatel");
-            Integer id_uzivatel = rs.wasNull() ? null : id_odpovidajici_uzivatel;
-
-            dotazy.add(new Dotaz(id_dotaz, datum_podani, verejny, text, odpoved, id_uzivatel));
+                dotazy.add(new Dotaz(id_dotaz, datum_podani, verejny, text, odpoved, id_uzivatel));
+            }
         }
 
         return dotazy;
@@ -82,10 +86,9 @@ public class DotazRepository implements IRepository<Dotaz> {
     public Status<Dotaz> insert(Dotaz dotazRequest) {
         final String QUERY = "{CALL PCK_DOTAZY.PROC_INSERT_DOTAZ(?, ?, ?, ?, ?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
-
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)
+        ) {
             stmt.setString(1, dotazRequest.text());
             stmt.setInt(2, dotazRequest.verejny() ? 1 : 0);
 
@@ -112,8 +115,12 @@ public class DotazRepository implements IRepository<Dotaz> {
             String status_message = stmt.getString(7);
 
             if (status_code == 1) {
-                Dotaz dotaz = findById(id_dotaz).get();
-                return new Status<>(status_code, status_message, dotaz);
+                try {
+                    Dotaz dotaz = findById(id_dotaz).get();
+                    return new Status<>(status_code, status_message, dotaz);
+                } catch (SQLException e) {
+                    return new Status<>(-998, "Chyba při dohledání vloženého dotazu: " + e.getMessage(), null);
+                }
             } else {
                 return new Status<>(status_code, status_message, null);
             }
@@ -126,10 +133,9 @@ public class DotazRepository implements IRepository<Dotaz> {
     public Status<Dotaz> update(Dotaz dotazRequest) {
         final String QUERY = "{CALL PCK_DOTAZY.PROC_UPDATE_DOTAZ(?, ?, ?, ?, ?, ?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
-
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)
+        ) {
             stmt.setInt(1, dotazRequest.id_dotaz());
             stmt.setString(2, dotazRequest.text());
             stmt.setInt(3, dotazRequest.verejny() ? 1 : 0);
@@ -157,8 +163,12 @@ public class DotazRepository implements IRepository<Dotaz> {
             String status_message = stmt.getString(8);
 
             if (status_code == 1) {
-                Dotaz dotaz = findById(id_dotaz).get();
-                return new Status<>(status_code, status_message, dotaz);
+                try {
+                    Dotaz dotaz = findById(id_dotaz).get();
+                    return new Status<>(status_code, status_message, dotaz);
+                } catch (SQLException e) {
+                    return new Status<>(-998, "Chyba při dohledání aktualizovaného dotazu: " + e.getMessage(), null);
+                }
             } else {
                 return new Status<>(status_code, status_message, null);
             }
@@ -171,9 +181,9 @@ public class DotazRepository implements IRepository<Dotaz> {
     public Status<Dotaz> delete(Integer id) {
         final String QUERY = "{CALL PCK_DOTAZY.PROC_DELETE_DOTAZ(?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)
+        ) {
             stmt.setInt(1, id);
             stmt.registerOutParameter(2, Types.INTEGER);
             stmt.registerOutParameter(3, Types.VARCHAR);

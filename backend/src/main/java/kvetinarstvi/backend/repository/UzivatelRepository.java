@@ -22,21 +22,24 @@ public class UzivatelRepository implements IRepository<Uzivatel> {
     public Optional<Uzivatel> findById(Integer ID) throws SQLException {
         final String QUERY = "SELECT id_uzivatel, email, hash, salt, id_opravneni, id_obrazek, id_adresa FROM uzivatele WHERE id_uzivatel = ?";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        stmt.setInt(1, ID);
-        ResultSet rs = stmt.executeQuery();
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY)) {
 
-        if (rs.next()) {
-            int id_uzivatel = rs.getInt("id_uzivatel");
-            String email = rs.getString("email");
-            String hash = rs.getString("hash");
-            String salt = rs.getString("salt");
-            Integer id_opravneni = rs.getInt("id_opravneni");
-            Integer id_obrazek = rs.getInt("id_obrazek");
-            Integer id_adresa = rs.getInt("id_adresa");
+            stmt.setInt(1, ID);
+            try (ResultSet rs = stmt.executeQuery()) {
 
-            return Optional.of(new Uzivatel(id_uzivatel, email, hash, salt, id_opravneni, id_obrazek, id_adresa));
+                if (rs.next()) {
+                    int id_uzivatel = rs.getInt("id_uzivatel");
+                    String email = rs.getString("email");
+                    String hash = rs.getString("hash");
+                    String salt = rs.getString("salt");
+                    Integer id_opravneni = rs.getInt("id_opravneni");
+                    Integer id_obrazek = rs.getInt("id_obrazek");
+                    Integer id_adresa = rs.getInt("id_adresa");
+
+                    return Optional.of(new Uzivatel(id_uzivatel, email, hash, salt, id_opravneni, id_obrazek, id_adresa));
+                }
+            }
         }
 
         return Optional.empty();
@@ -47,20 +50,21 @@ public class UzivatelRepository implements IRepository<Uzivatel> {
         List<Uzivatel> uzivatele = new ArrayList<>();
         final String QUERY = "SELECT id_uzivatel, email, hash, salt, id_opravneni, id_obrazek, id_adresa FROM uzivatele";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        ResultSet rs = stmt.executeQuery();
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY);
+             ResultSet rs = stmt.executeQuery()) {
 
-        while (rs.next()) {
-            int id_uzivatel = rs.getInt("id_uzivatel");
-            String email = rs.getString("email");
-            String hash = rs.getString("hash");
-            String salt = rs.getString("salt");
-            Integer id_opravneni = rs.getInt("id_opravneni");
-            Integer id_obrazek = rs.getInt("id_obrazek");
-            Integer id_adresa = rs.getInt("id_adresa");
+            while (rs.next()) {
+                int id_uzivatel = rs.getInt("id_uzivatel");
+                String email = rs.getString("email");
+                String hash = rs.getString("hash");
+                String salt = rs.getString("salt");
+                Integer id_opravneni = rs.getInt("id_opravneni");
+                Integer id_obrazek = rs.getInt("id_obrazek");
+                Integer id_adresa = rs.getInt("id_adresa");
 
-            uzivatele.add(new Uzivatel(id_uzivatel, email, hash, salt, id_opravneni, id_obrazek, id_adresa));
+                uzivatele.add(new Uzivatel(id_uzivatel, email, hash, salt, id_opravneni, id_obrazek, id_adresa));
+            }
         }
 
         return uzivatele;
@@ -70,9 +74,9 @@ public class UzivatelRepository implements IRepository<Uzivatel> {
     public Status<Uzivatel> insert(Uzivatel uzivatelRequest) {
         final String QUERY = "{CALL PCK_UZIVATELE.PROC_INSERT_UZIVATEL(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
+
             stmt.setString(1, uzivatelRequest.email());
             stmt.setString(2, uzivatelRequest.hash());
             stmt.setString(3, uzivatelRequest.salt());
@@ -89,8 +93,12 @@ public class UzivatelRepository implements IRepository<Uzivatel> {
             String status_message = stmt.getString(9);
 
             if (status_code == 1) {
-                Uzivatel uzivatel = findById(id_uzivatel).get();
-                return new Status<>(status_code, status_message, uzivatel);
+                try {
+                    Uzivatel uzivatel = findById(id_uzivatel).get();
+                    return new Status<>(status_code, status_message, uzivatel);
+                } catch (SQLException e) {
+                    return new Status<>(-998, "Chyba při dohledání vloženého uživatele: " + e.getMessage(), null);
+                }
             } else {
                 return new Status<>(status_code, status_message, null);
             }
@@ -103,9 +111,9 @@ public class UzivatelRepository implements IRepository<Uzivatel> {
     public Status<Uzivatel> update(Uzivatel uzivatelRequest) {
         final String QUERY = "{CALL PCK_UZIVATELE.PROC_UPDATE_UZIVATEL(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
+
             stmt.setInt(1, uzivatelRequest.id_uzivatel());
             stmt.setString(2, uzivatelRequest.email());
             stmt.setString(3, uzivatelRequest.hash());
@@ -123,8 +131,12 @@ public class UzivatelRepository implements IRepository<Uzivatel> {
             String status_message = stmt.getString(10);
 
             if (status_code == 1) {
-                Uzivatel uzivatel = findById(id_uzivatel).get();
-                return new Status<>(status_code, status_message, uzivatel);
+                try {
+                    Uzivatel uzivatel = findById(id_uzivatel).get();
+                    return new Status<>(status_code, status_message, uzivatel);
+                } catch (SQLException e) {
+                    return new Status<>(-998, "Chyba při dohledání aktualizovaného uživatele: " + e.getMessage(), null);
+                }
             } else {
                 return new Status<>(status_code, status_message, null);
             }
@@ -137,9 +149,9 @@ public class UzivatelRepository implements IRepository<Uzivatel> {
     public Status<Uzivatel> delete(Integer id) {
         final String QUERY = "{CALL PCK_UZIVATELE.PROC_DELETE_UZIVATEL(?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
+
             stmt.setInt(1, id);
             stmt.registerOutParameter(2, Types.INTEGER);
             stmt.registerOutParameter(3, Types.VARCHAR);

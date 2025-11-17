@@ -20,16 +20,18 @@ public class StavObjednavkyRepository implements IRepository<StavObjednavky> {
     public Optional<StavObjednavky> findById(Integer ID) throws SQLException {
         final String QUERY = "SELECT id_stav_objednavky, nazev FROM stavyobjednavek WHERE id_stav_objednavky = ?";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        stmt.setInt(1, ID);
-        ResultSet rs = stmt.executeQuery();
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY)) {
 
-        if (rs.next()) {
-            int id_stav_objednavky = rs.getInt("id_stav_objednavky");
-            String nazev = rs.getString("nazev");
+            stmt.setInt(1, ID);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    int id_stav_objednavky = rs.getInt("id_stav_objednavky");
+                    String nazev = rs.getString("nazev");
 
-            return Optional.of(new StavObjednavky(id_stav_objednavky, nazev));
+                    return Optional.of(new StavObjednavky(id_stav_objednavky, nazev));
+                }
+            }
         }
 
         return Optional.empty();
@@ -40,15 +42,16 @@ public class StavObjednavkyRepository implements IRepository<StavObjednavky> {
         List<StavObjednavky> stavyObjednavek = new ArrayList<>();
         final String QUERY = "SELECT id_stav_objednavky, nazev FROM stavyobjednavek";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        ResultSet rs = stmt.executeQuery();
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY);
+             ResultSet rs = stmt.executeQuery()) {
 
-        while (rs.next()) {
-            int id_stav_objednavky = rs.getInt("id_stav_objednavky");
-            String nazev = rs.getString("nazev");
+            while (rs.next()) {
+                int id_stav_objednavky = rs.getInt("id_stav_objednavky");
+                String nazev = rs.getString("nazev");
 
-            stavyObjednavek.add(new StavObjednavky(id_stav_objednavky, nazev));
+                stavyObjednavek.add(new StavObjednavky(id_stav_objednavky, nazev));
+            }
         }
 
         return stavyObjednavek;
@@ -58,9 +61,9 @@ public class StavObjednavkyRepository implements IRepository<StavObjednavky> {
     public Status<StavObjednavky> insert(StavObjednavky stavObjednavkyRequest) {
         final String QUERY = "{CALL PCK_STAVYOBJEDNAVEK.PROC_INSERT_STAV(?, ?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
+
             stmt.setString(1, stavObjednavkyRequest.nazev());
             stmt.registerOutParameter(2, Types.INTEGER);
             stmt.registerOutParameter(3, Types.INTEGER);
@@ -72,8 +75,12 @@ public class StavObjednavkyRepository implements IRepository<StavObjednavky> {
             String status_message = stmt.getString(4);
 
             if (status_code == 1) {
-                StavObjednavky stav = findById(id_stav_objednavky).get();
-                return new Status<>(status_code, status_message, stav);
+                try {
+                    StavObjednavky stav = findById(id_stav_objednavky).get();
+                    return new Status<>(status_code, status_message, stav);
+                } catch (SQLException e) {
+                    return new Status<>(-998, "Chyba při dohledání vloženého stavu objednávky: " + e.getMessage(), null);
+                }
             } else {
                 return new Status<>(status_code, status_message, null);
             }
@@ -86,9 +93,9 @@ public class StavObjednavkyRepository implements IRepository<StavObjednavky> {
     public Status<StavObjednavky> update(StavObjednavky stavObjednavkyRequest) {
         final String QUERY = "{CALL PCK_STAVYOBJEDNAVEK.PROC_UPDATE_STAV(?, ?, ?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
+
             stmt.setInt(1, stavObjednavkyRequest.id_stav_objednavky());
             stmt.setString(2, stavObjednavkyRequest.nazev());
             stmt.registerOutParameter(3, Types.INTEGER);
@@ -101,8 +108,12 @@ public class StavObjednavkyRepository implements IRepository<StavObjednavky> {
             String status_message = stmt.getString(5);
 
             if (status_code == 1) {
-                StavObjednavky stav = findById(id_stav_objednavky).get();
-                return new Status<>(status_code, status_message, stav);
+                try {
+                    StavObjednavky stav = findById(id_stav_objednavky).get();
+                    return new Status<>(status_code, status_message, stav);
+                } catch (SQLException e) {
+                    return new Status<>(-998, "Chyba při dohledání aktualizovaného stavu objednávky: " + e.getMessage(), null);
+                }
             } else {
                 return new Status<>(status_code, status_message, null);
             }
@@ -115,9 +126,9 @@ public class StavObjednavkyRepository implements IRepository<StavObjednavky> {
     public Status<StavObjednavky> delete(Integer id) {
         final String QUERY = "{CALL PCK_STAVYOBJEDNAVEK.PROC_DELETE_STAV(?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
+
             stmt.setInt(1, id);
             stmt.registerOutParameter(2, Types.INTEGER);
             stmt.registerOutParameter(3, Types.VARCHAR);

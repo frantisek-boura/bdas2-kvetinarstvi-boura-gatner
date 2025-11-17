@@ -20,16 +20,18 @@ public class ZpusobPlatbyRepository implements IRepository<ZpusobPlatby> {
     public Optional<ZpusobPlatby> findById(Integer ID) throws SQLException {
         final String QUERY = "SELECT id_zpusob_platby, nazev FROM zpusobyplateb WHERE id_zpusob_platby = ?";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        stmt.setInt(1, ID);
-        ResultSet rs = stmt.executeQuery();
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY)) {
 
-        if (rs.next()) {
-            int id_zpusob_platby = rs.getInt("id_zpusob_platby");
-            String nazev = rs.getString("nazev");
+            stmt.setInt(1, ID);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    int id_zpusob_platby = rs.getInt("id_zpusob_platby");
+                    String nazev = rs.getString("nazev");
 
-            return Optional.of(new ZpusobPlatby(id_zpusob_platby, nazev));
+                    return Optional.of(new ZpusobPlatby(id_zpusob_platby, nazev));
+                }
+            }
         }
 
         return Optional.empty();
@@ -40,15 +42,16 @@ public class ZpusobPlatbyRepository implements IRepository<ZpusobPlatby> {
         List<ZpusobPlatby> zpusobyplateb = new ArrayList<>();
         final String QUERY = "SELECT id_zpusob_platby, nazev FROM zpusobyplateb";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        ResultSet rs = stmt.executeQuery();
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY);
+             ResultSet rs = stmt.executeQuery()) {
 
-        while (rs.next()) {
-            int id_zpusob_platby = rs.getInt("id_zpusob_platby");
-            String nazev = rs.getString("nazev");
+            while (rs.next()) {
+                int id_zpusob_platby = rs.getInt("id_zpusob_platby");
+                String nazev = rs.getString("nazev");
 
-            zpusobyplateb.add(new ZpusobPlatby(id_zpusob_platby, nazev));
+                zpusobyplateb.add(new ZpusobPlatby(id_zpusob_platby, nazev));
+            }
         }
 
         return zpusobyplateb;
@@ -58,9 +61,9 @@ public class ZpusobPlatbyRepository implements IRepository<ZpusobPlatby> {
     public Status<ZpusobPlatby> insert(ZpusobPlatby zpusobPlatbyRequest) {
         final String QUERY = "{CALL PCK_PLATBY.PROC_INSERT_PLATBA(?, ?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
+
             stmt.setString(1, zpusobPlatbyRequest.nazev());
             stmt.registerOutParameter(2, Types.INTEGER);
             stmt.registerOutParameter(3, Types.INTEGER);
@@ -72,8 +75,12 @@ public class ZpusobPlatbyRepository implements IRepository<ZpusobPlatby> {
             String status_message = stmt.getString(4);
 
             if (status_code == 1) {
-                ZpusobPlatby platba = findById(id_zpusob_platby).get();
-                return new Status<>(status_code, status_message, platba);
+                try {
+                    ZpusobPlatby platba = findById(id_zpusob_platby).get();
+                    return new Status<>(status_code, status_message, platba);
+                } catch (SQLException e) {
+                    return new Status<>(-998, "Chyba při dohledání vloženého způsobu platby: " + e.getMessage(), null);
+                }
             } else {
                 return new Status<>(status_code, status_message, null);
             }
@@ -86,9 +93,9 @@ public class ZpusobPlatbyRepository implements IRepository<ZpusobPlatby> {
     public Status<ZpusobPlatby> update(ZpusobPlatby zpusobPlatbyRequest) {
         final String QUERY = "{CALL PCK_PLATBY.PROC_UPDATE_PLATBA(?, ?, ?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
+
             stmt.setInt(1, zpusobPlatbyRequest.id_zpusob_platby());
             stmt.setString(2, zpusobPlatbyRequest.nazev());
             stmt.registerOutParameter(3, Types.INTEGER);
@@ -101,8 +108,12 @@ public class ZpusobPlatbyRepository implements IRepository<ZpusobPlatby> {
             String status_message = stmt.getString(5);
 
             if (status_code == 1) {
-                ZpusobPlatby platba = findById(id_zpusob_platby).get();
-                return new Status<>(status_code, status_message, platba);
+                try {
+                    ZpusobPlatby platba = findById(id_zpusob_platby).get();
+                    return new Status<>(status_code, status_message, platba);
+                } catch (SQLException e) {
+                    return new Status<>(-998, "Chyba při dohledání aktualizovaného způsobu platby: " + e.getMessage(), null);
+                }
             } else {
                 return new Status<>(status_code, status_message, null);
             }
@@ -115,9 +126,9 @@ public class ZpusobPlatbyRepository implements IRepository<ZpusobPlatby> {
     public Status<ZpusobPlatby> delete(Integer id) {
         final String QUERY = "{CALL PCK_PLATBY.PROC_DELETE_PLATBA(?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
+
             stmt.setInt(1, id);
             stmt.registerOutParameter(2, Types.INTEGER);
             stmt.registerOutParameter(3, Types.VARCHAR);

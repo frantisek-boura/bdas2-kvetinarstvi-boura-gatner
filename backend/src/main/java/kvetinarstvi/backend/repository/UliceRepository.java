@@ -14,7 +14,7 @@ import kvetinarstvi.backend.records.Ulice;
 
 @Repository
 public class UliceRepository implements IRepository<Ulice> {
-    
+
     @Autowired
     private DataSource dataSource;
 
@@ -23,16 +23,17 @@ public class UliceRepository implements IRepository<Ulice> {
         final String QUERY = "SELECT id_ulice, nazev FROM ulice";
         List<Ulice> ulice = new ArrayList<>();
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);        
-        ResultSet rs = stmt.executeQuery();
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY);
+             ResultSet rs = stmt.executeQuery()) {
 
-        while (rs.next()) {
-            int id_ulice = rs.getInt("id_ulice");
-            String nazev = rs.getString("nazev");
+            while (rs.next()) {
+                int id_ulice = rs.getInt("id_ulice");
+                String nazev = rs.getString("nazev");
 
-            ulice.add(new Ulice(id_ulice, nazev));
-        } 
+                ulice.add(new Ulice(id_ulice, nazev));
+            }
+        }
 
         return ulice;
     }
@@ -41,29 +42,31 @@ public class UliceRepository implements IRepository<Ulice> {
     public Optional<Ulice> findById(Integer id) throws SQLException {
         final String QUERY = "SELECT id_ulice, nazev FROM ulice WHERE id_ulice = ?";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);        
-        stmt.setInt(1, id);
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY)) {
 
-        ResultSet rs = stmt.executeQuery();
+            stmt.setInt(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
 
-        if (rs.next()) {
-            int id_ulice = rs.getInt("id_ulice");
-            String nazev = rs.getString("nazev");
+                if (rs.next()) {
+                    int id_ulice = rs.getInt("id_ulice");
+                    String nazev = rs.getString("nazev");
 
-            return Optional.of(new Ulice(id_ulice, nazev));
-        } else {
-            return Optional.empty();
+                    return Optional.of(new Ulice(id_ulice, nazev));
+                }
+            }
         }
+
+        return Optional.empty();
     }
 
     @Override
     public Status<Ulice> insert(Ulice uliceRequest) {
         final String QUERY = "{CALL PCK_ULICE.PROC_INSERT_ULICE(?, ?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
+
             stmt.setString(1, uliceRequest.nazev());
             stmt.registerOutParameter(2, Types.INTEGER);
             stmt.registerOutParameter(3, Types.INTEGER);
@@ -75,13 +78,17 @@ public class UliceRepository implements IRepository<Ulice> {
             String status_message = stmt.getString(4);
 
             if (status_code == 1) {
-                Ulice ulice = findById(id_ulice).get();
-                return new Status<>(status_code, status_message, ulice);
+                try {
+                    Ulice ulice = findById(id_ulice).get();
+                    return new Status<>(status_code, status_message, ulice);
+                } catch (SQLException e) {
+                    return new Status<>(-998, "Chyba při dohledání vložené ulice: " + e.getMessage(), null);
+                }
             } else {
                 return new Status<>(status_code, status_message, null);
             }
         } catch (SQLException e) {
-            return new Status<>(-999, "Kritická chyba databáze" + e.getMessage(), null);
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
         }
     }
 
@@ -89,9 +96,9 @@ public class UliceRepository implements IRepository<Ulice> {
     public Status<Ulice> update(Ulice uliceRequest) {
         final String QUERY = "{CALL PCK_ULICE.PROC_UPDATE_ULICE(?, ?, ?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
+
             stmt.setInt(1, uliceRequest.id_ulice());
             stmt.setString(2, uliceRequest.nazev());
             stmt.registerOutParameter(3, Types.INTEGER);
@@ -104,8 +111,12 @@ public class UliceRepository implements IRepository<Ulice> {
             String status_message = stmt.getString(5);
 
             if (status_code == 1) {
-                Ulice ulice = findById(id_ulice).get();
-                return new Status<>(status_code, status_message, ulice);
+                try {
+                    Ulice ulice = findById(id_ulice).get();
+                    return new Status<>(status_code, status_message, ulice);
+                } catch (SQLException e) {
+                    return new Status<>(-998, "Chyba při dohledání aktualizované ulice: " + e.getMessage(), null);
+                }
             } else {
                 return new Status<>(status_code, status_message, null);
             }
@@ -118,9 +129,9 @@ public class UliceRepository implements IRepository<Ulice> {
     public Status<Ulice> delete(Integer id) {
         final String QUERY = "{CALL PCK_ULICE.PROC_DELETE_ULICE(?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
+
             stmt.setInt(1, id);
             stmt.registerOutParameter(2, Types.INTEGER);
             stmt.registerOutParameter(3, Types.VARCHAR);

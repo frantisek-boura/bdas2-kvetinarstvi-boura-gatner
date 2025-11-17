@@ -23,19 +23,22 @@ public class ObrazekRepository implements IRepository<Obrazek> {
     public Optional<Obrazek> findById(Integer ID) throws SQLException {
         final String QUERY = "SELECT id_obrazek, nazev_souboru, data FROM obrazky WHERE id_obrazek = ?";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        stmt.setInt(1, ID);
-        ResultSet rs = stmt.executeQuery();
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY)) {
 
-        if (rs.next()) {
-            int id_obrazek = rs.getInt("id_obrazek");
-            String nazev_souboru = rs.getString("nazev_souboru");
-            byte[] dataBytes = rs.getBytes("data");
+            stmt.setInt(1, ID);
+            try (ResultSet rs = stmt.executeQuery()) {
 
-            String base64 = (dataBytes != null) ? Base64.getEncoder().encodeToString(dataBytes) : "";
+                if (rs.next()) {
+                    int id_obrazek = rs.getInt("id_obrazek");
+                    String nazev_souboru = rs.getString("nazev_souboru");
+                    byte[] dataBytes = rs.getBytes("data");
 
-            return Optional.of(new Obrazek(id_obrazek, nazev_souboru, base64));
+                    String base64 = (dataBytes != null) ? Base64.getEncoder().encodeToString(dataBytes) : "";
+
+                    return Optional.of(new Obrazek(id_obrazek, nazev_souboru, base64));
+                }
+            }
         }
 
         return Optional.empty();
@@ -46,18 +49,19 @@ public class ObrazekRepository implements IRepository<Obrazek> {
         List<Obrazek> obrazky = new ArrayList<>();
         final String QUERY = "SELECT id_obrazek, nazev_souboru, data FROM obrazky";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        ResultSet rs = stmt.executeQuery();
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY);
+             ResultSet rs = stmt.executeQuery()) {
 
-        while (rs.next()) {
-            int id_obrazek = rs.getInt("id_obrazek");
-            String nazev_souboru = rs.getString("nazev_souboru");
-            byte[] dataBytes = rs.getBytes("data");
+            while (rs.next()) {
+                int id_obrazek = rs.getInt("id_obrazek");
+                String nazev_souboru = rs.getString("nazev_souboru");
+                byte[] dataBytes = rs.getBytes("data");
 
-            String base64 = (dataBytes != null) ? Base64.getEncoder().encodeToString(dataBytes) : "";
+                String base64 = (dataBytes != null) ? Base64.getEncoder().encodeToString(dataBytes) : "";
 
-            obrazky.add(new Obrazek(id_obrazek, nazev_souboru, base64));
+                obrazky.add(new Obrazek(id_obrazek, nazev_souboru, base64));
+            }
         }
 
         return obrazky;
@@ -67,9 +71,8 @@ public class ObrazekRepository implements IRepository<Obrazek> {
     public Status<Obrazek> insert(Obrazek obrazekRequest) {
         final String QUERY = "{CALL PCK_OBRAZKY.PROC_INSERT_OBRAZEK(?, ?, ?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
 
             stmt.setString(1, obrazekRequest.nazev_souboru());
             stmt.setBytes(2, Base64.getDecoder().decode(obrazekRequest.base64()));
@@ -85,8 +88,12 @@ public class ObrazekRepository implements IRepository<Obrazek> {
             String status_message = stmt.getString(5);
 
             if (status_code == 1) {
-                Obrazek obrazek = findById(id_obrazek).get();
-                return new Status<>(status_code, status_message, obrazek);
+                try {
+                    Obrazek obrazek = findById(id_obrazek).get();
+                    return new Status<>(status_code, status_message, obrazek);
+                } catch (SQLException e) {
+                    return new Status<>(-998, "Chyba při dohledání vloženého obrázku: " + e.getMessage(), null);
+                }
             } else {
                 return new Status<>(status_code, status_message, null);
             }
@@ -101,9 +108,8 @@ public class ObrazekRepository implements IRepository<Obrazek> {
     public Status<Obrazek> update(Obrazek obrazekRequest) {
         final String QUERY = "{CALL PCK_OBRAZKY.PROC_UPDATE_OBRAZEK(?, ?, ?, ?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
 
             stmt.setInt(1, obrazekRequest.id_obrazek());
             stmt.setString(2, obrazekRequest.nazev_souboru());
@@ -120,8 +126,12 @@ public class ObrazekRepository implements IRepository<Obrazek> {
             String status_message = stmt.getString(6);
 
             if (status_code == 1) {
-                Obrazek obrazek = findById(id_obrazek).get();
-                return new Status<>(status_code, status_message, obrazek);
+                try {
+                    Obrazek obrazek = findById(id_obrazek).get();
+                    return new Status<>(status_code, status_message, obrazek);
+                } catch (SQLException e) {
+                    return new Status<>(-998, "Chyba při dohledání aktualizovaného obrázku: " + e.getMessage(), null);
+                }
             } else {
                 return new Status<>(status_code, status_message, null);
             }
@@ -136,9 +146,9 @@ public class ObrazekRepository implements IRepository<Obrazek> {
     public Status<Obrazek> delete(Integer id) {
         final String QUERY = "{CALL PCK_OBRAZKY.PROC_DELETE_OBRAZEK(?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
+
             stmt.setInt(1, id);
             stmt.registerOutParameter(2, Types.INTEGER);
             stmt.registerOutParameter(3, Types.VARCHAR);

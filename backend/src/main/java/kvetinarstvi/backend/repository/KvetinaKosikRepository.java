@@ -24,15 +24,17 @@ public class KvetinaKosikRepository implements IRepository<KvetinaKosik> {
     public Optional<KvetinaKosik> findByIds(Integer id_kvetina, Integer id_kosik) throws SQLException {
         final String QUERY = "SELECT id_kvetina, id_kosik, pocet FROM kvetinykosiky WHERE id_kvetina = ? AND id_kosik = ?";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        stmt.setInt(1, id_kvetina);
-        stmt.setInt(2, id_kosik);
-        ResultSet rs = stmt.executeQuery();
-
-        if (rs.next()) {
-            int pocet = rs.getInt("pocet");
-            return Optional.of(new KvetinaKosik(id_kvetina, id_kosik, pocet));
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY)
+        ) {
+            stmt.setInt(1, id_kvetina);
+            stmt.setInt(2, id_kosik);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    int pocet = rs.getInt("pocet");
+                    return Optional.of(new KvetinaKosik(id_kvetina, id_kosik, pocet));
+                }
+            }
         }
 
         return Optional.empty();
@@ -43,16 +45,17 @@ public class KvetinaKosikRepository implements IRepository<KvetinaKosik> {
         List<KvetinaKosik> kvetinyKosiky = new ArrayList<>();
         final String QUERY = "SELECT id_kvetina, id_kosik, pocet FROM kvetinykosiky";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        ResultSet rs = stmt.executeQuery();
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY);
+             ResultSet rs = stmt.executeQuery()
+        ) {
+            while (rs.next()) {
+                Integer id_kvetina = rs.getInt("id_kvetina");
+                Integer id_kosik = rs.getInt("id_kosik");
+                int pocet = rs.getInt("pocet");
 
-        while (rs.next()) {
-            Integer id_kvetina = rs.getInt("id_kvetina");
-            Integer id_kosik = rs.getInt("id_kosik");
-            int pocet = rs.getInt("pocet");
-
-            kvetinyKosiky.add(new KvetinaKosik(id_kvetina, id_kosik, pocet));
+                kvetinyKosiky.add(new KvetinaKosik(id_kvetina, id_kosik, pocet));
+            }
         }
 
         return kvetinyKosiky;
@@ -62,15 +65,17 @@ public class KvetinaKosikRepository implements IRepository<KvetinaKosik> {
         List<KvetinaKosik> kvetinyKosiky = new ArrayList<>();
         final String QUERY = "SELECT id_kvetina, id_kosik, pocet FROM kvetinykosiky WHERE id_kosik = ?";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        stmt.setInt(1, id_kosik);
-        ResultSet rs = stmt.executeQuery();
-
-        while (rs.next()) {
-            Integer id_kvetina = rs.getInt("id_kvetina");
-            int pocet = rs.getInt("pocet");
-            kvetinyKosiky.add(new KvetinaKosik(id_kvetina, id_kosik, pocet));
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY)
+        ) {
+            stmt.setInt(1, id_kosik);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Integer id_kvetina = rs.getInt("id_kvetina");
+                    int pocet = rs.getInt("pocet");
+                    kvetinyKosiky.add(new KvetinaKosik(id_kvetina, id_kosik, pocet));
+                }
+            }
         }
 
         return kvetinyKosiky;
@@ -80,10 +85,9 @@ public class KvetinaKosikRepository implements IRepository<KvetinaKosik> {
     public Status<KvetinaKosik> insert(KvetinaKosik kvetinaKosikRequest) {
         final String QUERY = "{CALL PCK_KVETINYKOSIKY.PROC_INSERT_KVETINYKOSIKY(?, ?, ?, ?, ?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
-
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)
+        ) {
             stmt.setInt(1, kvetinaKosikRequest.id_kvetina());
             stmt.setInt(2, kvetinaKosikRequest.id_kosik());
             stmt.setInt(3, kvetinaKosikRequest.pocet());
@@ -101,8 +105,12 @@ public class KvetinaKosikRepository implements IRepository<KvetinaKosik> {
             String status_message = stmt.getString(7);
 
             if (status_code == 1) {
-                KvetinaKosik result = findByIds(out_id_kvetina, out_id_kosik).get();
-                return new Status<>(status_code, status_message, result);
+                try {
+                    KvetinaKosik result = findByIds(out_id_kvetina, out_id_kosik).get();
+                    return new Status<>(status_code, status_message, result);
+                } catch (SQLException e) {
+                    return new Status<>(-998, "Chyba při dohledání vloženého záznamu KvetinaKosik: " + e.getMessage(), null);
+                }
             } else {
                 return new Status<>(status_code, status_message, null);
             }
@@ -115,10 +123,9 @@ public class KvetinaKosikRepository implements IRepository<KvetinaKosik> {
     public Status<KvetinaKosik> update(KvetinaKosik kvetinaKosikRequest) {
         final String QUERY = "{CALL PCK_KVETINYKOSIKY.PROC_UPDATE_KVETINYKOSIKY(?, ?, ?, ?, ?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
-
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)
+        ) {
             stmt.setInt(1, kvetinaKosikRequest.id_kvetina());
             stmt.setInt(2, kvetinaKosikRequest.id_kosik());
             stmt.setInt(3, kvetinaKosikRequest.pocet());
@@ -136,8 +143,12 @@ public class KvetinaKosikRepository implements IRepository<KvetinaKosik> {
             String status_message = stmt.getString(7);
 
             if (status_code == 1) {
-                KvetinaKosik result = findByIds(out_id_kvetina, out_id_kosik).get();
-                return new Status<>(status_code, status_message, result);
+                try {
+                    KvetinaKosik result = findByIds(out_id_kvetina, out_id_kosik).get();
+                    return new Status<>(status_code, status_message, result);
+                } catch (SQLException e) {
+                    return new Status<>(-998, "Chyba při dohledání aktualizovaného záznamu KvetinaKosik: " + e.getMessage(), null);
+                }
             } else {
                 return new Status<>(status_code, status_message, null);
             }
@@ -154,9 +165,9 @@ public class KvetinaKosikRepository implements IRepository<KvetinaKosik> {
     public Status<KvetinaKosik> deleteByIds(Integer id_kvetina, Integer id_kosik) {
         final String QUERY = "{CALL PCK_KVETINYKOSIKY.PROC_DELETE_KVETINYKOSIKY(?, ?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)
+        ) {
             stmt.setInt(1, id_kvetina);
             stmt.setInt(2, id_kosik);
             stmt.registerOutParameter(3, Types.INTEGER);

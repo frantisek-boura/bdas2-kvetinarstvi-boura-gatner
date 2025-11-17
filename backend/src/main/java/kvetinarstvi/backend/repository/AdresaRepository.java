@@ -100,8 +100,12 @@ public class AdresaRepository implements IRepository<Adresa> {
             String status_message = stmt.getString(7);
 
             if (status_code == 1) {
-                Adresa adresa = findById(id_adresa).get();
-                return new Status<>(status_code, status_message, adresa);
+                try {
+                    Adresa adresa = findById(id_adresa).get();
+                    return new Status<>(status_code, status_message, adresa);
+                } catch (SQLException e) {
+                    return new Status<>(-998, "Chyba při dohledání vložené adresy: " + e.getMessage(), null);
+                }
             } else {
                 return new Status<>(status_code, status_message, null);
             }
@@ -134,8 +138,12 @@ public class AdresaRepository implements IRepository<Adresa> {
             String status_message = stmt.getString(8);
 
             if (status_code == 1) {
-                Adresa adresa = findById(id_adresa).get();
-                return new Status<>(status_code, status_message, adresa);
+                try {
+                    Adresa adresa = findById(id_adresa).get();
+                    return new Status<>(status_code, status_message, adresa);
+                } catch (SQLException e) {
+                    return new Status<>(-998, "Chyba při dohledání aktualizované adresy: " + e.getMessage(), null);
+                }
             } else {
                 return new Status<>(status_code, status_message, null);
             }

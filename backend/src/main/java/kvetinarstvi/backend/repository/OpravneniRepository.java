@@ -22,17 +22,20 @@ public class OpravneniRepository implements IRepository<Opravneni> {
     public Optional<Opravneni> findById(Integer ID) throws SQLException {
         final String QUERY = "SELECT id_opravneni, nazev, uroven_opravneni FROM opravneni WHERE id_opravneni = ?";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        stmt.setInt(1, ID);
-        ResultSet rs = stmt.executeQuery();
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY)) {
 
-        if (rs.next()) {
-            int id_opravneni = rs.getInt("id_opravneni");
-            String nazev = rs.getString("nazev");
-            int uroven_opravneni = rs.getInt("uroven_opravneni");
+            stmt.setInt(1, ID);
+            try (ResultSet rs = stmt.executeQuery()) {
 
-            return Optional.of(new Opravneni(id_opravneni, nazev, uroven_opravneni));
+                if (rs.next()) {
+                    int id_opravneni = rs.getInt("id_opravneni");
+                    String nazev = rs.getString("nazev");
+                    int uroven_opravneni = rs.getInt("uroven_opravneni");
+
+                    return Optional.of(new Opravneni(id_opravneni, nazev, uroven_opravneni));
+                }
+            }
         }
 
         return Optional.empty();
@@ -43,16 +46,17 @@ public class OpravneniRepository implements IRepository<Opravneni> {
         List<Opravneni> opravneni = new ArrayList<>();
         final String QUERY = "SELECT id_opravneni, nazev, uroven_opravneni FROM opravneni";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        ResultSet rs = stmt.executeQuery();
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY);
+             ResultSet rs = stmt.executeQuery()) {
 
-        while (rs.next()) {
-            int id_opravneni = rs.getInt("id_opravneni");
-            String nazev = rs.getString("nazev");
-            int uroven_opravneni = rs.getInt("uroven_opravneni");
+            while (rs.next()) {
+                int id_opravneni = rs.getInt("id_opravneni");
+                String nazev = rs.getString("nazev");
+                int uroven_opravneni = rs.getInt("uroven_opravneni");
 
-            opravneni.add(new Opravneni(id_opravneni, nazev, uroven_opravneni));
+                opravneni.add(new Opravneni(id_opravneni, nazev, uroven_opravneni));
+            }
         }
 
         return opravneni;
@@ -62,9 +66,9 @@ public class OpravneniRepository implements IRepository<Opravneni> {
     public Status<Opravneni> insert(Opravneni opravneniRequest) {
         final String QUERY = "{CALL PCK_OPRAVNENI.PROC_INSERT_OPRAVNENI(?, ?, ?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
+
             stmt.setString(1, opravneniRequest.nazev());
             stmt.setInt(2, opravneniRequest.uroven_opravneni());
             stmt.registerOutParameter(3, Types.INTEGER);
@@ -77,8 +81,12 @@ public class OpravneniRepository implements IRepository<Opravneni> {
             String status_message = stmt.getString(5);
 
             if (status_code == 1) {
-                Opravneni opravneni = findById(id_opravneni).get();
-                return new Status<>(status_code, status_message, opravneni);
+                try {
+                    Opravneni opravneni = findById(id_opravneni).get();
+                    return new Status<>(status_code, status_message, opravneni);
+                } catch (SQLException e) {
+                    return new Status<>(-998, "Chyba při dohledání vloženého oprávnění: " + e.getMessage(), null);
+                }
             } else {
                 return new Status<>(status_code, status_message, null);
             }
@@ -91,9 +99,9 @@ public class OpravneniRepository implements IRepository<Opravneni> {
     public Status<Opravneni> update(Opravneni opravneniRequest) {
         final String QUERY = "{CALL PCK_OPRAVNENI.PROC_UPDATE_OPRAVNENI(?, ?, ?, ?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
+
             stmt.setInt(1, opravneniRequest.id_opravneni());
             stmt.setString(2, opravneniRequest.nazev());
             stmt.setInt(3, opravneniRequest.uroven_opravneni());
@@ -107,8 +115,12 @@ public class OpravneniRepository implements IRepository<Opravneni> {
             String status_message = stmt.getString(6);
 
             if (status_code == 1) {
-                Opravneni opravneni = findById(id_opravneni).get();
-                return new Status<>(status_code, status_message, opravneni);
+                try {
+                    Opravneni opravneni = findById(id_opravneni).get();
+                    return new Status<>(status_code, status_message, opravneni);
+                } catch (SQLException e) {
+                    return new Status<>(-998, "Chyba při dohledání aktualizovaného oprávnění: " + e.getMessage(), null);
+                }
             } else {
                 return new Status<>(status_code, status_message, null);
             }
@@ -121,9 +133,9 @@ public class OpravneniRepository implements IRepository<Opravneni> {
     public Status<Opravneni> delete(Integer id) {
         final String QUERY = "{CALL PCK_OPRAVNENI.PROC_DELETE_OPRAVNENI(?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)) {
+
             stmt.setInt(1, id);
             stmt.registerOutParameter(2, Types.INTEGER);
             stmt.registerOutParameter(3, Types.VARCHAR);

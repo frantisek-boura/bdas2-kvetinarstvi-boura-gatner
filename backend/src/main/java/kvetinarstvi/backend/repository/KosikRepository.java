@@ -22,25 +22,27 @@ public class KosikRepository implements IRepository<Kosik> {
     public Optional<Kosik> findById(Integer ID) throws SQLException {
         final String QUERY = "SELECT id_kosik, datum_vytvoreni, cena, sleva, id_uzivatel, id_stav_objednavky, id_zpusob_platby FROM kosiky WHERE id_kosik = ?";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        stmt.setInt(1, ID);
-        ResultSet rs = stmt.executeQuery();
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY)
+        ) {
+            stmt.setInt(1, ID);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    int id_kosik = rs.getInt("id_kosik");
+                    Timestamp timestamp = rs.getTimestamp("datum_vytvoreni");
+                    ZonedDateTime datum_vytvoreni = timestamp != null
+                            ? timestamp.toLocalDateTime().atZone(ZoneId.systemDefault())
+                            : null;
 
-        if (rs.next()) {
-            int id_kosik = rs.getInt("id_kosik");
-            Timestamp timestamp = rs.getTimestamp("datum_vytvoreni");
-            ZonedDateTime datum_vytvoreni = timestamp != null
-                    ? timestamp.toLocalDateTime().atZone(ZoneId.systemDefault())
-                    : null;
+                    Double cena = rs.getDouble("cena");
+                    int sleva = rs.getInt("sleva");
+                    Integer id_uzivatel = rs.getInt("id_uzivatel");
+                    Integer id_stav_objednavky = rs.getInt("id_stav_objednavky");
+                    Integer id_zpusob_platby = rs.getInt("id_zpusob_platby");
 
-            Double cena = rs.getDouble("cena");
-            int sleva = rs.getInt("sleva");
-            Integer id_uzivatel = rs.getInt("id_uzivatel");
-            Integer id_stav_objednavky = rs.getInt("id_stav_objednavky");
-            Integer id_zpusob_platby = rs.getInt("id_zpusob_platby");
-
-            return Optional.of(new Kosik(id_kosik, datum_vytvoreni, cena, sleva, id_uzivatel, id_stav_objednavky, id_zpusob_platby));
+                    return Optional.of(new Kosik(id_kosik, datum_vytvoreni, cena, sleva, id_uzivatel, id_stav_objednavky, id_zpusob_platby));
+                }
+            }
         }
 
         return Optional.empty();
@@ -51,24 +53,25 @@ public class KosikRepository implements IRepository<Kosik> {
         List<Kosik> kosiky = new ArrayList<>();
         final String QUERY = "SELECT id_kosik, datum_vytvoreni, cena, sleva, id_uzivatel, id_stav_objednavky, id_zpusob_platby FROM kosiky";
 
-        Connection c = dataSource.getConnection();
-        PreparedStatement stmt = c.prepareStatement(QUERY);
-        ResultSet rs = stmt.executeQuery();
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY);
+             ResultSet rs = stmt.executeQuery()
+        ) {
+            while (rs.next()) {
+                int id_kosik = rs.getInt("id_kosik");
+                Timestamp timestamp = rs.getTimestamp("datum_vytvoreni");
+                ZonedDateTime datum_vytvoreni = timestamp != null
+                        ? timestamp.toLocalDateTime().atZone(ZoneId.systemDefault())
+                        : null;
 
-        while (rs.next()) {
-            int id_kosik = rs.getInt("id_kosik");
-            Timestamp timestamp = rs.getTimestamp("datum_vytvoreni");
-            ZonedDateTime datum_vytvoreni = timestamp != null
-                    ? timestamp.toLocalDateTime().atZone(ZoneId.systemDefault())
-                    : null;
+                Double cena = rs.getDouble("cena");
+                int sleva = rs.getInt("sleva");
+                Integer id_uzivatel = rs.getInt("id_uzivatel");
+                Integer id_stav_objednavky = rs.getInt("id_stav_objednavky");
+                Integer id_zpusob_platby = rs.getInt("id_zpusob_platby");
 
-            Double cena = rs.getDouble("cena");
-            int sleva = rs.getInt("sleva");
-            Integer id_uzivatel = rs.getInt("id_uzivatel");
-            Integer id_stav_objednavky = rs.getInt("id_stav_objednavky");
-            Integer id_zpusob_platby = rs.getInt("id_zpusob_platby");
-
-            kosiky.add(new Kosik(id_kosik, datum_vytvoreni, cena, sleva, id_uzivatel, id_stav_objednavky, id_zpusob_platby));
+                kosiky.add(new Kosik(id_kosik, datum_vytvoreni, cena, sleva, id_uzivatel, id_stav_objednavky, id_zpusob_platby));
+            }
         }
 
         return kosiky;
@@ -78,10 +81,9 @@ public class KosikRepository implements IRepository<Kosik> {
     public Status<Kosik> insert(Kosik kosikRequest) {
         final String QUERY = "{CALL PCK_KOSIKY.PROC_INSERT_KOSIK(?, ?, ?, ?, ?, ?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
-
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)
+        ) {
             stmt.setDouble(1, kosikRequest.cena());
             stmt.setInt(2, kosikRequest.sleva());
 
@@ -128,10 +130,9 @@ public class KosikRepository implements IRepository<Kosik> {
     public Status<Kosik> update(Kosik kosikRequest) {
         final String QUERY = "{CALL PCK_KOSIKY.PROC_UPDATE_KOSIK(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
-
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)
+        ) {
             stmt.setInt(1, kosikRequest.id_kosik());
             stmt.setDouble(2, kosikRequest.cena());
             stmt.setInt(3, kosikRequest.sleva());
@@ -179,9 +180,9 @@ public class KosikRepository implements IRepository<Kosik> {
     public Status<Kosik> delete(Integer id) {
         final String QUERY = "{CALL PCK_KOSIKY.PROC_DELETE_KOSIK(?, ?, ?)}";
 
-        try {
-            Connection c = dataSource.getConnection();
-            CallableStatement stmt = c.prepareCall(QUERY);
+        try (Connection c = dataSource.getConnection();
+             CallableStatement stmt = c.prepareCall(QUERY)
+        ) {
             stmt.setInt(1, id);
             stmt.registerOutParameter(2, Types.INTEGER);
             stmt.registerOutParameter(3, Types.VARCHAR);
