@@ -22,7 +22,7 @@ public class KvetinaKosikRepository implements IRepository<KvetinaKosik> {
     }
 
     public Optional<KvetinaKosik> findByIds(Integer id_kvetina, Integer id_kosik) throws SQLException {
-        final String QUERY = "SELECT id_kvetina, id_kosik, pocet FROM kvetiny_kosiky WHERE id_kvetina = ? AND id_kosik = ?";
+        final String QUERY = "SELECT id_kvetina, id_kosik, pocet FROM kvetinykosiky WHERE id_kvetina = ? AND id_kosik = ?";
 
         Connection c = dataSource.getConnection();
         PreparedStatement stmt = c.prepareStatement(QUERY);
@@ -41,7 +41,7 @@ public class KvetinaKosikRepository implements IRepository<KvetinaKosik> {
     @Override
     public List<KvetinaKosik> findAll() throws SQLException {
         List<KvetinaKosik> kvetinyKosiky = new ArrayList<>();
-        final String QUERY = "SELECT id_kvetina, id_kosik, pocet FROM kvetiny_kosiky";
+        final String QUERY = "SELECT id_kvetina, id_kosik, pocet FROM kvetinykosiky";
 
         Connection c = dataSource.getConnection();
         PreparedStatement stmt = c.prepareStatement(QUERY);
@@ -60,7 +60,7 @@ public class KvetinaKosikRepository implements IRepository<KvetinaKosik> {
 
     public List<KvetinaKosik> findAllByKosikId(Integer id_kosik) throws SQLException {
         List<KvetinaKosik> kvetinyKosiky = new ArrayList<>();
-        final String QUERY = "SELECT id_kvetina, id_kosik, pocet FROM kvetiny_kosiky WHERE id_kosik = ?";
+        final String QUERY = "SELECT id_kvetina, id_kosik, pocet FROM kvetinykosiky WHERE id_kosik = ?";
 
         Connection c = dataSource.getConnection();
         PreparedStatement stmt = c.prepareStatement(QUERY);
