@@ -1,38 +1,3 @@
-create or replace PACKAGE PCK_HESLA 
-AS
-    FUNCTION FUNC_GENERUJ_SUL
-    RETURN VARCHAR2;
-
-    FUNCTION FUNC_GENERUJ_HESLO
-    RETURN VARCHAR2;
-
-    PROCEDURE PROC_ZMEN_HESLO(
-        p_id_uzivatele IN uzivatele.id_uzivatel%TYPE,
-        p_nove_heslo IN VARCHAR2
-    );
-    
-    PROCEDURE PROC_REGISTRUJ_UZIVATELE(
-        p_email IN VARCHAR2,
-        p_heslo IN VARCHAR2,
-        p_ulice IN VARCHAR2,
-        p_cp    IN NUMBER,
-        p_mesto IN VARCHAR2,
-        p_psc   IN VARCHAR2,
-        
-        o_id_uzivatel    OUT NUMBER,
-        o_status         OUT NUMBER,
-        o_status_message OUT VARCHAR2
-    );
-    
-    FUNCTION FUNC_OVER_HESLO(
-        p_email IN VARCHAR2,
-        p_heslo IN VARCHAR2
-    )
-    RETURN NUMBER;
-    
-END PCK_HESLA;
-/
-
 CREATE OR REPLACE PACKAGE BODY PCK_HESLA 
 AS
     FUNCTION FUNC_GENERUJ_SUL
@@ -221,4 +186,3 @@ AS
     
     
 END PCK_HESLA;
-/
