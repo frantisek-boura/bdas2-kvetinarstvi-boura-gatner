@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import javax.sql.DataSource;
 
 @Service
-public class ObjednavkaService {
+public class KosikService {
 
     @Autowired
     private DataSource dataSource;
@@ -22,7 +22,7 @@ public class ObjednavkaService {
     @Autowired
     private KosikRepository repository;
 
-    public ObjednavkaService(DataSource dataSource) {
+    public KosikService(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 

@@ -2332,7 +2332,7 @@ CREATE OR REPLACE PACKAGE PCK_DOTAZY AS
 END PCK_DOTAZY;
 /
 
-CREATE OR REPLACE PACKAGE BODY PCK_DOTAZY AS
+create or replace PACKAGE BODY PCK_DOTAZY AS
     
 
     v_existuje NUMBER;
@@ -2356,13 +2356,13 @@ CREATE OR REPLACE PACKAGE BODY PCK_DOTAZY AS
             END;
         END IF;
     END CHECK_LOGIC;
-    
+
     PROCEDURE PROC_INSERT_DOTAZ(
         p_text                       IN CLOB,
         p_verejny                    IN NUMBER DEFAULT 0,
         p_odpoved                    IN CLOB DEFAULT NULL,
         p_id_odpovidajici_uzivatel   IN NUMBER DEFAULT NULL,
-        
+
         o_id_dotaz                   OUT NUMBER,
         o_status_code                OUT NUMBER,
         o_status_message             OUT VARCHAR2
@@ -2370,14 +2370,14 @@ CREATE OR REPLACE PACKAGE BODY PCK_DOTAZY AS
     AS
     BEGIN
         CHECK_LOGIC(p_odpoved, p_id_odpovidajici_uzivatel);
-        
-        INSERT INTO DOTAZY(text, verejny, odpoved, id_odpovidajici_uzivatel)
-        VALUES(p_text, p_verejny, p_odpoved, p_id_odpovidajici_uzivatel)
+
+        INSERT INTO DOTAZY(datum_podani, text, verejny, odpoved, id_odpovidajici_uzivatel)
+        VALUES(SYSTIMESTAMP, p_text, p_verejny, p_odpoved, p_id_odpovidajici_uzivatel)
         RETURNING id_dotaz INTO o_id_dotaz;
-        
+
         o_status_code := 1;
         o_status_message := 'Úspěch: Operace proběhla úspěšně.';
-        
+
     EXCEPTION
         WHEN PCK_GLOBAL_EXCEPTIONS.E_NEKONZISTENTNI_ODPOVED THEN
             o_id_dotaz := NULL;
@@ -2388,21 +2388,21 @@ CREATE OR REPLACE PACKAGE BODY PCK_DOTAZY AS
             o_id_dotaz := NULL;
             o_status_code := -411; 
             o_status_message := 'Selhání cizího klíče: Zadaný ID odpovídajícího uživatele neexistuje.';
-            
+
         WHEN OTHERS THEN
             o_id_dotaz := NULL;
             o_status_code := -999; 
             o_status_message := 'Kritická chyba: Neočekávaná chyba: ' || SQLERRM;
     END PROC_INSERT_DOTAZ;
 
-    
+
     PROCEDURE PROC_UPDATE_DOTAZ(
         p_id_dotaz                   IN NUMBER,
         p_text                       IN CLOB,
         p_verejny                    IN NUMBER,
         p_odpoved                    IN CLOB,
         p_id_odpovidajici_uzivatel   IN NUMBER,
-        
+
         o_id_dotaz                   OUT NUMBER,
         o_status_code                OUT NUMBER,
         o_status_message             OUT VARCHAR2
@@ -2410,14 +2410,14 @@ CREATE OR REPLACE PACKAGE BODY PCK_DOTAZY AS
     AS
     BEGIN
         CHECK_LOGIC(p_odpoved, p_id_odpovidajici_uzivatel);
-        
+
         UPDATE DOTAZY
         SET text = p_text,
             verejny = p_verejny,
             odpoved = p_odpoved,
             id_odpovidajici_uzivatel = p_id_odpovidajici_uzivatel
         WHERE id_dotaz = p_id_dotaz;
-        
+
         IF SQL%ROWCOUNT = 0 THEN
             PROC_INSERT_DOTAZ(p_text, p_verejny, p_odpoved, p_id_odpovidajici_uzivatel, o_id_dotaz, o_status_code, o_status_message);
             IF o_status_code = 1 THEN
@@ -2439,17 +2439,17 @@ CREATE OR REPLACE PACKAGE BODY PCK_DOTAZY AS
             o_id_dotaz := p_id_dotaz;
             o_status_code := -411; 
             o_status_message := 'Selhání cizího klíče: Zadaný ID odpovídajícího uživatele neexistuje.';
-            
+
         WHEN OTHERS THEN
             o_id_dotaz := p_id_dotaz;
             o_status_code := -999; 
             o_status_message := 'Kritická chyba: Neočekávaná chyba: ' || SQLERRM;
     END PROC_UPDATE_DOTAZ;
 
-    
+
     PROCEDURE PROC_DELETE_DOTAZ(
         p_id_dotaz                   IN NUMBER,
-        
+
         o_status_code                OUT NUMBER,
         o_status_message OUT VARCHAR2
     )
@@ -2457,23 +2457,23 @@ CREATE OR REPLACE PACKAGE BODY PCK_DOTAZY AS
     BEGIN
         DELETE FROM DOTAZY
         WHERE id_dotaz = p_id_dotaz;
-        
+
         IF SQL%ROWCOUNT = 1 THEN
             o_status_code := 1;
             o_status_message := 'Úspěch: Operace proběhla úspěšně.';
         ELSE
             RAISE NO_DATA_FOUND;
         END IF;
-        
+
     EXCEPTION
         WHEN NO_DATA_FOUND THEN 
             o_status_code := 0; 
             o_status_message := 'Selhání odstranění: Záznam nebyl nalezen.';
-            
+
         WHEN OTHERS THEN
             o_status_code := -999; 
             o_status_message := 'Kritická chyba: Neočekávaná chyba: ' || SQLERRM;
     END PROC_DELETE_DOTAZ;
-    
+
 END PCK_DOTAZY;
 /

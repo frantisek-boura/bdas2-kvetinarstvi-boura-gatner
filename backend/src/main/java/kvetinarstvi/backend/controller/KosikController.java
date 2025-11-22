@@ -3,7 +3,7 @@ package kvetinarstvi.backend.controller;
 import kvetinarstvi.backend.records.Kosik;
 import kvetinarstvi.backend.repository.Status;
 import kvetinarstvi.backend.service.ObjednavkaRequest;
-import kvetinarstvi.backend.service.ObjednavkaService;
+import kvetinarstvi.backend.service.KosikService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class KosikController extends AbstractController<Kosik> {
 
     @Autowired
-    private ObjednavkaService service;
+    private KosikService service;
 
     @PostMapping("/podani")
     public ResponseEntity<Status<Kosik>> podatObjednavku(@RequestBody ObjednavkaRequest request) {

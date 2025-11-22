@@ -19,14 +19,12 @@ public class TKvetinaKosikRec implements SQLData {
 
     @Override
     public void readSQL(SQLInput stream, String typeName) throws SQLException {
-        // Přečtení atributů v pořadí, v jakém jsou definovány v PL/SQL TYPE
-        id_kvetina = stream.readLong(); // id_kvetina NUMBER
-        pocet = stream.readInt();       // pocet NUMBER
+        id_kvetina = stream.readLong();
+        pocet = stream.readInt();
     }
 
     @Override
     public void writeSQL(SQLOutput stream) throws SQLException {
-        // Zápis atributů v pořadí, v jakém jsou definovány v PL/SQL TYPE
         stream.writeLong(id_kvetina);
         stream.writeInt(pocet);
     }
