@@ -46,3 +46,41 @@ JOIN
     obrazky o ON o.id_obrazek = k.id_obrazek
 JOIN
     kosiky ko ON ko.id_kosik = c.id_kosik;
+
+
+CREATE OR REPLACE VIEW VIEW_KATEGORIE_PODSTROM_KVETIN AS
+WITH RECURSIVE_CATEGORIES AS (
+    SELECT 
+        k.ID_KATEGORIE, 
+        k.ID_NADRAZENE_KATEGORIE
+    FROM 
+        KATEGORIE k
+    CONNECT BY PRIOR k.ID_KATEGORIE = k.ID_NADRAZENE_KATEGORIE
+    START WITH k.ID_KATEGORIE IS NOT NULL
+)
+SELECT 
+    rc.ID_KATEGORIE,
+    kv.ID_KVETINA
+FROM 
+    RECURSIVE_CATEGORIES rc
+JOIN 
+    KVETINY kv ON rc.ID_KATEGORIE = kv.ID_KATEGORIE;
+
+
+--pouziti
+SELECT 
+    id_kategorie, 
+    id_kvetina
+FROM 
+    ST67009.VIEW_KATEGORIE_PODSTROM_KVETIN
+WHERE 
+    ID_KATEGORIE IN (
+        SELECT 
+            ID_KATEGORIE
+        FROM 
+            ST67009.KATEGORIE
+        START WITH 
+            ID_KATEGORIE = 3
+        CONNECT BY 
+            PRIOR ID_KATEGORIE = ID_NADRAZENE_KATEGORIE
+    );

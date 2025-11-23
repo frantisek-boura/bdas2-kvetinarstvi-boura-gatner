@@ -2,14 +2,14 @@ package kvetinarstvi.backend.controller;
 
 import kvetinarstvi.backend.records.Uzivatel;
 import kvetinarstvi.backend.repository.Status;
-import kvetinarstvi.backend.service.LoginRequest;
-import kvetinarstvi.backend.service.RegistraceRequest;
-import kvetinarstvi.backend.service.UzivatelService;
-import kvetinarstvi.backend.service.ZmenaHeslaRequest;
+import kvetinarstvi.backend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.SQLException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/uzivatele")
@@ -54,6 +54,21 @@ public class UzivatelController extends AbstractController<Uzivatel> {
             return new ResponseEntity<>(result, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/objednavky/{id}")
+    protected ResponseEntity<List<UzivatelObjednavka>> getObjednavky(@PathVariable Integer id) {
+        try {
+            List<UzivatelObjednavka> items = service.getObjednavky(id);
+
+            if (items.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+
+            return ResponseEntity.ok(items);
+        } catch (SQLException e) {
+            return ResponseEntity.internalServerError().build();
         }
     }
 

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UzivatelService {
@@ -106,4 +108,51 @@ public class UzivatelService {
         }
     }
 
+    public List<UzivatelObjednavka> getObjednavky(Integer id) throws SQLException {
+        List<UzivatelObjednavka> objednavky = new ArrayList<>();
+        final String QUERY = """
+                select * from view_objednavky_uzivatelu
+                where id_uzivatel = ?
+                order by id_kosik asc
+                """;
+
+        try (Connection c = dataSource.getConnection();
+            PreparedStatement stmt = c.prepareStatement(QUERY)) {
+
+            stmt.setInt(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                UzivatelObjednavka objednavka = null;
+                while (rs.next()) {
+                    int id_kvetina = rs.getInt("id_kvetina");
+                    int id_kosik = rs.getInt("id_kosik");
+                    double cena_za_kus = rs.getDouble("cena_za_kus");
+                    int pocet = rs.getInt("pocet");
+                    String nazev_kvetiny = rs.getString("nazev_kvetiny");
+                    int id_obrazek = rs.getInt("id_obrazek");
+                    int id_kategorie = rs.getInt("id_kategorie");
+                    String nazev_souboru = rs.getString("nazev_souboru");
+                    byte[] data = rs.getBytes("data");
+                    String nazev_kategorie = rs.getString("nazev_kategorie");
+
+                    if (objednavka == null) {
+                        objednavka = new UzivatelObjednavka(id_kosik, new ArrayList<>());
+                    }
+
+                    if (objednavka.id_kosik() != id_kosik) {
+                        objednavky.add(objednavka);
+                        objednavka = new UzivatelObjednavka(id_kosik, new ArrayList<>());
+                    }
+
+                    objednavka.polozky().add(new UzivatelPolozka(
+                            id_kvetina, cena_za_kus, pocet, nazev_kvetiny, id_obrazek, nazev_souboru, data, id_kategorie, nazev_kategorie
+                    ));
+                }
+                if (objednavka != null) {
+                    objednavky.add(objednavka);
+                }
+            }
+        }
+
+        return objednavky;
+    }
 }
