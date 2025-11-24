@@ -32,8 +32,8 @@ public class UzivatelController extends AbstractController<Uzivatel> {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Status<Void>> verifyUzivatel(@RequestBody LoginRequest request) {
-        Status<Void> result = service.verifyUzivatel(request);
+    public ResponseEntity<Status<Uzivatel>> verifyUzivatel(@RequestBody LoginRequest request) {
+        Status<Uzivatel> result = service.verifyUzivatel(request);
 
         if (result.status_code() == -1) {
             return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);

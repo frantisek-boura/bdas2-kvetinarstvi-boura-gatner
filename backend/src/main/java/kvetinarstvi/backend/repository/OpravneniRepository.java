@@ -20,7 +20,7 @@ public class OpravneniRepository implements IRepository<Opravneni> {
 
     @Override
     public Optional<Opravneni> findById(Integer ID) throws SQLException {
-        final String QUERY = "SELECT id_opravneni, nazev, uroven_opravneni FROM opravneni WHERE id_opravneni = ?";
+        final String QUERY = "SELECT id_opravneni, nazev, uroven FROM opravneni WHERE id_opravneni = ?";
 
         try (Connection c = dataSource.getConnection();
              PreparedStatement stmt = c.prepareStatement(QUERY)) {
@@ -31,7 +31,7 @@ public class OpravneniRepository implements IRepository<Opravneni> {
                 if (rs.next()) {
                     int id_opravneni = rs.getInt("id_opravneni");
                     String nazev = rs.getString("nazev");
-                    int uroven_opravneni = rs.getInt("uroven_opravneni");
+                    int uroven_opravneni = rs.getInt("uroven");
 
                     return Optional.of(new Opravneni(id_opravneni, nazev, uroven_opravneni));
                 }
@@ -44,7 +44,7 @@ public class OpravneniRepository implements IRepository<Opravneni> {
     @Override
     public List<Opravneni> findAll() throws SQLException {
         List<Opravneni> opravneni = new ArrayList<>();
-        final String QUERY = "SELECT id_opravneni, nazev, uroven_opravneni FROM opravneni";
+        final String QUERY = "SELECT id_opravneni, nazev, uroven FROM opravneni";
 
         try (Connection c = dataSource.getConnection();
              PreparedStatement stmt = c.prepareStatement(QUERY);
@@ -53,7 +53,7 @@ public class OpravneniRepository implements IRepository<Opravneni> {
             while (rs.next()) {
                 int id_opravneni = rs.getInt("id_opravneni");
                 String nazev = rs.getString("nazev");
-                int uroven_opravneni = rs.getInt("uroven_opravneni");
+                int uroven_opravneni = rs.getInt("uroven");
 
                 opravneni.add(new Opravneni(id_opravneni, nazev, uroven_opravneni));
             }

@@ -44,28 +44,29 @@ public class UzivatelService {
         }
     }
 
-    public Status<Void> verifyUzivatel(LoginRequest request) {
-        final String QUERY = "SELECT PCK_HESLA.FUNC_OVER_HESLO(?, ?) AS vysledek FROM dual";
+    public Status<Uzivatel> verifyUzivatel(LoginRequest request) {
+
+        final String FUNCTION_CALL_QUERY = "{? = call PCK_HESLA.FUNC_OVER_HESLO(?, ?, ?)}";
 
         try (Connection connection = dataSource.getConnection();
-            CallableStatement cs = connection.prepareCall(QUERY)) {
+             CallableStatement cs = connection.prepareCall(FUNCTION_CALL_QUERY)) {
+            cs.registerOutParameter(1, Types.INTEGER);
+            cs.setString(2, request.email());
+            cs.setString(3, request.heslo());
 
-            cs.setString(1, request.email());
-            cs.setString(2, request.heslo());
+            cs.registerOutParameter(4, Types.INTEGER);
+            cs.execute();
+            int loginStatus = cs.getInt(1);
+            int userId = cs.getInt(4);
 
-            int vysledek = -1;
-            try (ResultSet rs = cs.executeQuery()) {
-                if (rs.next()) {
-                    vysledek = rs.getInt("vysledek");
-                }
-            }
-
-            if (vysledek == -1) {
+            if (loginStatus == -1) {
                 return new Status<>(-1, "Přihlášení selhalo: E-mail nebyl nalezen", null);
-            } else if (vysledek == 0) {
+            } else if (loginStatus == 0) {
                 return new Status<>(0, "Přihlášení selhalo: Špatně zadané heslo", null);
             } else {
-                return new Status<>(1, "Přihlášení proběhlo úspěšně", null);
+                Uzivatel uzivatel = repository.findById(userId).get();
+
+                return new Status<>(1, "Přihlášení proběhlo úspěšně", uzivatel);
             }
         } catch (SQLException e) {
             return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
