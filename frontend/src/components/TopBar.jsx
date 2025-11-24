@@ -3,7 +3,7 @@ import Logo from '../assets/logo.png';
 import UserControls from './UserControls.jsx'
 import { Link } from 'react-router-dom';
 
-export default function TopBar({username}) {
+export default function TopBar() {
 
     return (
         <>
@@ -13,7 +13,7 @@ export default function TopBar({username}) {
                     <input type='text' className='form-control' placeholder='Vyhledávat...' />
                     <input type="submit" className='btn btn-primary' value="Najít" />
                 </div>
-                <UserControls username={username} />
+                <UserControls />
             </div>
         </>
     )

@@ -1,29 +1,43 @@
 import React from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate, replace } from 'react-router-dom'
+import { useAuth } from './AuthContext';
 
-export default function UserControls({username}) {
+export default function UserControls() {
+
+    const {user, opravneni, isAuthenticated, logout} = useAuth();
+
+    const navigateHome = useNavigate();
+
+    const logoutAndRedirect = () => {
+        logout();
+
+        navigateHome('/', {replace: true});
+    }
 
     return (
         <div className='d-flex flex-row justify-content-center align-items-center'>
-            { username && <Link to="/checkout"><button className='btn btn-secondary m-1'>Košík</button></Link> }
             <div className='d-flex flex-column justify-content-center align-items-center'>
                 <div className='text-align-center p-1'>
+                    <div className='d-flex flex-row justify-content-center align-items-center'>
                     {
-                        username ?
-                            <div className='d-flex flex-row'>
-                                <p className='align-middle m-1'>{username}</p>
-                            </div>
-                            :
+                        isAuthenticated ?
+                            <>
+                                <p className='align-middle m-1'>{user.email}</p>
+                                <p className='align-middle m-2'>{opravneni.nazev}</p>
+                            </>
+                        :
                             <p className='align-middle m-1'>Nepřihlášený</p>
                     }
+                    </div>
                 </div>
                 {
-                    username ?
+                    isAuthenticated ?
                         <div className='d-flex flex-row'>
-                            <Link to='/profile'><button className='btn btn-primary m-1'>Profil</button></Link>
-                            <button className='btn btn-danger m-1'>Odhlásit se</button>
+                            <Link to="/checkout"><button className='btn btn-secondary mx-1'>Košík</button></Link>
+                            <Link to='/profile'><button className='btn btn-primary mx-1'>Profil</button></Link>
+                            <button className='btn btn-danger mx-1' onClick={logoutAndRedirect}>Odhlásit se</button>
                         </div>
-                        :
+                    :
                         <div className='d-flex flex-row'>
                             <Link to="login"><button className='btn btn-primary m-1'>Přihlásit se</button></Link>
                             <Link to="register"><button className='btn btn-secondary m-1'>Registrace</button></Link>
