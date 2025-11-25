@@ -19,8 +19,8 @@ public class UzivatelController extends AbstractController<Uzivatel> {
     private UzivatelService service;
 
     @PostMapping("/registrace")
-    public ResponseEntity<Status<Void>> registerUzivatel(@RequestBody RegistraceRequest request) {
-        Status<Void> result = service.registerUzivatel(request);
+    public ResponseEntity<Status<Uzivatel>> registerUzivatel(@RequestBody RegistraceRequest request) {
+        Status<Uzivatel> result = service.registerUzivatel(request);
 
         if (result.status_code() == 1) {
             return new ResponseEntity<>(result, HttpStatus.CREATED);

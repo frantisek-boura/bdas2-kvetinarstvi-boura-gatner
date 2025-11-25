@@ -1,18 +1,25 @@
 import React from 'react'
 import { Link, useParams, useNavigate, replace } from 'react-router-dom'
 import { useAuth } from './AuthContext';
+import { useModal } from './ModalContext'
 
 export default function UserControls() {
 
     const {user, opravneni, isAuthenticated, logout} = useAuth();
-
+    const { showModal, hideModal, modalState } = useModal();
     const navigateHome = useNavigate();
 
-    const logoutAndRedirect = () => {
-        logout();
-
-        navigateHome('/', {replace: true});
-    }
+    const handleConfirmModal = () => {
+        showModal({
+            type: 'confirmation',
+            heading: 'Odhlášení',
+            message: 'Opravdu se chcete odhlásit?',
+            onConfirm: () => {
+                logout();
+                navigateHome('/', {replace: true});
+            },
+        });
+    };
 
     return (
         <div className='d-flex flex-row justify-content-center align-items-center'>
@@ -35,7 +42,7 @@ export default function UserControls() {
                         <div className='d-flex flex-row'>
                             <Link to="/checkout"><button className='btn btn-secondary mx-1'>Košík</button></Link>
                             <Link to='/profile'><button className='btn btn-primary mx-1'>Profil</button></Link>
-                            <button className='btn btn-danger mx-1' onClick={logoutAndRedirect}>Odhlásit se</button>
+                            <button className='btn btn-danger mx-1' onClick={handleConfirmModal}>Odhlásit se</button>
                         </div>
                     :
                         <div className='d-flex flex-row'>

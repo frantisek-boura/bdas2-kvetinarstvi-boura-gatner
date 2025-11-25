@@ -5,7 +5,7 @@ import App from './App.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { AuthProvider } from './components/AuthContext.jsx';
-import { ModalProvider } from './components/ModalProvider.jsx';
+import { ModalProvider } from './components/ModalContext.jsx';
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>

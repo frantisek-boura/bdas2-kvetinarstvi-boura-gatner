@@ -1,30 +1,43 @@
 import axios from 'axios'
-import React from 'react'
+import { useState } from 'react'
 import { IP } from '../ApiURL'
-import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../components/AuthContext'
-import { useModal } from '../components/ModalProvider'
+import { useModal } from '../components/ModalContext'
+import { validateEmail } from '../components/validators';
 
-export default function LoginPage({setUser}) {
+export default function LoginPage() {
 
     const { login, isAuthenticated } = useAuth();
+    const { showModal, hideModal, modalState } = useModal();
 
-    const { showModal } = useModal();
+    const [email, setEmail] = useState(null);
+    const [error, setError] = useState(false);
+    const [buttonDisabled, setButtonDisabled] = useState(true);
 
-    const handleShowSuccess = (status_message) => {
+    const handleEmailChange = (event) => {
+        const newValue = event.target.value;
+        setEmail(newValue);
+
+        const validationError = validateEmail(newValue);
+        setError(validationError);
+
+        setButtonDisabled(!(!!validationError));
+    };
+
+    const handleShowError = (heading_message, status_message) => {
         showModal({
-            type: 'success',
-            heading: 'Úspěch',
+            type: 'error',
+            heading: heading_message,
             message: status_message,
-            redirectPath: '/',
         });
     };
 
-    const handleShowError = (status_message) => {
+    const handleShowInfo = (heading_message, status_message) => {
         showModal({
-            type: 'error',
-            heading: 'Login Failed',
+            type: 'info',
+            heading: heading_message,
             message: status_message,
+            redirectPath: '/',
         });
     };
 
@@ -33,6 +46,11 @@ export default function LoginPage({setUser}) {
         e.preventDefault();
 
         const formData = new FormData(e.target);
+        
+        if (!formData.get('email').trim() || !formData.get('password').trim()) {
+            handleShowError("Prosím zadejte e-mail a heslo.");
+            return;
+        }
 
         axios.post(
             IP + "/uzivatele/login", {
@@ -51,14 +69,16 @@ export default function LoginPage({setUser}) {
                 login(userData, opravneni);
 
                 if (response.data.status_code == 1) {
-                    handleShowSuccess(response.data.status_message);
+                    handleShowInfo('Úspěch', response.data.status_message);
                 } else {
-                    handleShowError(response.data.status_message);
+                    handleShowowError('Chyba', response.data.status_message);
                 }
+            }).catch(error => {
+                handleShowError('Chyba', "Server je nedostupný");
             })
 
         }).catch(error => {
-            handleShowError(error);
+            handleShowError('Chyba', "Server je nedostupný");
         });
     }
 
@@ -73,13 +93,14 @@ export default function LoginPage({setUser}) {
                     <form className='m-5' onSubmit={handleLogin}>
                         <div className="form-group p-1">
                             <label htmlFor="email">E-mail</label>
-                            <input type="text" className="form-control" id="email" name="email" placeholder="Zadejte e-mail" />
+                            <input type="text" className="form-control" id="email" name="email" placeholder="Zadejte e-mail" onChange={handleEmailChange} aria-invalid={!!error}/>
+                            {error && <p style={{ color: 'red' }}>{error}</p>}
                         </div>
                         <div className="form-group p-1">
                             <label htmlFor="password">Heslo</label>
                             <input type="password" className="form-control" id="password" name="password" placeholder="Zadejte heslo" />
                         </div>
-                        <button type="submit" className="btn btn-primary m-1">Přihlásit</button>
+                        <button type="submit" className="btn btn-primary m-1" disabled={!!error}>Přihlásit</button>
                     </form>
             }
         </div>

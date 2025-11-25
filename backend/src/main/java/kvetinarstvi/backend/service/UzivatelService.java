@@ -20,7 +20,7 @@ public class UzivatelService {
     @Autowired
     private UzivatelRepository repository;
 
-    public Status<Void> registerUzivatel(RegistraceRequest request) {
+    public Status<Uzivatel> registerUzivatel(RegistraceRequest request) {
         final String QUERY = "{CALL PCK_HESLA.PROC_REGISTRUJ_UZIVATELE(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 
         try (Connection connection = dataSource.getConnection();
@@ -38,7 +38,15 @@ public class UzivatelService {
             cs.registerOutParameter(9, Types.VARCHAR);
             cs.execute();
 
-            return new Status<>(cs.getInt(8), cs.getString(9), null);
+            int registerStatus = cs.getInt(8);
+            if (registerStatus == 1) {
+                int uzivatel_id = cs.getInt(7);
+                Uzivatel uzivatel = repository.findById(uzivatel_id).get();
+
+                return new Status<>(registerStatus, cs.getString(9), uzivatel);
+            } else {
+                return new Status<>(registerStatus, cs.getString(9), null);
+            }
         } catch (SQLException e) {
             return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
         }
