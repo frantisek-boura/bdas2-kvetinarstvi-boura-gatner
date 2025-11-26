@@ -21,13 +21,13 @@ const Modal = ({ type, heading, message, redirectPath, onClose, onConfirm }) => 
         }
 
         let timer;
-        if (redirectPath) {
-            timer = setTimeout(() => {
-                onClose();
+        timer = setTimeout(() => {
+            onClose();
 
+            if (redirectPath) {
                 navigate(redirectPath, { replace: true });
-            }, 1500);
-        }
+            }
+        }, 1500);
 
         return () => {
             if (timer) {
@@ -56,11 +56,6 @@ const Modal = ({ type, heading, message, redirectPath, onClose, onConfirm }) => 
 
                     <div className={`modal-header ${alertClass}`}>
                         <h5 className="modal-title">{heading}</h5>
-                        {type !== 'info' && type !== 'confirmation' && (
-                            <button type="button" className="close" aria-label="Close" onClick={onClose}>
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        )}
                     </div>
 
                     <div className="modal-body">
