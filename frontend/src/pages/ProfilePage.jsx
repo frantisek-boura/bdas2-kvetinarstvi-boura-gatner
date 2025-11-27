@@ -11,6 +11,9 @@ export default function ProfilePage() {
     const { user, opravneni, isAuthenticated, login } = useAuth();
     const { showModal, hideModal, modalState } = useModal();
 
+    const [obrazek, setObrazek] = useState('');
+    const [nazevSouboru, setNazevSouboru] = useState('');
+
     const [heslo1, setHeslo1] = useState('');
     const [heslo2, setHeslo2] = useState('');
     const [hesloError, setHesloError] = useState([]);
@@ -25,6 +28,34 @@ export default function ProfilePage() {
         if (!isAuthenticated) {
             return;
         }
+
+        axios.get(
+            IP + "/obrazky/" + user.id_obrazek
+        ).then(responseO => {
+
+            const mimeTypeMap = {
+                'png': 'image/png',
+                'jpg': 'image/jpeg',
+                'jpeg': 'image/jpeg',
+                'gif': 'image/gif',
+                'svg': 'image/svg+xml',
+                'webp': 'image/webp',
+                'bmp': 'image/bmp',
+                'ico': 'image/x-icon'
+            };
+
+            const parts = responseO.data.nazev_souboru.toLowerCase().split('.');
+            const extension = parts.pop();
+            console.log(extension);
+
+            const mimeType = mimeTypeMap[extension];
+
+            if (mimeType) {
+                setObrazek(`data:${mimeType};base64,` + responseO.data.base64);
+            }
+            setNazevSouboru(responseO.data.nazev_souboru);
+        });
+
 
         axios.get(
             IP + "/adresy/" + user.id_adresa
@@ -86,6 +117,72 @@ export default function ProfilePage() {
     useEffect(() => {
         validateAdresa();
     }, [ulice, cp, psc, mesto]);
+
+    const handleZmenitObrazek = (img) => {
+        console.log(img);
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const base64String_org = e.target.result;
+            const base64String = base64String_org.substring(e.target.result.indexOf(',') + 1)
+            
+            axios.post(
+                IP + "/obrazky", {
+                    nazev_souboru: img.name,
+                    base64: base64String,
+                }
+            ).then(responseO => {
+                const v_id_obrazek = responseO.data.value.id_obrazek;
+
+                axios.put(
+                    IP + "/uzivatele", {
+                    id_uzivatel: user.id_uzivatel,
+                    email: user.email,
+                    pw_hash: user.pw_hash,
+                    salt: user.salt,
+                    id_opravneni: user.id_opravneni,
+                    id_obrazek: v_id_obrazek,
+                    id_adresa: user.id_adresa
+                }
+                ).then(userR => {
+                    const userData = userR.data.value;
+
+                    if (userR.data.status_code == 1) {
+                        showModal({
+                            type: 'info',
+                            heading: 'Úspěch',
+                            message: userR.data.status_message
+                        });
+
+                        login(userData, opravneni);
+                        setObrazek(base64String_org);
+                        setNazevSouboru(img.name);
+                    } else {
+                        showModal({
+                            type: 'error',
+                            heading: 'Chyba',
+                            message: userR.data.status_message
+                        });
+                    }
+                }).catch(error => {
+                    showModal({
+                        type: 'error',
+                        heading: 'Chyba při změně adresy',
+                        message: 'Server není dostupný'
+                    });
+                    return;
+                })
+            }).catch(error => {
+                showModal({
+                    type: 'error',
+                    heading: 'Chyba při změně adresy',
+                    message: 'Server není dostupný'
+                });
+                return;
+            })
+
+        }
+        reader.readAsDataURL(img);
+    }
 
     const handleAddressChange = (e) => {
         e.preventDefault();
@@ -300,9 +397,10 @@ export default function ProfilePage() {
                                 </div>
                                 <div className='d-flex flex-column align-items-center justify-content-center'>
                                     <div className='ratio ratio-1x1'>
-                                        <img src={Logo} alt="Profilový obrázek" className='img-thumbnail' />
+                                        <img src={obrazek == "" ? null : obrazek} alt={nazevSouboru} className='img-thumbnail' />
                                     </div>
-                                    <button className='btn btn-primary m-1'>Změnit obrázek</button>
+                                    <label htmlFor="file" className="btn btn-primary">Změnit obrázek</label>
+                                    <input type="file" id="file" className='m-1' style={{display: 'none'}} onChange={(e) => handleZmenitObrazek(e.target.files[0])}/>
                                 </div>
                                 <div className='d-flex flex-column align-items-stat my-2'>
                                     <h3>Změna hesla</h3>
