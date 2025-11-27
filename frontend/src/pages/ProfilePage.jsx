@@ -24,10 +24,48 @@ export default function ProfilePage() {
     const [mesto, setMesto] = useState('');
     const [adresaError, setAdresaError] = useState([]);
 
+    const [stavyObjednavek, setStavyObjednavek] = useState([]);
+    const [zpusobyPlatby, setZpusobyPlatby] = useState([]);
+    const [objednavky, setObjednavky] = useState([]);
+
     useEffect(() => {
         if (!isAuthenticated) {
             return;
         }
+
+        axios.get(
+            IP + "/zpusobyplateb"
+        ).then(responseZP => {
+            setZpusobyPlatby(responseZP.data);
+        })
+
+        axios.get(
+            IP + "/stavyobjednavek"
+        ).then(responseSO => {
+            setStavyObjednavek(responseSO.data);
+        })
+
+
+        axios.get(
+            IP + "/uzivatele/objednavky/" + user.id_uzivatel
+        ).then(responseOB => {
+            const v_obj = responseOB.data;
+            const kosiky = [];
+
+            if (v_obj.length !== 0) {
+                v_obj.forEach(o => {
+                    axios.get(
+                        IP + "/kosiky/" + o.id_kosik
+                    ).then(responseKO => {
+                        const kosik = responseKO.data;
+                        kosik.polozky = o.polozky;
+                        kosiky.push(kosik);
+                    }).finally(() => {
+                        setObjednavky(kosiky.sort((a, b) => new Date(a.datum_vytvoreni) - new Date(b.datum_vytvoreni)));
+                    }) 
+                })
+            }
+        })
 
         axios.get(
             IP + "/obrazky/" + user.id_obrazek
@@ -46,7 +84,6 @@ export default function ProfilePage() {
 
             const parts = responseO.data.nazev_souboru.toLowerCase().split('.');
             const extension = parts.pop();
-            console.log(extension);
 
             const mimeType = mimeTypeMap[extension];
 
@@ -84,7 +121,7 @@ export default function ProfilePage() {
 
             validateAdresa();
         })
-    }, []);
+    }, [isAuthenticated, user]);
 
     useEffect(() => {
         setHesloError(validateHeslo(heslo1, heslo2));
@@ -119,7 +156,6 @@ export default function ProfilePage() {
     }, [ulice, cp, psc, mesto]);
 
     const handleZmenitObrazek = (img) => {
-        console.log(img);
         const reader = new FileReader();
         reader.onload = function(e) {
             const base64String_org = e.target.result;
@@ -400,7 +436,7 @@ export default function ProfilePage() {
                                         <img src={obrazek == "" ? null : obrazek} alt={nazevSouboru} className='img-thumbnail' />
                                     </div>
                                     <label htmlFor="file" className="btn btn-primary">Změnit obrázek</label>
-                                    <input type="file" id="file" className='m-1' style={{display: 'none'}} onChange={(e) => handleZmenitObrazek(e.target.files[0])}/>
+                                    <input type="file" accept="image/*" id="file" className='m-1' style={{display: 'none'}} onChange={(e) => handleZmenitObrazek(e.target.files[0])}/>
                                 </div>
                                 <div className='d-flex flex-column align-items-stat my-2'>
                                     <h3>Změna hesla</h3>
@@ -460,130 +496,69 @@ export default function ProfilePage() {
                                     <p className='bg-info text-white rounded p-1 m-1'>Na cestě</p>
                                 </div>
                             </div>
-                            <button className='btn d-flex flex-column bg-success rounded m-1 p-1 text-white w-100' type='button' data-bs-toggle="collapse" data-bs-target="#orderCollapse" aria-expanded="false" aria-controls="orderCollapse" >
-                                <div className='d-flex flex-row justify-content-between'>
-                                    <h5 className='mx-2'>16.10.2025</h5>
-                                    <h5 className='mx-2'>650 Kč</h5>
+                            { objednavky.map((k, i) => {
+                                const id_div = 'orderCollapse' + i;
+                                const timestamp = new Date(k.datum_vytvoreni);
+                                const date = timestamp.getDate() + '.' + (timestamp.getMonth() + 1) + '.' + timestamp.getFullYear();
+
+                                const cena = k.cena;
+                                const zpusobPlatby = zpusobyPlatby.find((v) => v.id_zpusob_platby == k.id_zpusob_platby).nazev;
+
+                                const stavObjednavky = stavyObjednavek.find((v) => v.id_stav_objednavky == k.id_stav_objednavky).nazev;
+
+                                let obj_bg;
+                                switch (stavObjednavky) {
+                                    case "Čeká na zaplacení":
+                                        obj_bg = 'bg-warning '   
+                                        break;
+                                    case "Vyřízena":
+                                        obj_bg = 'bg-success ' 
+                                        break;
+                                    case "Na cestě":
+                                        obj_bg = 'bg-info ' 
+                                        break;
+                                    case "Zrušena":
+                                        obj_bg = 'bg-danger ' 
+                                        break;
+                                }
+
+                                return <div key={i}>
+                                    <button className={obj_bg + 'btn d-flex flex-column rounded m-1 p-1 text-white w-100'} type='button' data-bs-toggle="collapse" data-bs-target={"#" + id_div} aria-expanded="false" aria-controls={id_div} >
+                                        <div className='d-flex flex-row justify-content-between'>
+                                            <h5 className='mx-2'>{date}</h5>
+                                            <h5 className='mx-2'>{cena} Kč</h5>
+                                        </div>
+                                    </button>
+                                    <div className={obj_bg + 'collapse rounded m-1 p-1 text-white w-100'} id={id_div}>
+                                        <div className='d-flex justify-content-between align-items-center m-1 p-1'>
+                                            <span>{zpusobPlatby}</span>
+                                            <span>{k.sleva == 10 ? "Sleva 10%" : "Bez slevy"}</span>
+                                        </div>
+                                            <div className='d-flex flex-column justify-content-between m-1 px-1'>
+                                                <ul className='list-group'>
+                                                    <li className='d-flex justify-content-between align-items-center px-3 py-1'>
+                                                        <span>Položka</span>
+                                                        <span>Počet</span>
+                                                        <span>Cena za kus</span>
+                                                        <span>Celková cena</span>
+                                                    </li>
+                                                {
+                                                    k.polozky.map((kv, id) => {
+                                                        return <div key={id}>
+                                                            <li className='d-flex justify-content-between align-items-center px-3 py-1'>
+                                                                <span>{kv.nazev}</span>
+                                                                <span>{kv.pocet} x</span>
+                                                                <span>{kv.cena_za_kus}</span>
+                                                                <span>{k.cena}</span>
+                                                            </li>
+                                                        </div>
+                                                })}
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                            </button>
-                            <div className='collapse bg-success rounded m-1 p-1 text-white w-100' id="orderCollapse">
-                                <div className='d-flex justify-content-between align-items-center m-1 p-1'>
-                                    <span>Způsob platby</span>
-                                    <span>Kartou</span>
-                                </div>
-                                <div className='d-flex flex-column justify-content-between m-1 px-1'>
-                                    <ul className='list-group'>
-                                        <li className='d-flex justify-content-between align-items-center px-3 py-1'>
-                                            <span>Květina</span>
-                                            <span>10x</span>
-                                            <span>300 Kč</span>
-                                        </li>
-                                        <li className='d-flex justify-content-between align-items-center px-3 py-1'>
-                                            <span>Květina</span>
-                                            <span>3x</span>
-                                            <span>250 Kč</span>
-                                        </li>
-                                        <li className='d-flex justify-content-between align-items-center px-3 py-1'>
-                                            <span>Květina</span>
-                                            <span>5x</span>
-                                            <span>100 Kč</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <button className='btn d-flex flex-column bg-danger rounded m-1 p-1 text-white w-100' type='button' data-bs-toggle="collapse" data-bs-target="#orderCollapse2" aria-expanded="false" aria-controls="orderCollapse2" >
-                                <div className='d-flex flex-row justify-content-between'>
-                                    <h5 className='mx-2'>16.10.2025</h5>
-                                    <h5 className='mx-2'>650 Kč</h5>
-                                </div>
-                            </button>
-                            <div className='collapse bg-danger rounded m-1 p-1 text-white w-100' id="orderCollapse2">
-                                <div className='d-flex justify-content-between align-items-center m-1 p-1'>
-                                    <span>Způsob platby</span>
-                                    <span>Kartou</span>
-                                </div>
-                                <div className='d-flex flex-column justify-content-between m-1 px-1'>
-                                    <ul className='list-group'>
-                                        <li className='d-flex justify-content-between align-items-center px-3 py-1'>
-                                            <span>Květina</span>
-                                            <span>10x</span>
-                                            <span>300 Kč</span>
-                                        </li>
-                                        <li className='d-flex justify-content-between align-items-center px-3 py-1'>
-                                            <span>Květina</span>
-                                            <span>3x</span>
-                                            <span>250 Kč</span>
-                                        </li>
-                                        <li className='d-flex justify-content-between align-items-center px-3 py-1'>
-                                            <span>Květina</span>
-                                            <span>5x</span>
-                                            <span>100 Kč</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <button className='btn d-flex flex-column bg-warning rounded m-1 p-1 text-white w-100' type='button' data-bs-toggle="collapse" data-bs-target="#orderCollapse3" aria-expanded="false" aria-controls="orderCollapse3" >
-                                <div className='d-flex flex-row justify-content-between'>
-                                    <h5 className='mx-2'>16.10.2025</h5>
-                                    <h5 className='mx-2'>650 Kč</h5>
-                                </div>
-                            </button>
-                            <div className='collapse bg-warning rounded m-1 p-1 text-white w-100' id="orderCollapse3">
-                                <div className='d-flex justify-content-between align-items-center m-1 p-1'>
-                                    <span>Způsob platby</span>
-                                    <span>Kartou</span>
-                                </div>
-                                <div className='d-flex flex-column justify-content-between m-1 px-1'>
-                                    <ul className='list-group'>
-                                        <li className='d-flex justify-content-between align-items-center px-3 py-1'>
-                                            <span>Květina</span>
-                                            <span>10x</span>
-                                            <span>300 Kč</span>
-                                        </li>
-                                        <li className='d-flex justify-content-between align-items-center px-3 py-1'>
-                                            <span>Květina</span>
-                                            <span>3x</span>
-                                            <span>250 Kč</span>
-                                        </li>
-                                        <li className='d-flex justify-content-between align-items-center px-3 py-1'>
-                                            <span>Květina</span>
-                                            <span>5x</span>
-                                            <span>100 Kč</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <button className='btn d-flex flex-column bg-info rounded m-1 p-1 text-white w-100' type='button' data-bs-toggle="collapse" data-bs-target="#orderCollapse4" aria-expanded="false" aria-controls="orderCollapse4" >
-                                <div className='d-flex flex-row justify-content-between'>
-                                    <h5 className='mx-2'>16.10.2025</h5>
-                                    <h5 className='mx-2'>650 Kč</h5>
-                                </div>
-                            </button>
-                            <div className='collapse bg-info rounded m-1 p-1 text-white w-100' id="orderCollapse4">
-                                <div className='d-flex justify-content-between align-items-center m-1 p-1'>
-                                    <span>Způsob platby</span>
-                                    <span>Kartou</span>
-                                </div>
-                                <div className='d-flex flex-column justify-content-between m-1 px-1'>
-                                    <ul className='list-group'>
-                                        <li className='d-flex justify-content-between align-items-center px-3 py-1'>
-                                            <span>Květina</span>
-                                            <span>10x</span>
-                                            <span>300 Kč</span>
-                                        </li>
-                                        <li className='d-flex justify-content-between align-items-center px-3 py-1'>
-                                            <span>Květina</span>
-                                            <span>3x</span>
-                                            <span>250 Kč</span>
-                                        </li>
-                                        <li className='d-flex justify-content-between align-items-center px-3 py-1'>
-                                            <span>Květina</span>
-                                            <span>5x</span>
-                                            <span>100 Kč</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            })
+                            }
                         </div>
                     </>
                 :
