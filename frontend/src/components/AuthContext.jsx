@@ -22,6 +22,31 @@ export const AuthProvider = ({ children }) => {
         setIsLoading(false);
     }, []);
 
+    const emulate = (userData, opravneni) => {
+        localStorage.setItem('emulatingUser', localStorage.getItem('user'));
+        localStorage.setItem('emulatingOpravneni', localStorage.getItem('opravneni'));
+        localStorage.setItem('user', JSON.stringify(userData));
+        localStorage.setItem('opravneni', JSON.stringify(opravneni));
+        localStorage.setItem('isEmulating', "true");
+
+        setUser(userData);
+        setOpravneni(opravneni);
+    }
+
+    const stopEmulate = () => {
+        const userData = JSON.parse(localStorage.getItem('emulatingUser'));
+        const opravneniData = JSON.parse(localStorage.getItem('emulatingOpravneni'));
+
+        localStorage.setItem('user', localStorage.getItem('emulatingUser'));
+        localStorage.setItem('opravneni', localStorage.getItem('emulatingOpravneni'));
+        localStorage.removeItem('emulatingUser');
+        localStorage.removeItem('emulatingOpravneni');
+        localStorage.setItem('isEmulating', "false");
+
+        setUser(userData);
+        setOpravneni(opravneniData);
+    }
+
     const login = (userData, opravneni) => {
         setUser(userData);
         setOpravneni(opravneni);
@@ -30,6 +55,10 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
+        if (JSON.parse(localStorage.getItem('isEmulating')) === true) {
+            stopEmulate();
+        }
+
         setUser(null);
         setOpravneni(null);
         localStorage.removeItem('user');
@@ -42,7 +71,10 @@ export const AuthProvider = ({ children }) => {
         isLoading,
         login,
         logout,
+        emulate,
+        stopEmulate,
         isAuthenticated: !!user,
+        isEmulating: JSON.parse(localStorage.getItem('isEmulating')) === true
     };
 
     return (

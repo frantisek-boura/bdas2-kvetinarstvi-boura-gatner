@@ -8,7 +8,7 @@ import { useModal } from '../components/ModalContext';
 
 export default function ProfilePage() {
 
-    const { user, opravneni, isAuthenticated, login } = useAuth();
+    const { user, opravneni, isAuthenticated, login, isEmulating } = useAuth();
     const { showModal, hideModal, modalState } = useModal();
 
     const [obrazek, setObrazek] = useState('');
@@ -33,44 +33,33 @@ export default function ProfilePage() {
             return;
         }
 
-        axios.get(
-            IP + "/zpusobyplateb"
-        ).then(responseZP => {
+        const uzivatel_objednavky = [];
+
+        let id_ulice, id_mesto, id_psc;
+
+        axios.get(IP + "/zpusobyplateb")
+        .then(responseZP => {
             setZpusobyPlatby(responseZP.data);
-        })
-
-        axios.get(
-            IP + "/stavyobjednavek"
-        ).then(responseSO => {
+            return axios.get(IP + "/stavyobjednavek");
+        }).then(responseSO => {
             setStavyObjednavek(responseSO.data);
-        })
-
-
-        axios.get(
-            IP + "/uzivatele/objednavky/" + user.id_uzivatel
-        ).then(responseOB => {
-            const v_obj = responseOB.data;
+            return axios.get(IP + "/uzivatele/objednavky/" + user.id_uzivatel);
+        }).then(responseOB => {
+            uzivatel_objednavky.push(...responseOB.data);
+            return axios.get(IP + "/kosiky");
+        }).then(responseKO => {
+            const objednavky_s_polozkami = [];
             const kosiky = [];
 
-            if (v_obj.length !== 0) {
-                v_obj.forEach(o => {
-                    axios.get(
-                        IP + "/kosiky/" + o.id_kosik
-                    ).then(responseKO => {
-                        const kosik = responseKO.data;
-                        kosik.polozky = o.polozky;
-                        kosiky.push(kosik);
-                    }).finally(() => {
-                        setObjednavky(kosiky.sort((a, b) => new Date(a.datum_vytvoreni) - new Date(b.datum_vytvoreni)));
-                    }) 
-                })
-            }
-        })
-
-        axios.get(
-            IP + "/obrazky/" + user.id_obrazek
-        ).then(responseO => {
-
+            kosiky.push(...responseKO.data);
+            uzivatel_objednavky.forEach(o => {
+                const kosik = kosiky.find(k => k.id_kosik == o.id_kosik);
+                kosik.polozky = o.polozky;
+                objednavky_s_polozkami.push(kosik);
+            });
+            setObjednavky(objednavky_s_polozkami.sort((a, b) => new Date(a.datum_vytvoreni) - new Date(b.datum_vytvoreni)));
+            return axios.get(IP + "/obrazky/" + user.id_obrazek);
+        }).then(responseO => {
             const mimeTypeMap = {
                 'png': 'image/png',
                 'jpg': 'image/jpeg',
@@ -90,38 +79,25 @@ export default function ProfilePage() {
             if (mimeType) {
                 setObrazek(`data:${mimeType};base64,` + responseO.data.base64);
             }
+
             setNazevSouboru(responseO.data.nazev_souboru);
-        });
-
-
-        axios.get(
-            IP + "/adresy/" + user.id_adresa
-        ).then(responseA => {
-            axios.get(
-                IP + "/ulice/" + responseA.data.id_ulice
-            ).then(responseU => {
-                setUlice(responseU.data.nazev);
-            });
-
-
-            axios.get(
-                IP + "/mesta/" + responseA.data.id_mesto
-            ).then(responseM => {
-                setMesto(responseM.data.nazev);
-            });
-
-
-            axios.get(
-                IP + "/psc/" + responseA.data.id_psc
-            ).then(responseP => {
-                setPsc(responseP.data.psc);
-            });
-
+            return axios.get(IP + "/adresy/" + user.id_adresa);
+        }).then(responseA => {
             setCp(responseA.data.cp);
-
-            validateAdresa();
-        })
-    }, [isAuthenticated, user]);
+            id_ulice = responseA.data.id_ulice;
+            id_psc = responseA.data.id_psc;
+            id_mesto = responseA.data.id_mesto;
+            return axios.get(IP + "/ulice/" + id_ulice);
+        }).then(responseU => {
+            setUlice(responseU.data.nazev);
+            return axios.get(IP + "/mesta/" + id_mesto);
+        }).then(responseM => {
+            setMesto(responseM.data.nazev);
+            return axios.get(IP + "/psc/" + id_psc);
+        }).then(responseP => {
+            setPsc(responseP.data.psc);
+        });
+    }, [user]);
 
     useEffect(() => {
         setHesloError(validateHeslo(heslo1, heslo2));
@@ -153,7 +129,7 @@ export default function ProfilePage() {
 
     useEffect(() => {
         validateAdresa();
-    }, [ulice, cp, psc, mesto]);
+    }, [user, opravneni, isAuthenticated, isEmulating, ulice, cp, psc, mesto]);
 
     const handleZmenitObrazek = (img) => {
         const reader = new FileReader();
@@ -168,8 +144,7 @@ export default function ProfilePage() {
                 }
             ).then(responseO => {
                 const v_id_obrazek = responseO.data.value.id_obrazek;
-
-                axios.put(
+                return axios.put(
                     IP + "/uzivatele", {
                     id_uzivatel: user.id_uzivatel,
                     email: user.email,
@@ -178,44 +153,33 @@ export default function ProfilePage() {
                     id_opravneni: user.id_opravneni,
                     id_obrazek: v_id_obrazek,
                     id_adresa: user.id_adresa
-                }
-                ).then(userR => {
-                    const userData = userR.data.value;
+                });
+            }).then(userR => {
+                const userData = userR.data.value;
+                if (userR.data.status_code == 1) {
+                    showModal({
+                        type: 'info',
+                        heading: 'Úspěch',
+                        message: userR.data.status_message
+                    });
 
-                    if (userR.data.status_code == 1) {
-                        showModal({
-                            type: 'info',
-                            heading: 'Úspěch',
-                            message: userR.data.status_message
-                        });
-
-                        login(userData, opravneni);
-                        setObrazek(base64String_org);
-                        setNazevSouboru(img.name);
-                    } else {
-                        showModal({
-                            type: 'error',
-                            heading: 'Chyba',
-                            message: userR.data.status_message
-                        });
-                    }
-                }).catch(error => {
+                    login(userData, opravneni);
+                    setObrazek(base64String_org);
+                    setNazevSouboru(img.name);
+                } else {
                     showModal({
                         type: 'error',
-                        heading: 'Chyba při změně adresy',
-                        message: 'Server není dostupný'
+                        heading: 'Chyba',
+                        message: userR.data.status_message
                     });
-                    return;
-                })
+                }
             }).catch(error => {
                 showModal({
                     type: 'error',
                     heading: 'Chyba při změně adresy',
                     message: 'Server není dostupný'
                 });
-                return;
-            })
-
+            });
         }
         reader.readAsDataURL(img);
     }
@@ -496,6 +460,7 @@ export default function ProfilePage() {
                                     <p className='bg-info text-white rounded p-1 m-1'>Na cestě</p>
                                 </div>
                             </div>
+                            {objednavky.length === 0 && <h3>Tento uživatel nemá žádné objednávky</h3>}
                             { objednavky.map((k, i) => {
                                 const id_div = 'orderCollapse' + i;
                                 const timestamp = new Date(k.datum_vytvoreni);
