@@ -8,6 +8,7 @@ export const useProducts = () => useContext(ProductsContext);
 
 export const ProductsProvider = ({ children }) => {
 
+    const [images, setImages] = useState([]);
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
 
@@ -18,6 +19,9 @@ export const ProductsProvider = ({ children }) => {
             return axios.get(IP + "/kategorie");
         }).then(response => {
             setCategories(response.data);
+            return axios.get(IP + "/obrazky");
+        }).then(response => {
+            setImages(response.data)
         });
     }
 
@@ -30,13 +34,14 @@ export const ProductsProvider = ({ children }) => {
         .then(response => {
             setProducts(response.data);
         }).catch(error => {
-            //...
+            setProducts([]);
         });
     }
 
     const productsValue = {
         products,
         categories,
+        images,
         filterByCategory,
         defaults
     };

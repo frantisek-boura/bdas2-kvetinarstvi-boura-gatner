@@ -4,7 +4,7 @@ import CategoryItem from '../components/CategoryItem';
 
 export default function ProductsPage() {
     
-    const { products, categories, filterByCategory, defaults } = useProducts();
+    const { products, categories, images, filterByCategory, defaults } = useProducts();
     
     const [filters, setFilters] = useState({
         cheap: true,
@@ -88,7 +88,7 @@ export default function ProductsPage() {
     useEffect(() => {
         const filtered = filter();
         setFilteredProducts(filtered);
-    }, [filters, products, categories]);
+    }, [filters, products, categories, images]);
 
     return (
         <div className='d-flex flex-row justify-content-start w-100'>
@@ -122,9 +122,42 @@ export default function ProductsPage() {
                 <div className='d-flex flex-row flex-wrap'>
                     {filteredProducts.length === 0 && <div className='m-3 p-3 d-flex flex-column flex-nowrap justify-content-center align-items-start'><h1>Filtrům neodpovídají žádné položky</h1></div>}
                     {filteredProducts.map((p, i) => {
+                        const image = images.filter(i => i.id_obrazek == p.id_obrazek)[0];
+                        let data = '';
+                        let alt = '';
+                        if (image != null) {
+                            const mimeTypeMap = {
+                                'png': 'image/png',
+                                'jpg': 'image/jpeg',
+                                'jpeg': 'image/jpeg',
+                                'gif': 'image/gif',
+                                'svg': 'image/svg+xml',
+                                'webp': 'image/webp',
+                                'bmp': 'image/bmp',
+                                'ico': 'image/x-icon'
+                            };
+
+                            const parts = image.nazev_souboru.toLowerCase().split('.');
+                            const extension = parts.pop();
+
+                            const mimeType = mimeTypeMap[extension];
+
+                            data = `data:${mimeType};base64,` + image.base64;
+                            alt = image.nazev_souboru;
+                        }
+
+                        let categoryName = '';
+                        if (categories.length != 0) {
+                            categoryName = categories.filter(k => k.id_kategorie == p.id_kategorie)[0].nazev;
+                        }
+
                         return (
-                            <div key={i} style={{height: '14em'}} className='w-25 m-3 p-3 d-flex flex-column flex-nowrap text-center justify-content-between align-items-center'>
+                            <div key={i} style={{height: '22em'}} className='w-25 m-3 p-3 d-flex flex-column flex-nowrap text-center justify-content-between align-items-center'>
                                 <h3>{p.nazev}</h3>
+                                <span>{categoryName}</span>
+                                <div className='ratio ratio-1x1'>
+                                    <img src={data} alt={alt} className='img-thumbnail' />
+                                </div>
                                 <span>{p.cena} Kč</span>
                                 <button type="button" className='m-1 btn btn-primary'>Přidat do košíku</button>
                             </div>
