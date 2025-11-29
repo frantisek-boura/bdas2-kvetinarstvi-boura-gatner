@@ -2,12 +2,21 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { useProducts } from '../components/ProductsContext'
 import CategoryItem from '../components/CategoryItem';
 import { useCheckout } from '../components/CheckoutContext';
+import axios from 'axios';
+import { IP } from '../ApiURL';
+import { useAuth } from '../components/AuthContext';
+import { DotazComponent } from '../components/DotazComponent';
+import { useModal } from '../components/ModalContext';
 
 export default function ProductsPage() {
     
+    const { showModal } = useModal();
+    const { user, opravneni } = useAuth();
     const { products, categories, images, filterByCategory, defaults } = useProducts();
     const { items, addItem, removeItem, containsItem, countItems } = useCheckout();
-    
+
+    const [uzivatele, setUzivatele] = useState([]);
+    const [dotazy, setDotazy] = useState([]);
     const [filters, setFilters] = useState({
         cheap: true,
         expensive: false,
@@ -16,6 +25,7 @@ export default function ProductsPage() {
         name: ''
     });
 
+    const [area, setArea] = useState('');
     const [filteredProducts, setFilteredProducts] = useState([]);
 
     const buildCategoryTree = (data) => {
@@ -87,10 +97,59 @@ export default function ProductsPage() {
         });
     }
 
+    const handlePodatDotaz = () => {
+        showModal({
+            type: 'confirmation',
+            heading: 'Podat dotaz',
+            message: 'Opravdu chcete podat dotaz?',
+            onConfirm: () => {
+                axios.post(IP + "/dotazy/pridat-dotaz", {
+                    text: area,
+                }).then(response => {
+                    if (response.data.status_code === 1) {
+                        const dotaz = response.data.value;
+
+                        showModal({
+                            type: 'info',
+                            heading: 'Úspěch',
+                            message: response.data.status_message,
+                        });
+                        setDotazy([dotaz, ...dotazy]);
+                    } else {
+                        showModal({
+                            type: 'error',
+                            heading: 'Chyba',
+                            message: response.data.status_message,
+                        });
+                    }
+                }).catch(error => {
+                    showModal({
+                        type: 'error',
+                        heading: 'Chyba',
+                        message: 'Server je nedostupný',
+                    });
+                })
+            }
+        });
+    }
+
+    useEffect(() => {
+        axios.get(
+            IP + "/dotazy"
+        ).then(response => {
+            response.data.sort((a, b) => new Date(a.datum_podani) - new Date(b.datum_podani));
+            setDotazy(response.data);
+            console.log(response.data);
+            return axios.get(IP + "/uzivatele");
+        }).then(response => {
+            setUzivatele(response.data);
+        });
+    }, []);
+
     useEffect(() => {
         const filtered = filter();
         setFilteredProducts(filtered);
-    }, [filters, products, categories, images, items]);
+    }, [filters, products, categories, images, items, dotazy]);
 
     return (
         <div className='d-flex flex-row justify-content-start w-100'>
@@ -108,6 +167,29 @@ export default function ProductsPage() {
                                 filterHandler={filterByCategory}
                             />
                         ))}
+                    </ul>
+                </div>
+                <div className='card my-3'>
+                    <div className="card-header bg-primary text-white">
+                        <h5>Dotazy</h5>
+                    </div>
+                    <ul className="list-group list-group-flush">
+                        { (opravneni === null || opravneni.uroven_opravneni === 0) && 
+                            <li className="list-group-item list-group-item-action">
+                                <p className='fw-bold'>Zanechat dotaz</p>
+                                <textarea onChange={(e) => setArea(e.target.value)} className='form-control'></textarea>
+                                <button onClick={handlePodatDotaz} disabled={area.length === 0} type='button' className='btn btn-primary my-2'>Odeslat</button>
+                            </li>
+                        }
+                        {dotazy.filter((d) => d.verejny === true).map((d, i) => {
+                            if (uzivatele.length === 0 ) {
+                                return;
+                            }
+
+                            return (
+                                <DotazComponent key={d.id_dotaz} dotaz={d} uzivatele={uzivatele} />
+                            )
+                        })}
                     </ul>
                 </div>
             </div>
