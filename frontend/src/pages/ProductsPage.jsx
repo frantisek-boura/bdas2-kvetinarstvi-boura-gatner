@@ -1,10 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useProducts } from '../components/ProductsContext'
 import CategoryItem from '../components/CategoryItem';
+import { useCheckout } from '../components/CheckoutContext';
 
 export default function ProductsPage() {
     
     const { products, categories, images, filterByCategory, defaults } = useProducts();
+    const { items, addItem, removeItem, containsItem, countItems } = useCheckout();
     
     const [filters, setFilters] = useState({
         cheap: true,
@@ -88,7 +90,7 @@ export default function ProductsPage() {
     useEffect(() => {
         const filtered = filter();
         setFilteredProducts(filtered);
-    }, [filters, products, categories, images]);
+    }, [filters, products, categories, images, items]);
 
     return (
         <div className='d-flex flex-row justify-content-start w-100'>
@@ -152,14 +154,15 @@ export default function ProductsPage() {
                         }
 
                         return (
-                            <div key={i} style={{height: '22em'}} className='w-25 m-3 p-3 d-flex flex-column flex-nowrap text-center justify-content-between align-items-center'>
+                            <div key={i} style={{height: '25em'}} className='w-25 m-3 p-3 d-flex flex-column flex-nowrap text-center justify-content-between align-items-center'>
                                 <h3>{p.nazev}</h3>
                                 <span>{categoryName}</span>
                                 <div className='ratio ratio-1x1'>
-                                    <img src={data} alt={alt} className='img-thumbnail' />
+                                    <img src={data === '' ? null : data} alt={alt} className='img-thumbnail' />
                                 </div>
                                 <span>{p.cena} Kč</span>
-                                <button type="button" className='m-1 btn btn-primary'>Přidat do košíku</button>
+                                <button onClick={() => addItem(p.id_kvetina, 1)} type="button" className='m-1 btn btn-primary'>Přidat do košíku {countItems(p.id_kvetina) !== 0 && <>({countItems(p.id_kvetina)})</>}</button>
+                                <button onClick={() => removeItem(p.id_kvetina, 1)} disabled={containsItem(p.id_kvetina) === false} type="button" className='m-1 btn btn-danger'>Odebrat z košíku</button>
                             </div>
                         )
                     })}

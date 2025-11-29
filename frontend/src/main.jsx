@@ -7,16 +7,19 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import { AuthProvider } from './components/AuthContext.jsx';
 import { ModalProvider } from './components/ModalContext.jsx';
 import { ProductsProvider } from './components/ProductsContext.jsx';
+import { CheckoutProvider } from './components/CheckoutContext.jsx';
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
         <BrowserRouter>
             <AuthProvider>
-                <ProductsProvider>
-                    <ModalProvider>
-                        <App />
-                    </ModalProvider>
-                </ProductsProvider>
+                <CheckoutProvider>
+                    <ProductsProvider>
+                        <ModalProvider>
+                            <App />
+                        </ModalProvider>
+                    </ProductsProvider>
+                </CheckoutProvider>
             </AuthProvider>
         </BrowserRouter>
     </StrictMode>,

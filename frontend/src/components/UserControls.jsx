@@ -4,11 +4,14 @@ import { useAuth } from './AuthContext';
 import { useModal } from './ModalContext'
 import axios from 'axios';
 import { IP } from '../ApiURL';
+import { useCheckout } from './CheckoutContext';
 
 export default function UserControls() {
 
-    const {user, opravneni, isAuthenticated, logout, emulate, stopEmulate, isEmulating} = useAuth();
+    const { user, opravneni, isAuthenticated, logout, emulate, stopEmulate, isEmulating } = useAuth();
     const { showModal, hideModal, modalState } = useModal();
+    const { items } = useCheckout();
+
     const navigateHome = useNavigate();
 
     const [uzivatele, setUzivatele] = useState([]);
@@ -53,10 +56,10 @@ export default function UserControls() {
     }
 
     return (
-        <div className='d-flex flex-row justify-content-center align-items-center'>
-            <div className='d-flex flex-column justify-content-center align-items-center'>
+        <div className='d-flex flex-row justify-content-end align-items-end w-50'>
+            <div className='d-flex flex-column justify-content-end align-items-start w-100'>
                 <div className='text-align-center p-1'>
-                    <div className='d-flex flex-row justify-content-center align-items-center'>
+                    <div className='d-flex flex-row justify-content-center align-items-center w-100'>
                     {
                         isAuthenticated ?
                             <>
@@ -71,7 +74,7 @@ export default function UserControls() {
                 {
                     isAuthenticated ?
                         <div className='d-flex flex-row'>
-                            <Link to="/checkout"><button className='btn btn-secondary mx-1'>Košík</button></Link>
+                            <Link to="/checkout"><button className='btn btn-secondary mx-1'>Košík ({items.length})</button></Link>
                             <Link to='/profile'><button className='btn btn-primary mx-1'>Profil</button></Link>
                             <button className='btn btn-danger mx-1' onClick={handleConfirmModal}>Odhlásit se</button>
                             {(opravneni.uroven_opravneni == 2 && !isEmulating) &&

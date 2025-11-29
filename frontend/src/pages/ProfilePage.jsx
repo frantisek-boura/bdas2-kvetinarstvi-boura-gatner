@@ -57,7 +57,7 @@ export default function ProfilePage() {
                 kosik.polozky = o.polozky;
                 objednavky_s_polozkami.push(kosik);
             });
-            setObjednavky(objednavky_s_polozkami.sort((a, b) => new Date(a.datum_vytvoreni) - new Date(b.datum_vytvoreni)));
+            setObjednavky(objednavky_s_polozkami.sort((a, b) => new Date(b.datum_vytvoreni) - new Date(a.datum_vytvoreni)));
             return axios.get(IP + "/obrazky/" + user.id_obrazek);
         }).then(responseO => {
             const mimeTypeMap = {
