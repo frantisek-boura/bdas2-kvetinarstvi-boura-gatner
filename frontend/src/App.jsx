@@ -6,6 +6,7 @@ import ProfilePage from './pages/ProfilePage.jsx';
 import ProductsPage from './pages/ProductsPage.jsx';
 import CheckoutPage from './pages/CheckoutPage.jsx';
 import { Routes, Route, Router } from 'react-router-dom';
+import { DashboardPage } from './pages/DashboardPage.jsx';
 
 export default function App() { 
 
@@ -13,6 +14,7 @@ export default function App() {
         <Routes>
             <Route path="/" element={<PageLayout />} >
                 <Route path="" element={<ProductsPage />} />
+                <Route path="dashboard" element={<DashboardPage />} />
                 <Route path="checkout" element={<CheckoutPage />} />
                 <Route path="login" element={<LoginPage />} />
                 <Route path="register" element={<RegisterPage />} />

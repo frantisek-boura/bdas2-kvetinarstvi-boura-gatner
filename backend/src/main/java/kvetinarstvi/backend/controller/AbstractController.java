@@ -20,49 +20,27 @@ public abstract class AbstractController<E> {
     protected ResponseEntity<Status<E>> insert(@RequestBody E request) {
         Status<E> status = repository.insert(request);
 
-        if (status.status_code() == 1) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(status);
-        } else if (status.status_code() == 0 || (status.status_code() <= -400 && status.status_code() >= -499)) {
-            return ResponseEntity.badRequest().body(status);
-        } else {
-            return ResponseEntity.internalServerError().body(status);
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(status);
     }
 
     @PutMapping("")
     protected ResponseEntity<Status<E>> update(@RequestBody E request) {
         Status<E> status = repository.update(request);
 
-        if (status.status_code() == 1) {
-            return ResponseEntity.status(HttpStatus.OK).body(status);
-        } else if (status.status_code() == 0 || (status.status_code() <= -400 && status.status_code() >= -499)) {
-            return ResponseEntity.badRequest().body(status);
-        } else {
-            return ResponseEntity.internalServerError().body(status);
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(status);
     }
 
     @DeleteMapping("/{id}")
     protected ResponseEntity<Status<E>> delete(@PathVariable Integer id) {
         Status<E> status = repository.delete(id);
 
-        if (status.status_code() == 1) {
-            return ResponseEntity.status(HttpStatus.OK).body(status);
-        } else if (status.status_code() == 0 || (status.status_code() <= -400 && status.status_code() >= -499)) {
-            return ResponseEntity.badRequest().body(status);
-        } else {
-            return ResponseEntity.internalServerError().body(status);
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(status);
     }
 
     @GetMapping("")
     protected ResponseEntity<List<E>> getAll() {
         try {
             List<E> items = repository.findAll();
-
-            if (items.isEmpty()) {
-                return ResponseEntity.noContent().build();
-            }
 
             return ResponseEntity.ok(items);
         } catch (SQLException e) {
@@ -75,7 +53,7 @@ public abstract class AbstractController<E> {
         try {
             Optional<E> item = repository.findById(id);
 
-            if (item.isEmpty()) {
+            if (!item.isPresent()) {
                 return ResponseEntity.notFound().build();
             }
 

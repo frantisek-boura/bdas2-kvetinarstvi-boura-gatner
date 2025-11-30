@@ -131,6 +131,40 @@ export default function ProfilePage() {
         validateAdresa();
     }, [user, opravneni, isAuthenticated, isEmulating, ulice, cp, psc, mesto]);
 
+    const zaplatitObjednavku = (kosik) => {
+        axios.put(
+            IP + "/kosiky", {
+                id_kosik: kosik.id_kosik,
+                datum_vytvoreni: kosik.datum_vytvoreni,
+                cena: kosik.cena,
+                sleva: kosik.sleva,
+                id_uzivatel: kosik.id_uzivatel,
+                id_stav_objednavky: 3,
+                id_zpusob_platby: kosik.id_zpusob_platby
+            }
+        ).then(response => {
+            if (response.data.status_code == 1) {
+                showModal({
+                    type: 'info',
+                    heading: 'Úspěch',
+                    message: 'Objednávka úspěšně zaplacena' 
+                });
+            } else {
+                showModal({
+                    type: 'error',
+                    heading: 'Chyba',
+                    message: 'Chyba při placení objednávky, zkuste to znovu' 
+                });
+            }
+        }).catch(error => {
+            showModal({
+                type: 'error',
+                heading: 'Chyba',
+                message: 'Chyba při placení objednávky, zkuste to znovu'
+            });
+        })
+    }
+
     const handleZmenitObrazek = (img) => {
         const reader = new FileReader();
         reader.onload = function(e) {
@@ -519,6 +553,9 @@ export default function ProfilePage() {
                                                         </div>
                                                 })}
                                             </ul>
+                                            { stavObjednavky === "Čeká na zaplacení" &&
+                                                <button onClick={() => zaplatitObjednavku(k)} type='btn' className='btn btn-primary'>Zaplatit</button>
+                                            }
                                         </div>
                                     </div>
                                 </div>
