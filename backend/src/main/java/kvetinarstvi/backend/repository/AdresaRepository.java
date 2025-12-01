@@ -28,6 +28,26 @@ public class AdresaRepository implements IRepository<Adresa> {
     @Autowired
     private IRepository<Ulice> uliceRepository;
 
+    public List<AdresaZkratka> findZkratky() throws SQLException {
+        final String QUERY = "SELECT id_adresa, zkratka FROM  view_adresy_zkratky";
+
+        List<AdresaZkratka> adresy = new ArrayList<>();
+
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                int id_adresa = rs.getInt("id_adresa");
+                String zkratka = rs.getString("zkratka");
+
+                adresy.add(new AdresaZkratka(id_adresa, zkratka));
+            }
+        }
+
+        return adresy;
+    }
+
     @Override
     public List<Adresa> findAll() throws SQLException {
         final String QUERY = "SELECT id_adresa, cp, id_mesto, id_ulice, id_psc FROM ADRESY";
@@ -152,10 +172,6 @@ public class AdresaRepository implements IRepository<Adresa> {
         }
     }
 
-    /**
-     * Implementace delete metody pro Adresa
-     * Procedura: PCK_ADRESY.PROC_DELETE_ADRESA(p_id_adresa, o_status_code, o_status_message)
-     */
     @Override
     public Status<Adresa> delete(Integer id) {
         final String QUERY = "{CALL PCK_ADRESY.PROC_DELETE_ADRESA(?, ?, ?)}";

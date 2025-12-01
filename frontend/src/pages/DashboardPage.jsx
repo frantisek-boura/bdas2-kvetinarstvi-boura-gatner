@@ -3,13 +3,20 @@ import { useAuth } from "../components/AuthContext"
 import { MestoPage } from "../dashboardPages/MestoPage";
 import { UlicePage } from "../dashboardPages/UlicePage";
 import { PscPage } from "../dashboardPages/PscPage";
+import { AdresaPage } from "../dashboardPages/AdresaPage";
+import { KategoriePage } from "../dashboardPages/KategoriePage";
+import { OpravneniPage } from "../dashboardPages/OpravneniPage";
+import { StavObjednavkyPage } from "../dashboardPages/StavyObjednavekPage";
+import { ZpusobPlatbyPage } from "../dashboardPages/ZpusobyPlatebPage";
+import { ObrazekPage } from "../dashboardPages/ObrazekPage";
+import { UzivatelPage } from "../dashboardPages/UzivatelPage";
 
 
 export const DashboardPage = () => {
 
     const { isAuthenticated, opravneni } = useAuth();
 
-    const [Page, setPage] = useState(null);
+    const [Page, setPage] = useState(<AdresaPage />);
 
     if (!isAuthenticated) {
         return <h1>Nejste přihlášeni</h1>
@@ -26,45 +33,32 @@ export const DashboardPage = () => {
                     <li className="card-header bg-primary text-white bg-primary list-group-item list-group-item-action">
                         <h1>Dashboard</h1>
                     </li>
-                    <li className="card-header list-group-item list-group-item-action">
+                    <li onClick={() => setPage(<AdresaPage />)} className="card-header list-group-item list-group-item-action">
                         Adresy
                     </li>
                     <li className="card-header list-group-item list-group-item-action">
                         Dotazy
                     </li>
-                    <li className="card-header list-group-item list-group-item-action">
+                    <li onClick={() => setPage(<KategoriePage />)} className="card-header list-group-item list-group-item-action">
                         Kategorie
                     </li>
                     <li className="card-header list-group-item list-group-item-action">
-                        Kategorie
+                        Košíky
                     </li>
                     <li className="card-header list-group-item list-group-item-action">
-                        Košíky 
-                    </li>
-                    <li className="card-header list-group-item list-group-item-action">
-                        Květiny Košíky 
+                        Květiny 
                     </li>
                     <li className="card-header list-group-item list-group-item-action">
                         Položky v košících 
                     </li>
-                    {opravneni.uroven_opravneni == 2 &&
-                    <li className="card-header list-group-item list-group-item-action">
-                        Log akce
-                    </li>
-                    }
-                    {opravneni.uroven_opravneni == 2 &&
-                    <li className="card-header list-group-item list-group-item-action">
-                        Logs
-                    </li>
-                    }
                     <li onClick={() => setPage(<MestoPage />)} className="card-header list-group-item list-group-item-action">
                         Města 
                     </li>
-                    <li className="card-header list-group-item list-group-item-action">
+                    <li onClick={() => setPage(<ObrazekPage />)} className="card-header list-group-item list-group-item-action">
                         Obrázky 
                     </li>
                     {opravneni.uroven_opravneni == 2 &&
-                    <li className="card-header list-group-item list-group-item-action">
+                    <li onClick={() => setPage(<OpravneniPage />)} className="card-header list-group-item list-group-item-action">
                         Oprávnění 
                     </li>
                     }
@@ -72,7 +66,7 @@ export const DashboardPage = () => {
                         PSČ
                     </li>
                     {opravneni.uroven_opravneni == 2 &&
-                    <li className="card-header list-group-item list-group-item-action">
+                    <li onClick={() => setPage(<StavObjednavkyPage />)} className="card-header list-group-item list-group-item-action">
                         Stavy objednávek 
                     </li>
                     }
@@ -80,12 +74,12 @@ export const DashboardPage = () => {
                         Ulice
                     </li>
                     {opravneni.uroven_opravneni == 2 &&
-                    <li className="card-header list-group-item list-group-item-action">
+                    <li onClick={() => setPage(<UzivatelPage />)} className="card-header list-group-item list-group-item-action">
                         Uživatelé
                     </li>
                     }
                     {opravneni.uroven_opravneni == 2 &&
-                    <li className="card-header list-group-item list-group-item-action">
+                    <li onClick={() => setPage(<ZpusobPlatbyPage />)} className="card-header list-group-item list-group-item-action">
                         Způsoby plateb
                     </li>
                     }
