@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IP } from '../ApiURL'
 import { useAuth } from '../components/AuthContext'
 import { useModal } from '../components/ModalContext'
@@ -10,9 +10,14 @@ export default function LoginPage() {
     const { login, isAuthenticated } = useAuth();
     const { showModal, hideModal, modalState } = useModal();
 
+    const [opravneni, setOpravneni] = useState([]);
     const [email, setEmail] = useState(null);
     const [error, setError] = useState(false);
     const [buttonDisabled, setButtonDisabled] = useState(true);
+
+    useEffect(() => {
+        axios.get(IP + "/opravneni").then(response => setOpravneni(response.data));
+    })
 
     const handleEmailChange = (event) => {
         const newValue = event.target.value;
@@ -58,25 +63,15 @@ export default function LoginPage() {
                 heslo: formData.get('password')
             }
         ).then(response => {
+            if (response.data.status_code === 1) {
+                const userData = response.data.value;
+                const userOpravneni = opravneni.filter(o => o.id_opravneni === userData.id_opravneni)[0];
+                login(userData, userOpravneni);
 
-            const userData = response.data.value;
-            
-            axios.get(
-                IP + "/opravneni/" + userData.id_opravneni
-            ).then(response2 => {
-                const opravneni = response2.data
-
-                login(userData, opravneni);
-
-                if (response.data.status_code == 1) {
-                    handleShowInfo('Úspěch', response.data.status_message);
-                } else {
-                    handleShowowError('Chyba', response.data.status_message);
-                }
-            }).catch(error => {
-                handleShowError('Chyba', "Server je nedostupný");
-            })
-
+                handleShowInfo('Úspěch', response.data.status_message);
+            } else {
+                handleShowError('Chyba', response.data.status_message);
+            } 
         }).catch(error => {
             handleShowError('Chyba', "Server je nedostupný");
         });

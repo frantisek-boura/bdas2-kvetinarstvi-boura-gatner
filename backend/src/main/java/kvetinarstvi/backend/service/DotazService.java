@@ -32,19 +32,25 @@ public class DotazService {
             cs.registerOutParameter(2, Types.NUMERIC);
             cs.registerOutParameter(3, Types.NUMERIC);
             cs.registerOutParameter(4, Types.VARCHAR);
+
             cs.execute();
 
             int id_dotaz = cs.getInt(2);
+            int status_code = cs.getInt(3);
+            String status_message = cs.getString(4);
 
-            Dotaz dotaz = repository.findById(id_dotaz).get();
-
-            return new Status<>(cs.getInt(3), cs.getString(4), dotaz);
+            if (status_code == 1) {
+                Dotaz dotaz = repository.findById(id_dotaz).get();
+                return new Status<>(status_code, status_message, dotaz);
+            } else {
+                return new Status<>(status_code, status_message, null);
+            }
         } catch (SQLException e) {
             return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
         }
     }
 
-    public Status<Dotaz> addDotaz(OdpovedRequest request) {
+    public Status<Dotaz> addOdpoved(OdpovedRequest request) {
         final String QUERY = "{CALL PCK_ADMINISTRATIVA.PROC_ODPOVED_NA_DOTAZ(?, ?, ?, ?, ?, ?)}";
 
         try (Connection connection = dataSource.getConnection();

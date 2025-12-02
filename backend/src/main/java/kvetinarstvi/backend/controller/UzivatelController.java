@@ -22,49 +22,27 @@ public class UzivatelController extends AbstractController<Uzivatel> {
     public ResponseEntity<Status<Uzivatel>> registerUzivatel(@RequestBody RegistraceRequest request) {
         Status<Uzivatel> result = service.registerUzivatel(request);
 
-        if (result.status_code() == 1) {
-            return new ResponseEntity<>(result, HttpStatus.CREATED);
-        } else if (result.status_code() == -999) {
-            return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
-        } else {
-            return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
-        }
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PostMapping("/login")
     public ResponseEntity<Status<Uzivatel>> verifyUzivatel(@RequestBody LoginRequest request) {
         Status<Uzivatel> result = service.verifyUzivatel(request);
 
-        if (result.status_code() == -1) {
-            return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
-        } else if (result.status_code() == 0) {
-            return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
-        } else if (result.status_code() == 1) {
-            return new ResponseEntity<>(result, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PostMapping("/zmena-hesla")
     public ResponseEntity<Status<String>> changeHeslo(@RequestBody ZmenaHeslaRequest request) {
         Status<String> result = service.changeHeslo(request);
 
-        if (result.status_code() == 1) {
-            return new ResponseEntity<>(result, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
-        }
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @GetMapping("/objednavky/{id}")
     protected ResponseEntity<List<UzivatelObjednavka>> getObjednavky(@PathVariable Integer id) {
         try {
             List<UzivatelObjednavka> items = service.getObjednavky(id);
-
-            if (items.isEmpty()) {
-                return ResponseEntity.noContent().build();
-            }
 
             return ResponseEntity.ok(items);
         } catch (SQLException e) {

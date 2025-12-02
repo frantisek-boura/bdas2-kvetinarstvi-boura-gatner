@@ -82,7 +82,7 @@ public class UzivatelService {
     }
 
     public Status<String> changeHeslo(ZmenaHeslaRequest request) {
-        String heslo = "";
+        String heslo = request.nove_heslo();
         if (request.generovat_heslo()) {
             final String QUERY = "SELECT PCK_HESLA.FUNC_GENERUJ_HESLO() AS heslo FROM dual";
 
@@ -92,28 +92,28 @@ public class UzivatelService {
                     if (rs.next()) {
                         heslo = rs.getString("heslo");
                     } else {
-                        return new Status<>(-999, "Chyba při změně hesla. Zkuste to později.", null);
+                        return new Status<>(-999, "Chyba při generování hesla. Zkuste to později.", null);
                     }
                 }
-
-                return new Status<>(1, "Změna hesla proběhla úspěšně", heslo);
             } catch (SQLException e) {
                 return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
             }
-        } else {
-            heslo = request.nove_heslo();
+        }
 
-            final String QUERY = "{CALL PCK_HESLA.PROC_ZMEN_HESLO(?, ?)}";
-            try (Connection connection = dataSource.getConnection();
-                CallableStatement cs = connection.prepareCall(QUERY)) {
-                cs.setInt(1, request.id_uzivatel());
-                cs.setString(2, heslo);
-                cs.execute();
+        final String QUERY = "{CALL PCK_HESLA.PROC_ZMEN_HESLO(?, ?)}";
+        try (Connection connection = dataSource.getConnection();
+            CallableStatement cs = connection.prepareCall(QUERY)) {
+            cs.setInt(1, request.id_uzivatel());
+            cs.setString(2, heslo);
+            cs.execute();
 
+            if (!request.generovat_heslo()) {
                 return new Status<>(1, "Změna hesla proběhla úspěšně", null);
-            } catch (SQLException e) {
-                return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
+            } else {
+                return new Status<>(1, "Změna hesla proběhla úspěšně", heslo);
             }
+        } catch (SQLException e) {
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
         }
     }
 

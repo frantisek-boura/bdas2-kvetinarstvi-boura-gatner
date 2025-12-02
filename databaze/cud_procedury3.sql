@@ -2331,7 +2331,7 @@ CREATE OR REPLACE PACKAGE PCK_DOTAZY AS
 END PCK_DOTAZY;
 /
 
-CREATE OR REPLACE PACKAGE BODY PCK_DOTAZY AS
+create or replace PACKAGE BODY PCK_DOTAZY AS
     
     v_existuje NUMBER;
 
@@ -2370,15 +2370,15 @@ CREATE OR REPLACE PACKAGE BODY PCK_DOTAZY AS
     AS
     BEGIN
         CHECK_LOGIC(p_odpoved, p_id_odpovidajici_uzivatel);
-        
+
         IF p_id_odpovidajici_uzivatel IS NOT NULL THEN
             CHECK_FOREIGN_KEYS(p_id_odpovidajici_uzivatel);
         END IF;
 
-        INSERT INTO DOTAZY(text, verejny, odpoved, id_odpovidajici_uzivatel)
-        VALUES (p_text, p_verejny, p_odpoved, p_id_odpovidajici_uzivatel)
+        INSERT INTO DOTAZY(datum_podani, verejny, text, odpoved, id_odpovidajici_uzivatel)
+        VALUES (SYSTIMESTAMP, p_verejny, p_text, p_odpoved, p_id_odpovidajici_uzivatel)
         RETURNING id_dotaz INTO o_id_dotaz;
-        
+
         o_status_code := 1;
         o_status_message := 'Úspěch: Operace proběhla úspěšně.';
 
@@ -2397,7 +2397,7 @@ CREATE OR REPLACE PACKAGE BODY PCK_DOTAZY AS
             o_status_code := -999; 
             o_status_message := 'Kritická chyba: Neočekávaná chyba: ' || SQLERRM;
     END PROC_INSERT_DOTAZ;
-    
+
     PROCEDURE PROC_UPDATE_DOTAZ(
         p_id_dotaz IN NUMBER,
         p_text IN CLOB,
@@ -2453,7 +2453,7 @@ CREATE OR REPLACE PACKAGE BODY PCK_DOTAZY AS
 
     PROCEDURE PROC_DELETE_DOTAZ(
         p_id_dotaz IN NUMBER,
-        
+
         o_status_code OUT NUMBER,
         o_status_message OUT VARCHAR2
     )
@@ -2461,7 +2461,7 @@ CREATE OR REPLACE PACKAGE BODY PCK_DOTAZY AS
     BEGIN
         DELETE FROM DOTAZY
         WHERE id_dotaz = p_id_dotaz;
-        
+
         IF SQL%ROWCOUNT = 1 THEN
             o_status_code := 1;
             o_status_message := 'Úspěch: Operace proběhla úspěšně.';
@@ -2484,4 +2484,3 @@ CREATE OR REPLACE PACKAGE BODY PCK_DOTAZY AS
             END IF;
     END PROC_DELETE_DOTAZ;
 END PCK_DOTAZY;
-/

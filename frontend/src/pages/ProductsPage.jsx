@@ -108,7 +108,6 @@ export default function ProductsPage() {
                 }).then(response => {
                     if (response.data.status_code === 1) {
                         const dotaz = response.data.value;
-
                         showModal({
                             type: 'info',
                             heading: 'Úspěch',
@@ -139,7 +138,6 @@ export default function ProductsPage() {
         ).then(response => {
             response.data.sort((a, b) => new Date(a.datum_podani) - new Date(b.datum_podani));
             setDotazy(response.data);
-            console.log(response.data);
             return axios.get(IP + "/uzivatele");
         }).then(response => {
             setUzivatele(response.data);

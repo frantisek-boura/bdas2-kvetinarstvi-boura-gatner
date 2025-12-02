@@ -7,11 +7,54 @@ const UzivatelData = (props) => {
 
     const { showModal } = useModal();
 
+    const [vygenerovaneHeslo, setVygenerovaneHeslo] = useState('')
     const [obrazek, setObrazek] = useState(props.id_obrazek);
     const [opravneni, setOpravneni] = useState(props.id_opravneni);
     const [adresa, setAdresa] = useState(props.id_adresa);
 
+    const vygenerovatHeslo = () => {
+        showModal({
+            type: 'confirmation',
+            heading: 'Vygenerovat heslo',
+            message: 'Tento uživatel byl vytovřen v dahsboardu a potřebuje vygenerovat heslo.',
+            onConfirm: () => {
+                axios.post(
+                    IP + "/uzivatele/zmena-hesla", {
+                        id_uzivatel: props.uzivatel.id_uzivatel,
+                        generovat_heslo: true,
+                        nove_heslo: ''
+                }).then(response => {
+                    if (response.data.status_code == 1) {
+                        console.log(response.data);
+                        showModal({
+                            type: 'info',
+                            heading: 'Úspěch',
+                            message: 'Nové heslo uživatele vygenerováno úspěšně.' 
+                        });
+                        setVygenerovaneHeslo(response.data.value)
+                    } else {
+                        showModal({
+                            type: 'error',
+                            heading: 'Chyba',
+                            message: response.data.status_message 
+                        });
+                    }
+                }).catch(error => {
+                    showModal({
+                        type: 'error',
+                        heading: 'Chyba',
+                        message: 'Server je nedostupný'
+                    });
+                }).finally(() => {
+                    props.onRefresh();
+                });
+            }
+        })
+    }
+
     const upravitData = () => {
+        console.log(obrazek, opravneni, adresa)
+
         showModal({
             type: 'confirmation',
             heading: 'Upravit data',
@@ -19,13 +62,13 @@ const UzivatelData = (props) => {
             onConfirm: () => {
                 axios.put(IP + "/uzivatele",
                     {
-                        id_uzivatel: props.id_uzivatel,
-                        email: props.id_email,
-                        pw_hash: props.pw_hash,
-                        salt: props.salt,
+                        id_uzivatel: props.uzivatel.id_uzivatel,
+                        email: props.uzivatel.email,
+                        pw_hash: props.uzivatel.pw_hash,
+                        salt: props.uzivatel.salt,
                         id_opravneni: opravneni,
                         id_obrazek: obrazek,
-                        id_adresa: adresa  
+                        id_adresa: adresa 
                     }
                 ).then(response => {
                     if (response.data.status_code == 1) {
@@ -60,7 +103,7 @@ const UzivatelData = (props) => {
             message: 'Opravdu chcete smazat data?',
             onConfirm: () => {
                 axios.delete(
-                    IP + "/uzivatele/" + props.id_uzivatel 
+                    IP + "/uzivatele/" + props.uzivatel.id_uzivatel 
                 ).then(response => {
                     if (response.data.status_code == 1) {
                         showModal({
@@ -88,30 +131,36 @@ const UzivatelData = (props) => {
     }
 
     return <li className="d-flex flex-row justify-content-between list-group-item list-group-item-action w-100">
-        <input type="text" className="form-control mx-2" onChange={e => setEmail(e.target.value)} value={cp} />
-        <select onChange={e => setAdresa(e.target.value)} className="mx-2 form-select" aria-label="Města">
-            {props.adresaData.map(m => {
+        <p className="w-25">{props.uzivatel.email}</p>
+        <div>
+        <select onChange={e => setAdresa(e.target.value)} className="mx-2 form-select" aria-label="Adresa">
+            {props.adresyData.map(m => {
                 return (
-                    <option selected={adresa === m.id_adresa} value={Number(m.id_adresa)} key={m.id_adresa}>{m.nazev}</option>
+                    <option selected={props.uzivatel.id_adresa === m.id_adresa} value={Number(m.id_adresa)} key={m.id_adresa}>{m.zkratka}</option>
                 )
             })}
         </select>
-        <select onChange={e => setIdUlice(e.target.value)} className="mx-2 form-select" aria-label="Ulice">
-            {props.uliceData.map(m => {
+        <select onChange={e => setOpravneni(e.target.value)} className="mx-2 form-select" aria-label="opravneni">
+            {props.opravneniData.map(m => {
                 return (
-                    <option selected={idUlice === m.id_ulice} value={Number(m.id_ulice)} key={m.id_ulice}>{m.nazev}</option>
+                    <option selected={props.uzivatel.id_opravneni === m.id_opravneni} value={Number(m.id_opravneni)} key={m.id_opravneni}>{m.nazev}</option>
                 )
             })}
         </select>
-        <select onChange={e => setIdPsc(e.target.value)} className="mx-2 form-select" aria-label="PSČ">
-            {props.pscData.map(m => {
+        <select onChange={e => setObrazek(e.target.value)} className="mx-2 form-select" aria-label="obrazek">
+            {props.obrazkyData.map(m => {
                 return (
-                    <option selected={idPsc === m.id_psc} value={Number(m.id_psc)} key={m.id_psc}>{m.psc}</option>
+                    <option selected={props.uzivatel.id_obrazek === m.id_obrazek} value={Number(m.id_obrazek)} key={m.id_obrazek}>{m.nazev_souboru}</option>
                 )
             })}
         </select>
-        <button onClick={upravitData} type="button" className="btn btn-primary mx-2">Upravit</button>
-        <button onClick={smazatData} type="button" className="btn btn-danger mx-2">Smazat</button>
+        </div>
+        <div className="d-flex flex-column align-items-end justify-content-center">
+            {vygenerovaneHeslo !== '' && <p>Heslo: {vygenerovaneHeslo}</p>}
+            {props.uzivatel.pw_hash.trim() == 'placeholder' && <button onClick={vygenerovatHeslo} type="button" className="btn btn-secondary">Vygenerovat heslo</button>}
+            <button onClick={upravitData} type="button" className="btn btn-primary mx-2">Upravit</button>
+            <button onClick={smazatData} type="button" className="btn btn-danger mx-2">Smazat</button>
+        </div>
     </li>
 }
 
@@ -131,7 +180,7 @@ export const UzivatelPage = () => {
     const [idObrazek, setIdObrazek] = useState(1);
 
     const fetchData = () => {
-        axios.get(IP + "/uzivatele").then(response => setData(response.data));
+        axios.get(IP + "/uzivatele").then(response => {setData(response.data); console.log(response.data)});
         axios.get(IP + "/adresy/zkratky").then(response => setAdresyData(response.data));
         axios.get(IP + "/opravneni").then(response => setOpravneniData(response.data));
         axios.get(IP + "/obrazky").then(response => setObrazkyData(response.data));
@@ -142,6 +191,15 @@ export const UzivatelPage = () => {
     }, []);
 
     const vytvoritData = () => {
+        if (email.trim().length === 0) {
+            showModal({
+                type: 'error',
+                heading: 'Chyba',
+                message: 'Zadejte e-mail',
+            });
+            return;
+        }
+
         showModal({
             type: 'confirmation',
             heading: 'Vytvořit data',
@@ -150,18 +208,18 @@ export const UzivatelPage = () => {
                 axios.post(IP + "/uzivatele",
                     {
                         email: email,
-                        pw_hash: '',
-                        salt: '',
-                        id_opravneni: props.id_opravneni,
-                        id_obrazek: props.id_obrazek,
-                        id_adresa: props.id_adresa
+                        pw_hash: 'placeholder',
+                        salt: 'placeholder',
+                        id_opravneni: idOpravneni,
+                        id_obrazek: idObrazek,
+                        id_adresa: idAdresa 
                     }
                 ).then(response => {
                     if (response.data.status_code == 1) {
                         showModal({
                             type: 'info',
                             heading: 'Úspěch',
-                            message: response.data.status_message 
+                            message: response.data.status_message
                         });
                         fetchData();
                     } else {
@@ -178,7 +236,6 @@ export const UzivatelPage = () => {
                         message: 'Server je nedostupný'
                     });
                 }).finally(() => {
-                    setcp('');
                     fetchData();
                 })
             }
@@ -196,21 +253,21 @@ export const UzivatelPage = () => {
                 <select onChange={e => setIdAdresa(e.target.value)} className="mx-2 form-select" aria-label="Adresy">
                     {adresyData.map(m => {
                         return (
-                            <option key={m.id_adresa} value={Number(m.id_adresa)}>{m.zkratka}</option>
+                            <option selected={m.id_adresa === idAdresa} key={m.id_adresa} value={Number(m.id_adresa)}>{m.zkratka}</option>
                         )
                     })}
                 </select>
                 <select onChange={e => setIdOpravneni(e.target.value)} className="mx-2 form-select" aria-label="Oprávnění">
                     {opravneniData.map(m => {
                         return (
-                            <option key={m.id_opravneni} value={Number(m.id_opravneni)}>{m.nazev}</option>
+                            <option selected={m.id_opravneni === idOpravneni} key={m.id_opravneni} value={Number(m.id_opravneni)}>{m.nazev}</option>
                         )
                     })}
                 </select>
                 <select onChange={e => setIdObrazek(e.target.value)} className="mx-2 form-select" aria-label="Obrázky">
                     {obrazkyData.map(m => {
                         return (
-                            <option key={m.id_obrazek} value={Number(m.id_obrazek)}>{m.obrazek}</option>
+                            <option selected={m.id_obrazek === idObrazek} key={m.id_obrazek} value={Number(m.id_obrazek)}>{m.nazev_souboru}</option>
                         )
                     })}
                 </select>

@@ -33,7 +33,7 @@ public class DotazController extends AbstractController<Dotaz> {
 
     @PostMapping("/odpoved-na-dotaz")
     public ResponseEntity<Status<Dotaz>> addOdpoved(@RequestBody OdpovedRequest request) {
-        Status<Dotaz> result = service.addDotaz(request);
+        Status<Dotaz> result = service.addOdpoved(request);
 
         if (result.status_code() == 1) {
             return new ResponseEntity<>(result, HttpStatus.CREATED);
