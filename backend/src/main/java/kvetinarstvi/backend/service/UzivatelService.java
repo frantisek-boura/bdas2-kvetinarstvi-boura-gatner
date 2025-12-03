@@ -100,17 +100,25 @@ public class UzivatelService {
             }
         }
 
-        final String QUERY = "{CALL PCK_HESLA.PROC_ZMEN_HESLO(?, ?)}";
+        final String QUERY = "{CALL PCK_HESLA.PROC_ZMEN_HESLO(?, ?, ?, ?)}";
         try (Connection connection = dataSource.getConnection();
             CallableStatement cs = connection.prepareCall(QUERY)) {
             cs.setInt(1, request.id_uzivatel());
             cs.setString(2, heslo);
+            cs.registerOutParameter(3, Types.INTEGER);
+            cs.registerOutParameter(4, Types.VARCHAR);
             cs.execute();
 
-            if (!request.generovat_heslo()) {
-                return new Status<>(1, "Změna hesla proběhla úspěšně", null);
+            int status_code = cs.getInt(3);
+            String status_message = cs.getString(4);
+            if (status_code == 1) {
+                if (!request.generovat_heslo()) {
+                    return new Status<>(1, status_message, null);
+                } else {
+                    return new Status<>(1, status_message, heslo);
+                }
             } else {
-                return new Status<>(1, "Změna hesla proběhla úspěšně", heslo);
+                return new Status<>(status_code, status_message, null);
             }
         } catch (SQLException e) {
             return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);

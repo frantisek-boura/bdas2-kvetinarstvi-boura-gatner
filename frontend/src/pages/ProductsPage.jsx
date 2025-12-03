@@ -234,9 +234,9 @@ export default function ProductsPage() {
                         }
 
                         return (
-                            <div key={i} style={{height: '25em'}} className='w-25 m-3 p-3 d-flex flex-column flex-nowrap text-center justify-content-between align-items-center'>
-                                <h3>{p.nazev}</h3>
-                                <span>{categoryName}</span>
+                            <div key={i} style={{height: '30em'}} className='w-25 m-3 p-3 d-flex flex-column flex-nowrap text-center justify-content-between align-items-center'>
+                                <h5 style={{height: '2em'}}>{p.nazev}</h5>
+                                <span>Kategorie: {categoryName}</span>
                                 <div className='ratio ratio-1x1'>
                                     <img src={data === '' ? null : data} alt={alt} className='img-thumbnail' />
                                 </div>

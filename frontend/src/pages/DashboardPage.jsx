@@ -10,6 +10,8 @@ import { StavObjednavkyPage } from "../dashboardPages/StavyObjednavekPage";
 import { ZpusobPlatbyPage } from "../dashboardPages/ZpusobyPlatebPage";
 import { ObrazekPage } from "../dashboardPages/ObrazekPage";
 import { UzivatelPage } from "../dashboardPages/UzivatelPage";
+import { DotazPage } from "../dashboardPages/DotazPage";
+import { KvetinaPage } from "../dashboardPages/KvetinaPage";
 
 
 export const DashboardPage = () => {
@@ -36,7 +38,7 @@ export const DashboardPage = () => {
                     <li onClick={() => setPage(<AdresaPage />)} className="card-header list-group-item list-group-item-action">
                         Adresy
                     </li>
-                    <li className="card-header list-group-item list-group-item-action">
+                    <li onClick={() => setPage(<DotazPage />)} className="card-header list-group-item list-group-item-action">
                         Dotazy
                     </li>
                     <li onClick={() => setPage(<KategoriePage />)} className="card-header list-group-item list-group-item-action">
@@ -45,7 +47,7 @@ export const DashboardPage = () => {
                     <li className="card-header list-group-item list-group-item-action">
                         Košíky
                     </li>
-                    <li className="card-header list-group-item list-group-item-action">
+                    <li onClick={() => setPage(<KvetinaPage />)} className="card-header list-group-item list-group-item-action">
                         Květiny 
                     </li>
                     <li className="card-header list-group-item list-group-item-action">

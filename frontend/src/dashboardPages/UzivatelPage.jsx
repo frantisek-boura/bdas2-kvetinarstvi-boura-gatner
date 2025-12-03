@@ -25,7 +25,6 @@ const UzivatelData = (props) => {
                         nove_heslo: ''
                 }).then(response => {
                     if (response.data.status_code == 1) {
-                        console.log(response.data);
                         showModal({
                             type: 'info',
                             heading: 'Úspěch',
@@ -53,8 +52,6 @@ const UzivatelData = (props) => {
     }
 
     const upravitData = () => {
-        console.log(obrazek, opravneni, adresa)
-
         showModal({
             type: 'confirmation',
             heading: 'Upravit data',
@@ -130,9 +127,9 @@ const UzivatelData = (props) => {
         });
     }
 
-    return <li className="d-flex flex-row justify-content-between list-group-item list-group-item-action w-100">
+    return <li className="d-flex flex-row justify-content-between align-items-center list-group-item list-group-item-action w-100">
         <p className="w-25">{props.uzivatel.email}</p>
-        <div>
+        <div className="w-25">
         <select onChange={e => setAdresa(e.target.value)} className="mx-2 form-select" aria-label="Adresa">
             {props.adresyData.map(m => {
                 return (
@@ -155,7 +152,7 @@ const UzivatelData = (props) => {
             })}
         </select>
         </div>
-        <div className="d-flex flex-column align-items-end justify-content-center">
+        <div className="d-flex flex-column align-items-end justify-content-center w-25">
             {vygenerovaneHeslo !== '' && <p>Heslo: {vygenerovaneHeslo}</p>}
             {props.uzivatel.pw_hash.trim() == 'placeholder' && <button onClick={vygenerovatHeslo} type="button" className="btn btn-secondary">Vygenerovat heslo</button>}
             <button onClick={upravitData} type="button" className="btn btn-primary mx-2">Upravit</button>
@@ -180,7 +177,7 @@ export const UzivatelPage = () => {
     const [idObrazek, setIdObrazek] = useState(1);
 
     const fetchData = () => {
-        axios.get(IP + "/uzivatele").then(response => {setData(response.data); console.log(response.data)});
+        axios.get(IP + "/uzivatele").then(response => setData(response.data));
         axios.get(IP + "/adresy/zkratky").then(response => setAdresyData(response.data));
         axios.get(IP + "/opravneni").then(response => setOpravneniData(response.data));
         axios.get(IP + "/obrazky").then(response => setObrazkyData(response.data));
@@ -245,11 +242,12 @@ export const UzivatelPage = () => {
     return <div className="d-flex flex-column flex-nowrap w-100 mx-5">
         <h1>Uživatelé</h1>
         <ul className="list-group list-group-flush">
-            <li className="d-flex flex-row justify-content-between list-group-item list-group-item-action w-100">
+            <li className="d-flex flex-row justify-content-between align-items-center list-group-item list-group-item-action w-100">
                 <h5 className="mx-2">Vytvořit</h5>
             </li>
-            <li className="d-flex flex-row justify-content-between list-group-item list-group-item-action w-100">
-                <input type="text" className="form-control mx-2" onChange={e => setEmail(e.target.value)} value={email} />
+            <li className="d-flex flex-row justify-content-between align-items-center list-group-item list-group-item-action w-100">
+                <input type="text" className="form-control mx-2 w-25" onChange={e => setEmail(e.target.value)} value={email} />
+                <div className="w-25 d-flex flex-column justify-contenet-start">
                 <select onChange={e => setIdAdresa(e.target.value)} className="mx-2 form-select" aria-label="Adresy">
                     {adresyData.map(m => {
                         return (
@@ -271,13 +269,18 @@ export const UzivatelPage = () => {
                         )
                     })}
                 </select>
-                <button type="button" className="btn btn-primary mx-2" onClick={vytvoritData}>Vytvořit</button>
+                </div>
+                <div className="w-25 d-flex justify-content-end">
+                    <button type="button" className="btn btn-primary mx-2" onClick={vytvoritData}>Vytvořit</button>
+                </div>
             </li>
-            <li className="d-flex flex-row justify-content-between list-group-item list-group-item-action w-100">
+            <li className="d-flex flex-row justify-content-between align-items-center list-group-item list-group-item-action w-100">
                 <h5 className="mx-2">E-mail</h5>
+                <div>
                 <h5 className="mx-2">Adresa</h5>
                 <h5 className="mx-2">Oprávnění</h5>
                 <h5 className="mx-2">Obrázek</h5>
+                </div>
                 <h5 className="mx-2">Ovládání</h5>
             </li>
             {data.map((m) => <UzivatelData key={m.id_uzivatel} uzivatel={m} id_adresa={m.id_adresa} id_obrazek={m.id_obrazek} id_opravneni={m.id_opravneni} adresyData={adresyData} obrazkyData={obrazkyData} opravneniData={opravneniData} onRefresh={fetchData}/>)}

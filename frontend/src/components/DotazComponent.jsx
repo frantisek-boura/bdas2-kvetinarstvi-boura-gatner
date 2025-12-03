@@ -58,10 +58,10 @@ export const DotazComponent = ({dotaz, uzivatele }) => {
             <p className='fw-bold'>{dotaz.text}</p>
             { zodpovezeny ?
                 <>
-                    {(opravneni.uroven_opravneni !== 0) &&
+                    {(opravneni !== null && opravneni.uroven_opravneni !== 0) &&
                     <>
                         <textarea onChange={(e) => setOdpoved(e.target.value)} className='form-control'></textarea>
-                        <button onClick={handleOdpoved} type='button' className='btn btn-primary my-2'>Odpovědět</button>
+                        <button onClick={handleOdpoved} type='button' disabled={odpoved.trim().length === 0} className='btn btn-primary my-2'>Odpovědět</button>
                     </>
                     }
                 </>
