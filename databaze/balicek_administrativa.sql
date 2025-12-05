@@ -7,6 +7,47 @@ CREATE OR REPLACE TYPE T_KVETINA_KOSIK_REC AS OBJECT (
 CREATE OR REPLACE TYPE T_KVETINA_KOSIK_LIST AS TABLE OF T_KVETINA_KOSIK_REC;
 /
 
+create or replace PACKAGE PCK_ADMINISTRATIVA
+AS  
+    PROCEDURE PROC_SMAZ_STARE_DOTAZY(
+        p_starsi_nez            IN DATE,
+        
+        o_pocet_smazanych       OUT NUMBER
+    );
+
+    PROCEDURE PROC_PODEJ_OBJEDNAVKU(
+        p_id_uzivatel           IN UZIVATELE.id_uzivatel%TYPE,
+        p_id_zpusob_platby      IN ZPUSOBYPLATEB.id_zpusob_platby%TYPE,
+        p_objednane_kvetiny     IN T_KVETINA_KOSIK_LIST,
+
+        o_novy_kosik_id         OUT KOSIKY.id_kosik%TYPE
+    );
+
+    FUNCTION FUNC_NAROK_NA_SLEVU(
+        p_id_uzivatel           IN UZIVATELE.id_uzivatel%TYPE
+    )
+    RETURN NUMBER;
+
+    PROCEDURE PROC_PRIDEJ_DOTAZ(
+        p_text IN CLOB,
+        
+        o_id_dotaz OUT NUMBER,
+        o_status OUT NUMBER,
+        o_status_message OUT VARCHAR2
+    );
+
+    PROCEDURE PROC_ODPOVED_NA_DOTAZ(
+        p_id_dotaz IN NUMBER,
+        p_id_odpovidajici_uzivatel IN NUMBER,
+        p_odpoved IN CLOB,
+        
+        o_id_dotaz OUT NUMBER,
+        o_status OUT NUMBER,
+        o_status_message OUT VARCHAR2
+    );
+
+END PCK_ADMINISTRATIVA;
+
 create or replace PACKAGE BODY PCK_ADMINISTRATIVA
 AS
     PROCEDURE PROC_SMAZ_STARE_DOTAZY(
@@ -171,10 +212,10 @@ AS
         END IF;
 
     END FUNC_NAROK_NA_SLEVU;
-    
+
     PROCEDURE PROC_PRIDEJ_DOTAZ(
         p_text IN CLOB,
-        
+
         o_id_dotaz OUT NUMBER,
         o_status OUT NUMBER,
         o_status_message OUT VARCHAR2
@@ -183,12 +224,12 @@ AS
     BEGIN
         PCK_DOTAZY.PROC_INSERT_DOTAZ(p_text, 0, null, null, o_id_dotaz, o_status, o_status_message);
     END;
-    
+
     PROCEDURE PROC_ODPOVED_NA_DOTAZ(
         p_id_dotaz IN NUMBER,
         p_id_odpovidajici_uzivatel IN NUMBER,
         p_odpoved IN CLOB,
-        
+
         o_id_dotaz OUT NUMBER,
         o_status OUT NUMBER,
         o_status_message OUT VARCHAR2
@@ -197,7 +238,7 @@ AS
         r_dotaz DOTAZY%ROWTYPE;
     BEGIN
         SELECT * INTO r_dotaz FROM dotazy WHERE id_dotaz = p_id_dotaz;
-    
+
         PCK_DOTAZY.PROC_UPDATE_DOTAZ(p_id_dotaz, r_dotaz.text, r_dotaz.verejny, p_odpoved, p_id_odpovidajici_uzivatel, o_id_dotaz, o_status, o_status_message);
     END;
 
