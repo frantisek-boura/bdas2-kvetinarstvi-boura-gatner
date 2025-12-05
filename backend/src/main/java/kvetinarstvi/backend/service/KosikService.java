@@ -1,6 +1,7 @@
 package kvetinarstvi.backend.service;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import kvetinarstvi.backend.records.Kosik;
@@ -54,5 +55,39 @@ public class KosikService {
         } catch (SQLException e) {
             return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
         }
+    }
+
+    public List<UzivatelPolozka> getPolozky(Integer id) throws SQLException {
+        final String QUERY = """
+                select * from view_objednavky_uzivatelu
+                where id_kosik = ?
+                """;
+        List<UzivatelPolozka> polozky = new ArrayList<>();
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement stmt = c.prepareStatement(QUERY)) {
+
+            stmt.setInt(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    int id_kvetina = rs.getInt("id_kvetina");
+                    int id_kosik = rs.getInt("id_kosik");
+                    double cena_za_kus = rs.getDouble("cena_za_kus");
+                    int pocet = rs.getInt("pocet");
+                    String nazev_kvetiny = rs.getString("nazev_kvetiny");
+                    int id_obrazek = rs.getInt("id_obrazek");
+                    int id_kategorie = rs.getInt("id_kategorie");
+                    String nazev_souboru = rs.getString("nazev_souboru");
+                    byte[] data = rs.getBytes("data");
+                    String nazev_kategorie = rs.getString("nazev_kategorie");
+
+
+                    polozky.add(new UzivatelPolozka(
+                            id_kvetina, cena_za_kus, pocet, nazev_kvetiny, id_obrazek, nazev_souboru, data, id_kategorie, nazev_kategorie
+                    ));
+                }
+            }
+        }
+
+        return polozky;
     }
 }

@@ -12,6 +12,9 @@ import { ObrazekPage } from "../dashboardPages/ObrazekPage";
 import { UzivatelPage } from "../dashboardPages/UzivatelPage";
 import { DotazPage } from "../dashboardPages/DotazPage";
 import { KvetinaPage } from "../dashboardPages/KvetinaPage";
+import { KosikPage } from "../dashboardPages/KosikPage.jsx";
+import { LogsPage } from "../dashboardPages/LogsPage.jsx";
+import { SysKatalogPage } from "../dashboardPages/SysKatalogPage.jsx";
 
 
 export const DashboardPage = () => {
@@ -44,14 +47,11 @@ export const DashboardPage = () => {
                     <li onClick={() => setPage(<KategoriePage />)} className="card-header list-group-item list-group-item-action">
                         Kategorie
                     </li>
-                    <li className="card-header list-group-item list-group-item-action">
+                    <li onClick={() => setPage(<KosikPage />)}className="card-header list-group-item list-group-item-action">
                         Košíky
                     </li>
                     <li onClick={() => setPage(<KvetinaPage />)} className="card-header list-group-item list-group-item-action">
                         Květiny 
-                    </li>
-                    <li className="card-header list-group-item list-group-item-action">
-                        Položky v košících 
                     </li>
                     <li onClick={() => setPage(<MestoPage />)} className="card-header list-group-item list-group-item-action">
                         Města 
@@ -83,6 +83,21 @@ export const DashboardPage = () => {
                     {opravneni.uroven_opravneni == 2 &&
                     <li onClick={() => setPage(<ZpusobPlatbyPage />)} className="card-header list-group-item list-group-item-action">
                         Způsoby plateb
+                    </li>
+                    }
+                    {opravneni.uroven_opravneni == 2 &&
+                    <li onClick={() => setPage(<OpravneniPage />)} className="card-header list-group-item list-group-item-action">
+                        Oprávnění 
+                    </li>
+                    }
+                    {opravneni.uroven_opravneni == 2 &&
+                    <li onClick={() => setPage(<LogsPage />)} className="card-header list-group-item list-group-item-action">
+                        Logs 
+                    </li>
+                    }
+                    {opravneni.uroven_opravneni == 2 &&
+                    <li onClick={() => setPage(<SysKatalogPage />)} className="card-header list-group-item list-group-item-action">
+                        Systémový katalog 
                     </li>
                     }
                 </ul>

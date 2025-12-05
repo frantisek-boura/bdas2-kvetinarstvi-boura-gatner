@@ -84,3 +84,18 @@ WHERE
         CONNECT BY 
             PRIOR ID_KATEGORIE = ID_NADRAZENE_KATEGORIE
     );
+
+
+create or replace view view_logs
+as
+select id_log, nazev as akce, upper(nazev_tabulky) as nazev_tabulky, datum as datum_akce, novy_zaznam, stary_zaznam
+from logs 
+join logakce using (id_log_akce) 
+order by nazev_tabulky, datum, nazev;
+
+create or replace view view_sys_katalog
+as
+select table_name as tabulka, column_name as sloupec, data_type as datovy_typ
+from user_tables
+join user_tab_columns using (table_name)
+order by table_name, column_name;

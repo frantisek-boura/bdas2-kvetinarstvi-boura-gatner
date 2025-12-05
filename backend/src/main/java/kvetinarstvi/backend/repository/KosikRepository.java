@@ -81,29 +81,16 @@ public class KosikRepository implements IRepository<Kosik> {
     public Status<Kosik> insert(Kosik kosikRequest) {
         final String QUERY = "{CALL PCK_KOSIKY.PROC_INSERT_KOSIK(?, ?, ?, ?, ?, ?, ?, ?)}";
 
+        System.out.println(kosikRequest);
+
         try (Connection c = dataSource.getConnection();
              CallableStatement stmt = c.prepareCall(QUERY)
         ) {
             stmt.setDouble(1, kosikRequest.cena());
             stmt.setInt(2, kosikRequest.sleva());
-
-            if (kosikRequest.id_uzivatel() == null) {
-                stmt.setNull(3, Types.INTEGER);
-            } else {
-                stmt.setInt(3, kosikRequest.id_uzivatel());
-            }
-
-            if (kosikRequest.id_stav_objednavky() == null) {
-                stmt.setNull(4, Types.INTEGER);
-            } else {
-                stmt.setInt(4, kosikRequest.id_stav_objednavky());
-            }
-
-            if (kosikRequest.id_zpusob_platby() == null) {
-                stmt.setNull(5, Types.INTEGER);
-            } else {
-                stmt.setInt(5, kosikRequest.id_zpusob_platby());
-            }
+            stmt.setInt(3, kosikRequest.id_uzivatel());
+            stmt.setInt(4, kosikRequest.id_stav_objednavky());
+            stmt.setInt(5, kosikRequest.id_zpusob_platby());
 
             stmt.registerOutParameter(6, Types.INTEGER); // o_id_kosik
             stmt.registerOutParameter(7, Types.INTEGER); // o_status_code
@@ -137,23 +124,9 @@ public class KosikRepository implements IRepository<Kosik> {
             stmt.setDouble(2, kosikRequest.cena());
             stmt.setInt(3, kosikRequest.sleva());
 
-            if (kosikRequest.id_uzivatel() == null) {
-                stmt.setNull(4, Types.INTEGER);
-            } else {
-                stmt.setInt(4, kosikRequest.id_uzivatel());
-            }
-
-            if (kosikRequest.id_stav_objednavky() == null) {
-                stmt.setNull(5, Types.INTEGER);
-            } else {
-                stmt.setInt(5, kosikRequest.id_stav_objednavky());
-            }
-
-            if (kosikRequest.id_zpusob_platby() == null) {
-                stmt.setNull(6, Types.INTEGER);
-            } else {
-                stmt.setInt(6, kosikRequest.id_zpusob_platby());
-            }
+            stmt.setInt(4, kosikRequest.id_uzivatel());
+            stmt.setInt(5, kosikRequest.id_stav_objednavky());
+            stmt.setInt(6, kosikRequest.id_zpusob_platby());
 
             stmt.registerOutParameter(7, Types.INTEGER); // o_id_kosik
             stmt.registerOutParameter(8, Types.INTEGER); // o_status_code

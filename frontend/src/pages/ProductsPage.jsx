@@ -241,7 +241,7 @@ export default function ProductsPage() {
                                     <img src={data === '' ? null : data} alt={alt} className='img-thumbnail' />
                                 </div>
                                 <span>{p.cena} Kč</span>
-                                <button onClick={() => addItem(p.id_kvetina, 1)} type="button" className='m-1 btn btn-primary'>Přidat do košíku {countItems(p.id_kvetina) !== 0 && <>({countItems(p.id_kvetina)})</>}</button>
+                                <button onClick={() => addItem(p.id_kvetina, 1)} type="button" className='m-1 btn btn-primary' disabled={user == null}>Přidat do košíku {countItems(p.id_kvetina) !== 0 && <>({countItems(p.id_kvetina)})</>}</button>
                                 <button onClick={() => removeItem(p.id_kvetina, 1)} disabled={containsItem(p.id_kvetina) === false} type="button" className='m-1 btn btn-danger'>Odebrat z košíku</button>
                             </div>
                         )
