@@ -5,13 +5,11 @@ import kvetinarstvi.backend.repository.Status;
 import kvetinarstvi.backend.service.DotazRequest;
 import kvetinarstvi.backend.service.DotazService;
 import kvetinarstvi.backend.service.OdpovedRequest;
+import kvetinarstvi.backend.service.SmazatDotazyRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/dotazy")
@@ -24,22 +22,22 @@ public class DotazController extends AbstractController<Dotaz> {
     public ResponseEntity<Status<Dotaz>> addDotaz(@RequestBody DotazRequest request) {
         Status<Dotaz> result = service.addDotaz(request);
 
-        if (result.status_code() == 1) {
-            return new ResponseEntity<>(result, HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PostMapping("/odpoved-na-dotaz")
     public ResponseEntity<Status<Dotaz>> addOdpoved(@RequestBody OdpovedRequest request) {
         Status<Dotaz> result = service.addOdpoved(request);
 
-        if (result.status_code() == 1) {
-            return new ResponseEntity<>(result, HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
+    @DeleteMapping("/starsi-nez")
+    public ResponseEntity<Status<Integer>> smazatDotazy(@RequestBody SmazatDotazyRequest request) {
+        Status<Integer> result = service.smazatDotazy(request);
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
 
 }

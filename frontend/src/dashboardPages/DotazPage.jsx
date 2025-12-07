@@ -85,6 +85,7 @@ const DotazData = (props) => {
     }
 
     return <li className="d-flex flex-row justify-content-between align-items-center list-group-item list-group-item-action w-100">
+        <p className="mx-2">{props.dotaz.datum_podani}</p>
         <textarea className="form-control mx-2" onChange={(e) => setText(e.target.value)} value={text} />
         <input className="form-check-input mx-2" onChange={(e) => setVerejny(e.target.checked)} id="checkbox" type="checkbox" checked={verejny} />
         <label htmlFor="checkbox" className="mx-2">Veřejný</label>
@@ -198,6 +199,7 @@ export const DotazPage = () => {
                 <button type="button" className="btn btn-primary mx-2" onClick={vytvoritData}>Vytvořit</button>
             </li>
             <li className="d-flex flex-row justify-content-between list-group-item list-group-item-action w-100">
+                <h5 className="mx-2">Datum podání</h5>
                 <h5 className="mx-2">Text</h5>
                 <h5 className="mx-2">Veřejný</h5>
                 <h5 className="mx-2">Odpověď</h5>

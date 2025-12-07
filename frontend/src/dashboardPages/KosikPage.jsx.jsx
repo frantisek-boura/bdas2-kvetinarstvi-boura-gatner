@@ -38,8 +38,53 @@ const formatISOToDatetimeLocal = (isoString) => {
 
 const KosikData = (props) => {
 
+    const { showModal } = useModal();
 
     const [polozky, setPolozky] = useState([]);
+
+    const [stavObjednavky, setStavObjednavky] = useState(props.kosik.id_stav_objednavky);
+
+    const upravitStavObjednavky = () => {
+        showModal({
+            type: 'confirmation',
+            heading: 'Smazat data',
+            message: 'Opravdu chcete upravit data?',
+            onConfirm: () => {
+                axios.put(
+                    IP + "/kosiky", {
+                        id_kosik: props.kosik.id_kosik,
+                        datum_vytvoreni: props.datum_vytvoreni,
+                        cena: props.kosik.cena,
+                        sleva: props.kosik.sleva,
+                        id_uzivatel: props.kosik.id_uzivatel,
+                        id_stav_objednavky: stavObjednavky,
+                        id_zpusob_platby: props.kosik.id_zpusob_platby
+                    }
+                ).then(response => {
+                    if (response.data.status_code == 1) {
+                        showModal({
+                            type: 'info',
+                            heading: 'Úspěch',
+                            message: response.data.status_message 
+                        });
+                        props.onRefresh();
+                    } else {
+                        showModal({
+                            type: 'error',
+                            heading: 'Chyba',
+                            message: response.data.status_message 
+                        });
+                    }
+                }).catch(error => {
+                    showModal({
+                        type: 'error',
+                        heading: 'Chyba',
+                        message: 'Server je nedostupný'
+                    });
+                })
+            }
+        });
+    }
 
     useEffect(() => {
         axios.get(IP + "/kosiky/polozky/" + props.kosik.id_kosik).then(response => {
@@ -61,7 +106,13 @@ const KosikData = (props) => {
                 </div>
                 <div className="w-25 d-flex flex-column mx-2">
                     <p>{props.uzivateleData.filter(u => u.id_uzivatel == props.kosik.id_uzivatel)[0].email}</p>
-                    <p>{props.stavyObjednavekData.filter(u => u.id_stav_objednavky == props.kosik.id_stav_objednavky)[0].nazev}</p>
+                    <select onChange={e => setStavObjednavky(e.target.value)} className="form-select" aria-label="Stav objednávky">
+                        {props.stavyObjednavekData.map(m => {
+                            return (
+                                <option selected={stavObjednavky === m.id_stav_objednavky} value={Number(m.id_stav_objednavky)} key={m.id_stav_objednavky}>{m.nazev}</option>
+                            )
+                        })}
+                    </select>
                     <p>{props.zpusobyPlatebData.filter(u => u.id_zpusob_platby == props.kosik.id_zpusob_platby)[0].nazev}</p>
                 </div>
             </div>
@@ -76,6 +127,7 @@ const KosikData = (props) => {
                     </li>
                 })}
             </ul>
+            <button className="btn btn-primary mx-2" onClick={upravitStavObjednavky} disabled={stavObjednavky == null}>Upravit stav objednávky</button>
         </div>
     </li>
 }

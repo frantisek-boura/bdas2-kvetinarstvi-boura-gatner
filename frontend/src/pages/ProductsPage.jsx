@@ -27,6 +27,7 @@ export default function ProductsPage() {
 
     const [area, setArea] = useState('');
     const [filteredProducts, setFilteredProducts] = useState([]);
+    const [datum, setDatum] = useState(null);
 
     const buildCategoryTree = (data) => {
         const map = {};
@@ -132,6 +133,41 @@ export default function ProductsPage() {
         });
     }
 
+    const smazatDotazy = () => {
+        console.log(new Date(datum).toISOString())
+
+        showModal({
+            type: 'confirmation',
+            heading: 'Podat dotaz',
+            message: 'Opravdu chcete smazat dotazy?',
+            onConfirm: () => {
+                axios.delete(IP + "/dotazy/starsi-nez", {
+                    data: {starsi_nez: new Date(datum).toISOString()}
+                }).then(response => {
+                    if (response.data.status_code === 1) {
+                        showModal({
+                            type: 'info',
+                            heading: 'Úspěch',
+                            message: response.data.status_message + ' (' + response.data.value + ')',
+                        });
+                    } else {
+                        showModal({
+                            type: 'error',
+                            heading: 'Chyba',
+                            message: response.data.status_message,
+                        });
+                    }
+                }).catch(error => {
+                    showModal({
+                        type: 'error',
+                        heading: 'Chyba',
+                        message: 'Server je nedostupný',
+                    });
+                })
+            }
+        });
+    }
+
     useEffect(() => {
         axios.get(
             IP + "/dotazy"
@@ -172,6 +208,13 @@ export default function ProductsPage() {
                         <h5>Dotazy</h5>
                     </div>
                     <ul className="list-group list-group-flush">
+                        { (opravneni === null || opravneni.uroven_opravneni === 2) && 
+                            <li className="list-group-item list-group-item-action">
+                                <p className='fw-bold'>Smazat nezodpovězené dotazy starší než</p>
+                                <input type="date" onChange={e => setDatum(e.target.value)} className='mx-2 form-control '/>
+                                <button onClick={smazatDotazy} disabled={datum === null} type='button' className='btn btn-danger my-2'>Smazat</button>
+                            </li>
+                        }
                         { (opravneni === null || opravneni.uroven_opravneni === 0) && 
                             <li className="list-group-item list-group-item-action">
                                 <p className='fw-bold'>Zanechat dotaz</p>

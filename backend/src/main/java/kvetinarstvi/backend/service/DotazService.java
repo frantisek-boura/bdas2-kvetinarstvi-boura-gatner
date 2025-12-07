@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Types;
+import java.sql.*;
 
 @Service
 public class DotazService {
@@ -69,6 +66,25 @@ public class DotazService {
             Dotaz dotaz = repository.findById(id_dotaz).get();
 
             return new Status<>(cs.getInt(5), cs.getString(6), dotaz);
+        } catch (SQLException e) {
+            return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
+        }
+    }
+
+    public Status<Integer> smazatDotazy(SmazatDotazyRequest request) {
+        final String QUERY = "{CALL PCK_ADMINISTRATIVA.PROC_SMAZ_STARE_DOTAZY(?, ?)}";
+
+        try (Connection connection = dataSource.getConnection();
+             CallableStatement cs = connection.prepareCall(QUERY)) {
+
+            cs.setDate(1, new Date(request.starsi_nez().getTime()));
+
+            cs.registerOutParameter(2, Types.INTEGER);
+            cs.execute();
+
+            int pocet = cs.getInt(2);
+
+            return new Status<>(1, "Úspěch: dotazy úspěšně smazány", pocet);
         } catch (SQLException e) {
             return new Status<>(-999, "Kritická chyba databáze: " + e.getMessage(), null);
         }
